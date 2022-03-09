@@ -40,10 +40,6 @@
                       <th>Category</th>
                       <th>Subcategory</th>
                       <th>Name</th>
-                      <th>Image1</th>
-                      <th>Image2</th>
-                      <th>Image3</th>
-                      <th>Image4</th>
                       <th>Short Description</th>
                       <th>Long Description</th>
 
@@ -72,44 +68,7 @@
                       echo $subCat_data->name ?></td>
                       <td><?php echo $data->name ?></td>
 
-                      <td>
-                        <?php if ($data->image1!="") { ?>
-                        <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$data->image1
-        ?>">
-                        <?php } else { ?>
-                        Sorry No File Found
-                        <?php } ?>
-                      </td>
 
-
-                      <td>
-                        <?php if ($data->image2!="") { ?>
-                        <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$data->image2
-        ?>">
-                        <?php } else { ?>
-                        Sorry No File Found
-                        <?php } ?>
-                      </td>
-
-
-                      <td>
-                        <?php if ($data->image3!="") { ?>
-                        <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$data->image3
-        ?>">
-                        <?php } else { ?>
-                        Sorry No File Found
-                        <?php } ?>
-                      </td>
-
-
-                      <td>
-                        <?php if ($data->image4!="") { ?>
-                        <img id="slide_img_path" height=50 width=100 src="<?php echo base_url().$data->image4
-        ?>">
-                        <?php } else { ?>
-                        Sorry No File Found
-                        <?php } ?>
-                      </td>
 
                       <td><?php echo $data->s_description ?></td>
                       <td><?php echo $data->l_description ?></td>
@@ -141,6 +100,8 @@
                               <li><a href="<?php echo base_url() ?>dcadmin/products/updateproductsStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
                               <?php } ?>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Type/view_type/<?php echo
+        base64_encode($data->id) ?>">Type</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/products/update_products/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
                               <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>

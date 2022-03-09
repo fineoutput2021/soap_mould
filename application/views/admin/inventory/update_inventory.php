@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Add New Products
+      Update Products
     </h1>
 
   </section>
@@ -11,7 +11,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add New Products</h3>
+            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Update Products </h3>
           </div>
 
           <?php if (!empty($this->session->flashdata('smessage'))) {  ?>
@@ -21,7 +21,7 @@
             <?php echo $this->session->flashdata('smessage');  ?>
           </div>
           <?php }
-                                              if (!empty($this->session->flashdata('emessage'))) {  ?>
+                               if (!empty($this->session->flashdata('emessage'))) {  ?>
           <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-ban"></i> Alert!</h4>
@@ -32,40 +32,17 @@
 
           <div class="panel-body">
             <div class="col-lg-10">
-              <form action=" <?php echo base_url()  ?>dcadmin/products/add_products_data/<?php echo base64_encode(1);  ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+              <form action=" <?php echo base_url(); ?>dcadmin/Inventory/update_inventory_data/<?php echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                 <div class="table-responsive">
                   <table class="table table-hover">
-                    <tr>
-                      <td> <strong>Category</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <select class="form-control" name="category_id" required id="category">
-                          <option value="">------select category---------</option>
-                          <?php $i=1; foreach ($category_data->result() as $data) { ?>
-                          <option value="<?=$data->id?>"><?=$data->name?></option>
-                          <?php $i++; } ?>
-                        </select> </td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Subcategory</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <select class="form-control" name="subcategory_id" required id="subcategory">
-                          <option value="">Select Sub Category</option>
-                        </select>
 
-                      </td>
+
+                      <td> <strong>Quantity</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <input type="text" name="quantity" class="form-control" placeholder="" required value="<? echo $inventory_data->quantity;?>" /> </td>
                     </tr>
-                    <tr>
-                      <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="name" class="form-control" placeholder="" required value="" /> </td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Short Description</strong> <span style="color:red;">*</span></strong> </td>
-                      <td>
-                        <textarea  name="s_description" class="form-control" rows="4" cols="50"></textarea></td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Long Description</strong> <span style="color:red;">*</span></strong> </td>
-                      <td>
-                        <textarea  name="l_description" class="form-control" rows="4" cols="50"></textarea></td>
-                    </tr>
+
+
+
 
 
 
@@ -91,6 +68,7 @@
     </div>
   </section>
 </div>
+
 <script type="text/javascript">
   $(document).ready(function() {
     $("#category").change(function() {
@@ -127,6 +105,5 @@
     })
   });
 </script>
-
 <script type="text/javascript" src=" <?php echo base_url()  ?>assets/slider/ajaxupload.3.5.js"></script>
 <link href=" <?php echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />

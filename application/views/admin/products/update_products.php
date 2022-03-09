@@ -46,11 +46,12 @@
                     </tr>
                     <tr>
                       <td> <strong>Subcategory</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <select class="form-control" name="subcategory_id" required id="subcategory">
-                          <option value="">Select Sub Category</option>
-                        </select>
-
-                      </td>
+                      <td> <select class="form-control" name="category_id" required id="category">
+                          <option value="">------select Sub category---------</option>
+                          <?php $i=1; foreach ($subcategory_data->result() as $data) { ?>
+                          <option value="<?=$data->id?>" <?if($data->id==$products_data->subcategory_id){echo "selected";}?>><?=$data->name?></option>
+                          <?php $i++; } ?>
+                        </select> </td>
                     </tr>
                     <tr>
                       <td> <strong>Name</strong> <span style="color:red;">*</span></strong> </td>
@@ -65,26 +66,7 @@
                       <td> <strong>Long Description</strong> <span style="color:red;">*</span></strong> </td>
                       <td><textarea  name="l_description" class="form-control" rows="4" cols="50"><?=$products_data->l_description;?></textarea> </td>
                     </tr>
-                    <tr>
-                      <td> <strong>Image1</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="file" name="image1" class="form-control" placeholder="" />
-                        <?php if ($products_data->image1!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$products_data->image1; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Image2</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="file" name="image2" class="form-control" placeholder="" />
-                        <?php if ($products_data->image2!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$products_data->image2; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Image3</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="file" name="image3" class="form-control" placeholder="" />
-                        <?php if ($products_data->image3!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$products_data->image3; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
-                    </tr>
-                    <tr>
-                      <td> <strong>Image4</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="file" name="image4" class="form-control" placeholder="" />
-                        <?php if ($products_data->image4!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$products_data->image4; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
-                    </tr>
+
 
 
 

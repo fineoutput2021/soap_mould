@@ -499,12 +499,19 @@
                                  </button>
                               </h2>
                            </div>
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingseven">
+                                 <button class=" btn" type="button">
+                                 <a href="contact.html">Contact Now</a>
+                                 </button>
+                              </h2>
+                           </div>
                         </div>
                         <br>
                         <div class="d-grid gap-2 d-md-block">
                            <a href="#exampleModalToggle" class="txt-deco-no" data-bs-toggle="modal" role="button"><button class="btn btn-primary w-100" type="button">Sign In</button></a>
                            <a href="#exampleModalToggle2" class="txt-deco-no" data-bs-toggle="modal" role="button"><button class="btn btn-primary w-100" type="button">Register</button></a>
-                           <button class="btn btn-primary" type="button"></button>
+                           <!-- <button class="btn btn-primary" type="button"></button> -->
                         </div>
                      </div>
                      <ul class="navbar-nav mobiledn">
@@ -1089,12 +1096,12 @@
          }
          //Get the button
          let mybutton = document.getElementById("btn-back-to-top");
-         
+
          // When the user scrolls down 20px from the top of the document, show the button
          window.onscroll = function () {
             scrollFunction();
          };
-         
+
          function scrollFunction() {
             if (
                document.body.scrollTop > 20 ||
@@ -1107,7 +1114,7 @@
          }
          // When the user clicks on the button, scroll to the top of the document
          mybutton.addEventListener("click", backToTop);
-         
+
          function backToTop() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
@@ -1115,11 +1122,11 @@
       </script>
       <script>
          var myVar;
-         
+
          function myFunction() {
            myVar = setTimeout(showPage, 0000);
          }
-         
+
          function showPage() {
            document.getElementById("loader").style.display = "none";
            document.getElementById("myDiv").style.display = "block";

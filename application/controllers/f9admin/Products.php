@@ -285,6 +285,7 @@
 
 
                                $last_id=$this->base_model->insert_table("tbl_products", $data_insert, 1) ;
+                          
                            }
                            if ($typ==2) {
                                $idw=base64_decode($iw);

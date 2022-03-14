@@ -72,6 +72,11 @@
                    $data['category_data']= $this->db->get();
 
                    $this->db->select('*');
+                   $this->db->from('tbl_subcategory');
+                   $this->db->where('is_active', 1);
+                   $data['subcategory_data']= $this->db->get();
+
+                   $this->db->select('*');
                    $this->db->from('tbl_products');
                    $this->db->where('id', $id);
                    $data['products_data']= $this->db->get()->row();
@@ -285,7 +290,7 @@
 
 
                                $last_id=$this->base_model->insert_table("tbl_products", $data_insert, 1) ;
-                          
+
                            }
                            if ($typ==2) {
                                $idw=base64_decode($iw);

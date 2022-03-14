@@ -40,7 +40,9 @@
                       <td> <select class="form-control" name="product_id" required id="category">
                           <option value="">------select product---------</option>
                           <?php $i=1; foreach ($product_data->result() as $data) { ?>
-                          <option value="<?=$data->id?>" <?if($data->id==$type_data->product_id){echo "selected";}?>><?=$data->name?></option>
+                          <option value="<?=$data->id?>" <?if ($data->id==$type_data->product_id) {
+                                   echo "selected";
+                               }?>><?=$data->name?></option>
                           <?php $i++; } ?>
                         </select> </td>
                     </tr>
@@ -51,19 +53,19 @@
                     </tr>
                     <tr>
                       <td> <strong>MRP</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="mrp" class="form-control" placeholder="" required value="<?=$type_data->mrp;?>" /> </td>
+                      <td> <input type="text" name="mrp" id ="mrp" class="form-control" placeholder="" required value="<?=$type_data->mrp;?>" /> </td>
                     </tr>
                     <tr>
-                      <td> <strong>GST</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
+                      <td> <strong>GST(%)</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <input type="text" id="gst" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>SP</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="sp" class="form-control" placeholder="" required value="<?=$type_data->sp;?>" /> </td>
+                      <td> <input type="text" id="sp" name="sp" class="form-control" placeholder="" READONLY required value="<?=$type_data->sp;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>GST Price</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="gstprice" class="form-control" placeholder="" required value="<?=$type_data->gstprice;?>" /> </td>
+                      <td> <input type="text" name="gstprice" id="gstprice" class="form-control" placeholder="" READONLY required value="<?=$type_data->gstprice;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>SP GST</strong> <span style="color:red;">*</span></strong> </td>
@@ -156,4 +158,18 @@
   });
 </script>
 <script type="text/javascript" src=" <?php echo base_url()  ?>assets/slider/ajaxupload.3.5.js"></script>
+<script>
+$(document).ready(function() {
+  $('#gst').keyup(function(ev) {
+    var mrp = $('#mrp').val() * 1;
+    var gst = $('#gst').val() * 1;
+    var gst_price= (gst/100)*mrp;
+    var sp = mrp + gst_price;
+    var divobj = document.getElementById('sp');
+    var gst_p = document.getElementById('gstprice');
+    divobj.value = sp;
+    gst_p.value = gst_price;
+  });
+});
+</script>
 <link href=" <?php echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />

@@ -15,7 +15,7 @@ class Orders extends CI_finecontrol
         $this->load->library('upload');
     }
 
-    public function view_new_orders()
+    public function view_orders()
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
@@ -30,10 +30,15 @@ class Orders extends CI_finecontrol
             $this->db->order_by("id", "desc");
             $data['orders_data']= $this->db->get();
 
+            $this->db->select('*');
+            $this->db->from('tbl_promocode');
+            //$this->db->where('id',$usr);
+            $data['prodata']= $this->db->get();
+
             $data['heading'] = "New Orders";
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/orders/view_orders');
+            $this->load->view('admin/Orders/view_orders');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -318,18 +323,18 @@ class Orders extends CI_finecontrol
         }
     }
 
-    //-------view dispatch review -------
-    public function view_dispatch_remarks($id)
-    {
-        if (!empty($this->session->userdata('admin_data'))) {
-            $data['id'] = $id;
-            $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/orders/dispatch_remarks');
-            $this->load->view('admin/common/footer_view');
-        } else {
-            redirect("login/admin_login", "refresh");
-        }
-    }
+    // //-------view dispatch review -------
+    // public function view_dispatch_remarks($id)
+    // {
+    //     if (!empty($this->session->userdata('admin_data'))) {
+    //         $data['id'] = $id;
+    //         $this->load->view('admin/common/header_view', $data);
+    //         $this->load->view('admin/orders/dispatch_remarks');
+    //         $this->load->view('admin/common/footer_view');
+    //     } else {
+    //         redirect("login/admin_login", "refresh");
+    //     }
+    // }
 
     //----------dispatch update -----------
     public function dispatch_order()

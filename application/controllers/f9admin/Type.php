@@ -39,7 +39,7 @@ class Type extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Type/view_type');
+            $this->load->view('admin/type/view_type');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -69,7 +69,7 @@ class Type extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Type/add_type');
+            $this->load->view('admin/type/add_type');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -449,7 +449,7 @@ class Type extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Type/update_type');
+            $this->load->view('admin/type/update_type');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");

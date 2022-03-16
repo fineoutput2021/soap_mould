@@ -30,7 +30,7 @@ class Promocode extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Promocode/view_promocode');
+            $this->load->view('admin/promocode/view_promocode');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -50,7 +50,7 @@ class Promocode extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Promocode/add_promocode');
+            $this->load->view('admin/promocode/add_promocode');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -148,7 +148,7 @@ class Promocode extends CI_finecontrol
                     if ($last_id!=0) {
                         $this->session->set_flashdata('emessage', 'Data inserted successfully');
 
-                        redirect("dcadmin/promocode/view_promocode", "refresh");
+                        redirect("dcadmin/Promocode/view_promocode", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Sorry error occured');
                         redirect($_SERVER['HTTP_REFERER']);
@@ -185,7 +185,7 @@ class Promocode extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Promocode/update_promocode');
+            $this->load->view('admin/promocode/update_promocode');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");

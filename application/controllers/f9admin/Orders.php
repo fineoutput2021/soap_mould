@@ -38,7 +38,7 @@ class Orders extends CI_finecontrol
             $data['heading'] = "New Orders";
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Orders/view_orders');
+            $this->load->view('admin/orders/view_orders');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -140,7 +140,7 @@ class Orders extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Orders/view_orders');
+            $this->load->view('admin/orders/view_orders');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -167,7 +167,7 @@ class Orders extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/Orders/view_orders');
+            $this->load->view('admin/orders/view_orders');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");

@@ -379,11 +379,7 @@ class Type extends CI_finecontrol
                     'image1'=>$nnnn3,
                     'image2'=>$nnnn4,
                     'image3'=>$nnnn5,
-                    'image4'=>$nnnn6,
-                    'ip' =>$ip,
-                    'added_by' =>$addedby,
-                    'is_active' =>1,
-                    'date'=>$cur_date
+                    'image4'=>$nnnn6
                     );
 
 
@@ -393,11 +389,7 @@ class Type extends CI_finecontrol
                         $last_id=$this->db->update('tbl_type', $data_insert);
 
                         $beta_insert = array('type_id'=>$last_id,
-                                            'quantity'=>$quantity,
-                                            'ip' =>$ip,
-                                            'added_by' =>$addedby,
-                                            'date'=>$cur_date
-
+                                            'quantity'=>$quantity
                                             );
 
                         $least_id=$this->db->update("tbl_inventory", $beta_insert);

@@ -61,6 +61,11 @@ class Orders extends CI_finecontrol
             $this->db->order_by("id", "desc");
             $data['orders_data']= $this->db->get();
 
+            $this->db->select('*');
+            $this->db->from('tbl_promocode');
+            //$this->db->where('id',$usr);
+            $data['prodata']= $this->db->get();
+
             $data['heading'] = "Accepted Orders";
 
             $this->load->view('admin/common/header_view', $data);
@@ -88,6 +93,11 @@ class Orders extends CI_finecontrol
             $this->db->order_by("id", "desc");
             $data['orders_data']= $this->db->get();
 
+            $this->db->select('*');
+            $this->db->from('tbl_promocode');
+            //$this->db->where('id',$usr);
+            $data['prodata']= $this->db->get();
+
             $data['heading'] = "Dispatched Orders";
             $data['status'] = 3;
 
@@ -100,69 +110,9 @@ class Orders extends CI_finecontrol
         }
     }
 
-    //-------update trackung ----------
-    public function update_tracking_view($id)
-    {
-        if (!empty($this->session->userdata('admin_data'))) {
-            $data['id'] = $id;
-
-            $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/orders/update_tracking');
-            $this->load->view('admin/common/footer_view');
-        } else {
-            redirect("login/admin_login", "refresh");
-        }
-    }
-
-    //------------- update tracking data -- ----------
-    public function update_tracking_data()
-    {
-        if (!empty($this->session->userdata('admin_data'))) {
-            $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
-            $this->load->helper('security');
-            if ($this->input->post()) {
-                $this->form_validation->set_rules('id', 'id', 'required|xss_clean|trim');
-                $this->form_validation->set_rules('tracking_url', 'tracking_url', 'required|xss_clean|trim');
-                $this->form_validation->set_rules('tracking_no', 'tracking_no', 'required|xss_clean|trim');
 
 
-                if ($this->form_validation->run()== true) {
-                    $id=base64_decode($this->input->post('id'));
-                    $tracking_url=$this->input->post('tracking_url');
-                    $tracking_no=$this->input->post('tracking_no');
 
-                    $data_update = array(
-                      'tracking_url'=>$tracking_url,
-                      'tracking_no'=>$tracking_no,
-                                );
-                    $this->db->where('id', $id);
-                    $zapak=$this->db->update('tbl_order1', $data_update);
-                    if (!empty($zapak)) {
-                        $this->session->set_flashdata('smessage', 'Successfully Updated');
-
-                        redirect("dcadmin/Orders/view_dispatched_orders");
-                    } else {
-                        $this->session->set_flashdata('emessage', 'Some error occured');
-                        redirect($_SERVER['HTTP_REFERER']);
-                    }
-                } else {
-                    $this->session->set_flashdata('emessage', validation_errors());
-                    redirect($_SERVER['HTTP_REFERER']);
-                }
-            } else {
-                $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
-
-
-            $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/dash');
-            $this->load->view('admin/common/footer_view');
-        } else {
-            redirect("login/admin_login", "refresh");
-        }
-    }
 
     public function view_completed_orders()
     {
@@ -173,17 +123,24 @@ class Orders extends CI_finecontrol
             // echo $this->session->userdata('image');
             // echo $this->session->userdata('position');
             // exit;
+
+
             $this->db->select('*');
             $this->db->from('tbl_order1');
             $this->db->where('order_status', 4);
             $this->db->order_by("id", "desc");
             $data['orders_data']= $this->db->get();
 
+            $this->db->select('*');
+            $this->db->from('tbl_promocode');
+            //$this->db->where('id',$usr);
+            $data['prodata']= $this->db->get();
+
             $data['heading'] = "Completed Orders";
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/orders/view_orders');
+            $this->load->view('admin/Orders/view_orders');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -195,6 +152,10 @@ class Orders extends CI_finecontrol
         if (!empty($this->session->userdata('admin_data'))) {
             $data['user_name']=$this->load->get_var('user_name');
 
+            $this->db->select('*');
+            $this->db->from('tbl_promocode');
+            //$this->db->where('id',$usr);
+            $data['prodata']= $this->db->get();
 
             $this->db->select('*');
             $this->db->from('tbl_order1');
@@ -206,7 +167,7 @@ class Orders extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/orders/view_orders');
+            $this->load->view('admin/Orders/view_orders');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -225,9 +186,9 @@ class Orders extends CI_finecontrol
 
             if ($t=="accept") {
                 $data_update = array(
-'order_status'=>2
+                'order_status'=>2
+                );
 
-);
                 $this->db->where('id', $id);
                 $zapak=$this->db->update('tbl_order1', $data_update);
 
@@ -240,25 +201,25 @@ class Orders extends CI_finecontrol
                 }
             }
 
-            //-----dispatch------
+            // -----dispatch------
 
-//             if ($t=="dispatch") {
-//                 $data_update = array(
-            // 'order_status'=>3
-//
-            // );
-//
-//                 $this->db->where('id', $id);
-//                 $zapak=$this->db->update('tbl_order1', $data_update);
-//
-//                 if ($zapak!=0) {
-//                     $this->session->set_flashdata('smessage', 'Status Updated Successfully');
-//                     redirect($_SERVER['HTTP_REFERER']);
-//                 } else {
-//                     $this->session->set_flashdata('emessage', 'Some error occured');
-//                     redirect($_SERVER['HTTP_REFERER']);
-//                 }
-//             }
+            if ($t=="dispatch") {
+                $data_update = array(
+            'order_status'=>3
+
+            );
+
+                $this->db->where('id', $id);
+                $zapak=$this->db->update('tbl_order1', $data_update);
+
+                if ($zapak!=0) {
+                    $this->session->set_flashdata('smessage', 'Status Updated Successfully');
+                    redirect($_SERVER['HTTP_REFERER']);
+                } else {
+                    $this->session->set_flashdata('emessage', 'Some error occured');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }
 
             //--------delivered---------
             if ($t=="delivered") {

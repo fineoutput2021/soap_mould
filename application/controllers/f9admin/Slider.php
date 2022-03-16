@@ -4,7 +4,7 @@ if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 require_once(APPPATH . 'core/CI_finecontrol.php');
-class Slider_panel extends CI_finecontrol
+class Slider extends CI_finecontrol
 {
     public function __construct()
     {
@@ -25,20 +25,20 @@ class Slider_panel extends CI_finecontrol
             // echo $this->session->userdata('position');
             // exit;
             $this->db->select('*');
-            $this->db->from('tbl_slider_panel');
+            $this->db->from('tbl_slider');
             //$this->db->where('id',$usr);
             $data['image_data']= $this->db->get();
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/slider_panel/view_images');
+            $this->load->view('admin/slider/view_images');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
         }
     }
 
-    public function add_images()
+    public function add_slider()
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['image_name']=$this->load->get_var('image_name');
@@ -48,20 +48,20 @@ class Slider_panel extends CI_finecontrol
             // echo $this->session->userdata('position');
             // exit;
             $this->db->select('*');
-            $this->db->from('tbl_slider_panel');
+            $this->db->from('tbl_slider');
             //$this->db->where('id',$usr);
             $data['image_data']= $this->db->get();
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/slider_panel/add_images');
+            $this->load->view('admin/slider/add_slider');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
         }
     }
 
-    public function add_image_data($t, $iw="")
+    public function add_slider_data($t, $iw="")
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $this->load->helper(array('form', 'url'));
@@ -85,11 +85,11 @@ class Slider_panel extends CI_finecontrol
 
             $file_check=($_FILES['image']['error']);
             if ($file_check!=4) {
-                $image_upload_folder = FCPATH . "assets/uploads/slider_panel/";
+                $image_upload_folder = FCPATH . "assets/uploads/Slider/";
                 if (!file_exists($image_upload_folder)) {
                     mkdir($image_upload_folder, DIR_WRITE_MODE, true);
                 }
-                $new_file_name="slider_panel_image".date("Ymdhms");
+                $new_file_name="Slider_image".date("Ymdhms");
                 $this->upload_config = array(
                                                                   'upload_path'   => $image_upload_folder,
                                                                   'file_name' => $new_file_name,
@@ -104,7 +104,7 @@ class Slider_panel extends CI_finecontrol
                 } else {
                     $file_info = $this->upload->data();
 
-                    $videoNAmePath = "assets/uploads/slider_panel/".$new_file_name.$file_info['file_ext'];
+                    $videoNAmePath = "assets/uploads/Slider/".$new_file_name.$file_info['file_ext'];
                     $file_info['new_name']=$videoNAmePath;
                     // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
                     $nnnn=$file_info['file_name'];
@@ -121,7 +121,7 @@ class Slider_panel extends CI_finecontrol
                                   'date'=>$cur_date
                                   );
 
-                $last_id=$this->base_model->insert_table("tbl_slider_panel", $data_insert, 1) ;
+                $last_id=$this->base_model->insert_table("tbl_slider", $data_insert, 1) ;
             }
             if ($typ==2) {
                 $idw=base64_decode($iw);
@@ -152,14 +152,14 @@ class Slider_panel extends CI_finecontrol
                 }
 
                 $this->db->where('id', $idw);
-                $last_id=$this->db->update('tbl_slider_panel', $data_insert);
+                $last_id=$this->db->update('tbl_slider', $data_insert);
             }
 
 
             if ($last_id!=0) {
                 $this->session->set_flashdata('emessage', 'Data inserted successfully');
 
-                redirect("dcadmin/slider_panel/view_images", "refresh");
+                redirect("dcadmin/slider/view_images", "refresh");
             } else {
                 $this->session->set_flashdata('emessage', 'Sorry error occured');
                 redirect($_SERVER['HTTP_REFERER']);
@@ -186,7 +186,7 @@ class Slider_panel extends CI_finecontrol
         }
     }
 
-    public function update_images($idd)
+    public function update_slider($idd)
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['image_name']=$this->load->get_var('image_name');
@@ -199,20 +199,20 @@ class Slider_panel extends CI_finecontrol
             $data['id']=$idd;
 
             $this->db->select('*');
-            $this->db->from('tbl_slider_panel');
+            $this->db->from('tbl_slider');
             $this->db->where('id', $id);
             $data['image_data']= $this->db->get()->row();
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/slider_panel/update_images');
+            $this->load->view('admin/slider/update_images');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
         }
     }
 
-    public function delete_images($idd)
+    public function delete_slider($idd)
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['image_name']=$this->load->get_var('image_name');
@@ -220,14 +220,14 @@ class Slider_panel extends CI_finecontrol
             $id=base64_decode($idd);
 
             if ($this->load->get_var('position')=="Super Admin") {
-                $this->db->from('tbl_slider_panel');
+                $this->db->from('tbl_slider');
                 $this->db->where('id', $id);
                 $dsa= $this->db->get();
                 $da=$dsa->row();
 
-                $zapak=$this->db->delete('tbl_slider_panel', array('id' => $id));
+                $zapak=$this->db->delete('tbl_slider', array('id' => $id));
                 if ($zapak!=0) {
-                    redirect("dcadmin/Slider_panel/view_images", "refresh");
+                    redirect("dcadmin/slider/view_images", "refresh");
                 } else {
                     echo "Error";
                     exit;
@@ -238,11 +238,11 @@ class Slider_panel extends CI_finecontrol
                 $this->load->view('errors/error500admin', $data);
             }
         } else {
-            $this->load->view('admin/Slider_panel/view_images');
+            $this->load->view('admin/slider/view_images');
         }
     }
 
-    public function updateimageStatus($idd, $t)
+    public function updatesliderStatus($idd, $t)
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['image_name']=$this->load->get_var('image_name');
@@ -260,10 +260,10 @@ class Slider_panel extends CI_finecontrol
         );
 
                 $this->db->where('id', $id);
-                $zapak=$this->db->update('tbl_slider_panel', $data_update);
+                $zapak=$this->db->update('tbl_slider', $data_update);
 
                 if ($zapak!=0) {
-                    redirect("dcadmin/slider_panel/view_images", "refresh");
+                    redirect("dcadmin/slider/view_images", "refresh");
                 } else {
                     echo "Error";
                     exit;
@@ -276,10 +276,10 @@ class Slider_panel extends CI_finecontrol
          );
 
                 $this->db->where('id', $id);
-                $zapak=$this->db->update('tbl_slider_panel', $data_update);
+                $zapak=$this->db->update('tbl_slider', $data_update);
 
                 if ($zapak!=0) {
-                    redirect("dcadmin/slider_panel/view_images", "refresh");
+                    redirect("dcadmin/slider/view_images", "refresh");
                 } else {
                     $data['e']="Error Occured";
                     // exit;

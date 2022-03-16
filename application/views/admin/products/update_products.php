@@ -32,7 +32,7 @@
 
           <div class="panel-body">
             <div class="col-lg-10">
-              <form action=" <?php echo base_url(); ?>dcadmin/products/add_products_data/<?php echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
+              <form action=" <?php echo base_url(); ?>dcadmin/Products/add_products_data/<?php echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <tr>
@@ -40,16 +40,20 @@
                       <td> <select class="form-control" name="category_id" required id="category">
                           <option value="">------select category---------</option>
                           <?php $i=1; foreach ($category_data->result() as $data) { ?>
-                          <option value="<?=$data->id?>" <?if($data->id==$products_data->category_id){echo "selected";}?>><?=$data->name?></option>
+                          <option value="<?=$data->id?>" <?if ($data->id==$products_data->category_id) {
+                                   echo "selected";
+                               }?>><?=$data->name?></option>
                           <?php $i++; } ?>
                         </select> </td>
                     </tr>
                     <tr>
                       <td> <strong>Subcategory</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <select class="form-control" name="category_id" required id="category">
+                      <td> <select class="form-control" name="subcategory_id" required id="subcategory">
                           <option value="">------select Sub category---------</option>
                           <?php $i=1; foreach ($subcategory_data->result() as $data) { ?>
-                          <option value="<?=$data->id?>" <?if($data->id==$products_data->subcategory_id){echo "selected";}?>><?=$data->name?></option>
+                          <option value="<?=$data->id?>" <?if ($data->id==$products_data->subcategory_id) {
+                                   echo "selected";
+                               }?>><?=$data->name?></option>
                           <?php $i++; } ?>
                         </select> </td>
                     </tr>

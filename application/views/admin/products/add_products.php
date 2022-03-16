@@ -100,7 +100,7 @@
         return false;
       } else {
         $('#subcategory option').remove();
-        var opton = "<option value='0'>No Sub Category</option>";
+        var opton = "<option value='0'>Select Sub Category</option>";
         $.ajax({
           url: base_url + "dcadmin/Products/getSubcategory?isl=" + vf,
           data: '',

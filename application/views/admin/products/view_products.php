@@ -94,15 +94,15 @@
                             <ul class="dropdown-menu" role="menu">
 
                               <?php if ($data->is_active==1) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/products/updateproductsStatus/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Products/updateproductsStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
                               <?php } else { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/products/updateproductsStatus/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Products/updateproductsStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
                               <?php } ?>
                               <li><a href="<?php echo base_url() ?>dcadmin/Type/view_type/<?php echo
         base64_encode($data->id) ?>">Type</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/products/update_products/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Products/update_products/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
                               <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
                             </ul>
@@ -111,7 +111,7 @@
 
                         <div style="display:none" id="cnfbox<?php echo $i ?>">
                           <p> Are you sure delete this </p>
-                          <a href="<?php echo base_url() ?>dcadmin/products/delete_products/<?php echo
+                          <a href="<?php echo base_url() ?>dcadmin/Products/delete_products/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger">Yes</a>
                           <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>">No</a>
                         </div>

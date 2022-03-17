@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Slider Panel Images
+      Slider Images
     </h1>
 
   </section>

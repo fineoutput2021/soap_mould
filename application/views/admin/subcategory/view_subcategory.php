@@ -7,27 +7,27 @@
   <section class="content">
     <div class="row">
       <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/subcategory/add_subcategory" role="button" style="margin-bottom:12px;"> Add subcategory</a>
+        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Subcategory/add_subcategory" role="button" style="margin-bottom:12px;"> Add subcategory</a>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View subcategory</h3>
           </div>
           <div class="panel panel-default">
 
-            <? if(!empty($this->session->flashdata('smessage'))){ ?>
+            <?php if (!empty($this->session->flashdata('smessage'))) { ?>
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               <h4><i class="icon fa fa-check"></i> Alert!</h4>
-              <? echo $this->session->flashdata('smessage'); ?>
+              <?php echo $this->session->flashdata('smessage'); ?>
             </div>
-            <? }
-        if(!empty($this->session->flashdata('emessage'))){ ?>
+            <?php }
+        if (!empty($this->session->flashdata('emessage'))) { ?>
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-              <? echo $this->session->flashdata('emessage'); ?>
+              <?php echo $this->session->flashdata('emessage'); ?>
             </div>
-            <? } ?>
+            <?php } ?>
 
 
             <div class="panel-body">
@@ -46,18 +46,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i=1; foreach($subcategory_data->result() as $data) { ?>
+                    <?php $i=1; foreach ($subcategory_data->result() as $data) { ?>
                     <tr>
                       <td><?php echo $i ?> </td>
                       <td><?php
                                   $this->db->select('*');
                       $this->db->from('tbl_category');
-                      $this->db->where('id',$data->category_id);
+                      $this->db->where('id', $data->category_id);
                       $category_data= $this->db->get()->row();
                       echo $category_data->name;
                        ?></td>
                       <td><?php echo $data->name ?></td>
-                      <td><?php if($data->is_active==1){ ?>
+                      <td><?php if ($data->is_active==1) { ?>
                         <p class="label bg-green">Active</p>
 
                         <?php } else { ?>
@@ -73,14 +73,14 @@
                               Action <span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
 
-                              <?php if($data->is_active==1){ ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/subcategory/updatesubcategoryStatus/<?php echo
+                              <?php if ($data->is_active==1) { ?>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Subcategory/updatesubcategoryStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
                               <?php } else { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/subcategory/updatesubcategoryStatus/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Subcategory/updatesubcategoryStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
                               <?php } ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/subcategory/update_subcategory/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Subcategory/update_subcategory/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
                               <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
                             </ul>
@@ -89,7 +89,7 @@
 
                         <div style="display:none" id="cnfbox<?php echo $i ?>">
                           <p> Are you sure delete this </p>
-                          <a href="<?php echo base_url() ?>dcadmin/subcategory/delete_subcategory/<?php echo
+                          <a href="<?php echo base_url() ?>dcadmin/Subcategory/delete_subcategory/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger">Yes</a>
                           <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>">No</a>
                         </div>

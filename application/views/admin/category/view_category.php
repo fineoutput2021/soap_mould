@@ -7,7 +7,7 @@
   <section class="content">
     <div class="row">
       <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/category/add_category" role="button" style="margin-bottom:12px;"> Add category</a>
+        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Category/add_category" role="button" style="margin-bottom:12px;"> Add category</a>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View category</h3>
@@ -72,13 +72,13 @@
                             <ul class="dropdown-menu" role="menu">
 
                               <?php if ($data->is_active==1) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/category/updatecategoryStatus/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Category/updatecategoryStatus/<?php echo
         base64_encode($data->id) ?>/inactive">Inactive</a></li>
                               <?php } else { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/category/updatecategoryStatus/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Category/updatecategoryStatus/<?php echo
         base64_encode($data->id) ?>/active">Active</a></li>
                               <?php } ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/category/update_category/<?php echo
+                              <li><a href="<?php echo base_url() ?>dcadmin/Category/update_category/<?php echo
         base64_encode($data->id) ?>">Edit</a></li>
                               <li><a href="javascript:;" class="dCnf" mydata="<?php echo $i ?>">Delete</a></li>
                             </ul>
@@ -87,7 +87,7 @@
 
                         <div style="display:none" id="cnfbox<?php echo $i ?>">
                           <p> Are you sure delete this </p>
-                          <a href="<?php echo base_url() ?>dcadmin/category/delete_category/<?php echo
+                          <a href="<?php echo base_url() ?>dcadmin/Category/delete_category/<?php echo
         base64_encode($data->id); ?>" class="btn btn-danger">Yes</a>
                           <a href="javasript:;" class="cans btn btn-default" mydatas="<?php echo $i ?>">No</a>
                         </div>

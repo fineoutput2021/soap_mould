@@ -15,7 +15,7 @@ class Slider extends CI_finecontrol
         $this->load->library('upload');
     }
 
-    public function view_images()
+    public function view_slider()
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['image_name']=$this->load->get_var('image_name');
@@ -31,7 +31,7 @@ class Slider extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/slider/view_images');
+            $this->load->view('admin/slider/view_slider');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -159,7 +159,7 @@ class Slider extends CI_finecontrol
             if ($last_id!=0) {
                 $this->session->set_flashdata('emessage', 'Data inserted successfully');
 
-                redirect("dcadmin/slider/view_images", "refresh");
+                redirect("dcadmin/Slider/view_slider", "refresh");
             } else {
                 $this->session->set_flashdata('emessage', 'Sorry error occured');
                 redirect($_SERVER['HTTP_REFERER']);
@@ -205,7 +205,7 @@ class Slider extends CI_finecontrol
 
 
             $this->load->view('admin/common/header_view', $data);
-            $this->load->view('admin/slider/update_images');
+            $this->load->view('admin/slider/update_slider');
             $this->load->view('admin/common/footer_view');
         } else {
             redirect("login/admin_login", "refresh");
@@ -227,7 +227,7 @@ class Slider extends CI_finecontrol
 
                 $zapak=$this->db->delete('tbl_slider', array('id' => $id));
                 if ($zapak!=0) {
-                    redirect("dcadmin/slider/view_images", "refresh");
+                    redirect("dcadmin/Slider/view_slider", "refresh");
                 } else {
                     echo "Error";
                     exit;
@@ -238,7 +238,7 @@ class Slider extends CI_finecontrol
                 $this->load->view('errors/error500admin', $data);
             }
         } else {
-            $this->load->view('admin/slider/view_images');
+            $this->load->view('admin/slider/view_slider');
         }
     }
 
@@ -263,7 +263,7 @@ class Slider extends CI_finecontrol
                 $zapak=$this->db->update('tbl_slider', $data_update);
 
                 if ($zapak!=0) {
-                    redirect("dcadmin/slider/view_images", "refresh");
+                    redirect("dcadmin/Slider/view_slider", "refresh");
                 } else {
                     echo "Error";
                     exit;
@@ -279,7 +279,7 @@ class Slider extends CI_finecontrol
                 $zapak=$this->db->update('tbl_slider', $data_update);
 
                 if ($zapak!=0) {
-                    redirect("dcadmin/slider/view_images", "refresh");
+                    redirect("dcadmin/Slider/view_slider", "refresh");
                 } else {
                     $data['e']="Error Occured";
                     // exit;

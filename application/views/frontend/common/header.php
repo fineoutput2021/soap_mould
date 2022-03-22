@@ -25,7 +25,7 @@
          <!-- model strat -->
 
          <!-- index model -->
-         
+
 
          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
             tabindex="-1">
@@ -525,103 +525,103 @@
                            <span>Face</span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>
-                           <li><a href="#">Face Cleanser</a></li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">Face Cleanser</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Facial Soap
                               </a>
                            </li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Face Scrub
                               </a>
                            </li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Face Mask
                               </a>
                            </li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Facial Mist / Toner
                               </a>
                            </li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Facial Gel
                               </a>
                            </li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Facial Oil
                               </a>
                            </li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Face Cream
                               </a>
                            </li>
-                           <li><a href="#">
+                           <li><a href="<?=base_url()?>Home/all_products">
                               Under-eye Cream
                               </a>
                            </li>
                         </ul>
                      </li>
                      <li class="dropdown nav-item">
-                        <a href="#" class="nav-link green">
+                        <a href="<?=base_url()?>Home/all_products" class="nav-link green">
                            <span>Lips</span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>
-                           <li><a href="#">Lip Scrub</a></li>
-                           <li><a href="#">Lip Butter</a></li>
-                           <li><a href="#">Lip Tint</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Lip Scrub</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Lip Butter</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Lip Tint</a></li>
                         </ul>
                      </li>
                      <li class="dropdown nav-item">
-                        <a href="#" class="nav-link green">
+                        <a href="<?=base_url()?>Home/all_products" class="nav-link green">
                            <span>Body</span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>
-                           <li><a href="#">Body Soap</a></li>
-                           <li><a href="#">Butter Soap</a></li>
-                           <li><a href="#">Loofah Soap</a></li>
-                           <li><a href="#">Body Scrub</a></li>
-                           <li><a href="#">Bath Salt</a></li>
-                           <li><a href="#">Body Massage Oil</a></li>
-                           <li><a href="#">Body Butter</a></li>
-                           <li><a href="#">Loofah</a></li>
-                           <li><a href="#">Soap for Kids</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Body Soap</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Butter Soap</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Loofah Soap</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Body Scrub</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Bath Salt</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Body Massage Oil</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Body Butter</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Loofah</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Soap for Kids</a></li>
                         </ul>
                      </li>
                      <li class="dropdown nav-item">
-                        <a href="#" class="nav-link green">
+                        <a href="<?=base_url()?>Home/all_products" class="nav-link green">
                            <span>Hair</span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>
-                           <li><a href="#">Ayurvedic Hair Oil</a></li>
-                           <li><a href="#">Shampoo Bar</a></li>
-                           <li><a href="#">Hair Cleanser</a></li>
-                           <li><a href="#">Hair Dye/Colour</a></li>
-                           <li><a href="#">Hair Pack</a></li>
-                           <li><a href="#">Hair Mist</a></li>
-                           <li><a href="#">Scalp Mask</a></li>
-                           <li><a href="#">Aloe Vera Gel</a></li>
-                           <li><a href="#">Wooden Comb</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Ayurvedic Hair Oil</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Shampoo Bar</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Hair Cleanser</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Hair Dye/Colour</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Hair Pack</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Hair Mist</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Scalp Mask</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Aloe Vera Gel</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Wooden Comb</a></li>
                         </ul>
                      </li>
                      <li class="dropdown nav-item">
-                        <a href="#" class="nav-link green">
+                        <a href="<?=base_url()?>Home/all_products" class="nav-link green">
                            <span>Foot</span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>
-                           <li><a href="#">Foot Soak</a></li>
-                           <li><a href="#">Foot Butter</a></li>
-                           <li><a href="#">Clay Foot Scrubber</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Foot Soak</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Foot Butter</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Clay Foot Scrubber</a></li>
                         </ul>
                      </li>
                      <li class="dropdown nav-item">
-                        <a href="#" class="nav-link green">
+                        <a href="<?=base_url()?>Home/all_products" class="nav-link green">
                            <span>Wellness</span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>
-                           <li><a href="#">Essential Oil</a></li>
+                           <li><a href="<?=base_url()?>Home/all_products">Essential Oil</a></li>
                         </ul>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link green" href="#">Valentine's Special</a>
+                        <a class="nav-link green" href="<?=base_url()?>Home/all_products">Valentine's Special</a>
                      </li>
                      <!-- <li class="nav-item ">
                         <a class="nav-link green" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"

@@ -96,7 +96,7 @@
                <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
             </div>
             <div class="card-body product-content">
-               <h3 class="title card-text"><a href="#" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
+               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
                   SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a>
                </h3>
                <div class="price">$75.55<span class="px-2">$68.88</span></div>
@@ -319,7 +319,7 @@
                <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
             </div>
             <div class="card-body product-content">
-               <h3 class="title card-text"><a href="#" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
+               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
                   SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a>
                </h3>
                <div class="price">$75.55<span class="px-2">$68.88</span></div>

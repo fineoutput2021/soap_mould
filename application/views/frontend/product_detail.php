@@ -1,3 +1,10 @@
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
 <style>
     .swiper {
         width: 100%;
@@ -70,6 +77,15 @@
         height: 100%;
         object-fit: cover;
     }
+
+    .btn-primary{
+      background-color: #416e7a !important;
+      border-color: #416e7a !important;
+    }
+.green{
+  color: #416e7a !important;
+}
+
 </style>
 <style type="text/css">
     /* .slick-list emulates .row */
@@ -128,7 +144,7 @@
     <div class="container-fluid mt-5 mb-5" style="background-color: #f4f1eb; padding:20px 5px">
         <div class="row">
             <div class="col-12 text-center d-flex justify-content-center align-items-center">
-                <a href="<?=base_url()?>/Home">Home</a><span class="px-3">/</span><a href="<?=base_url()?>/Home/all_products">All Product</a><span
+                <a href="<?=base_url()?>/Home" class="green">Home</a><span class="px-3">/</span><a href="<?=base_url()?>/Home/all_products" class="green">All Product</a><span
                     class="px-3">/</span>
                 <p class="margin-0">Product Detail</p>
             </div>
@@ -253,10 +269,10 @@
                                 </div>
 
                                 <div class="mt-3 align-items-center justify-content-center">
-                                    <a href="cart.html" class="">
+                                    <a href="<?=base_url()?>Home/cart" class="">
                                         <button class="mt-3 m-2 btn btn-primary text-uppercase px-4 mobview-btn">Add to
                                             cart</button></a>
-                                    <a href="checkout.html" class="mt-3">
+                                    <a href="<?=base_url()?>Home/checkout" class="mt-3">
                                         <button class="mt-3 m-2 btn btn-primary text-uppercase px-4 mobview-btn">Buy it
                                             Now</button></a>
                                 </div>
@@ -275,9 +291,9 @@
                                     <div class="col-md-2 col-3">
                                         <p>Share:</p>
                                     </div>
-                                    <div class="col-md-10 col-9"><a href=""><i class="bi bi-facebook px-2"></i></a><a
-                                            href=""><i class="bi bi-instagram  px-2"></i></a><a href=""><i
-                                                class="bi bi-twitter px-2"></i></a>
+                                    <div class="col-md-10 col-9"><a href="" class="green"><i class="bi bi-facebook px-2 "></i></a><a
+                                            href=""><i class="bi bi-instagram green px-2"></i></a><a href=""><i
+                                                class="bi bi-twitter px-2 green"></i></a>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">

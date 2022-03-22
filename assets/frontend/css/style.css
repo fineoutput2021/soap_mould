@@ -547,6 +547,12 @@ nav {
 
 }
 
+/* @media screen and (max-width: 3000){ */
+  .carousel-item img{
+    height: 550px !important;
+  }
+/* } */
+
 @media screen and (max-width: 800px) {
   .carousel-item img{
     height: 170px;

@@ -12,7 +12,8 @@
             <!-- The slideshow/carousel -->
             <div class="carousel-inner">
                <div class="carousel-item active ">
-                  <img src="<?base_url()?>assets/frontend/images/banner-slide1.jpg" alt="Slide 1" class="d-block" style="width:100%">
+                   <img src="https://cdn.shopify.com/s/files/1/0611/2336/3068/files/rose_body_butter_-2_1512x.jpg?v=1638221902" alt="Slide 1" class="d-block" style="width:100%;">
+                  <!-- <img src="<?base_url()?>assets/frontend/images/banner-slide1.jpg" alt="Slide 1" class="d-block" style="width:100%"> -->
                   <!-- <div class="container">
                      <div class="carousel-caption text-start">
                         <h1>Example headline.</h1>
@@ -22,7 +23,8 @@
                      </div> -->
                </div>
                <div class="carousel-item">
-                  <img src="<?base_url()?>assets/frontend/images/banner-slide2.jpg" alt="Slide 2" class="d-block" style="width:100%">
+                 <img src="https://cdn.shopify.com/s/files/1/0611/2336/3068/files/rose_body_butter_-2_1512x.jpg?v=1638221902" alt="Slide 1" class="d-block" style="width:100%;">
+                  <!-- <img src="<?base_url()?>assets/frontend/images/banner-slide2.jpg" alt="Slide 2" class="d-block" style="width:100%"> -->
                   <!-- <div class="container">
                      <div class="carousel-caption text-center">
                         <h1>Example headline.</h1>
@@ -32,7 +34,8 @@
                      </div> -->
                </div>
                <div class="carousel-item ">
-                  <img src="<?base_url()?>assets/frontend/images/banner-slide3.jpg" alt="Slide 3" class="d-block" style="width:100%">
+                 <img src="https://cdn.shopify.com/s/files/1/0611/2336/3068/files/rose_body_butter_-2_1512x.jpg?v=1638221902" alt="Slide 1" class="d-block img-fluid"  style="width:100%;">
+                  <!-- <img src="<?base_url()?>assets/frontend/images/banner-slide3.jpg" alt="Slide 3" class="d-block" style="width:100%"> -->
                   <!-- <div class="container">
                      <div class="carousel-caption text-end">
                         <h1>Example headline.</h1>

@@ -1064,3 +1064,7 @@ border: 1px solid #eef0f3;
 border-radius: 0.25rem;
 transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+/* .offcanvas-top{
+  height: 60vh !important;
+} */

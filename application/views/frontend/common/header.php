@@ -298,6 +298,7 @@
             </div>
          </div>
          <!-- end off canvas right -->
+         <!-- ======= header ======= -->
          <!-- ======= Top Bar ======= -->
          <section id="topbar" class="d-flex align-items-center p-2">
             <div class="container d-flex justify-content-center justify-content-md-between">
@@ -326,7 +327,7 @@
          </section>
          <header class="sticky">
             <nav class="navbar navbar-expand-sm bg-white navbar-dark">
-               <div class="container mobileheader">
+               <div class="container-fluid mobileheader">
                   <!-- <button class="btn mobiledb " type="button">
                      <span class=" green" style="font-size: 30px;margin-top: -8px;"><i class="bi bi-cart4"></i></span>
                      </button> -->
@@ -348,7 +349,7 @@
                      data-bs-target="#collapsibleNavbar">
                   <span class="navbar-toggler-icon"></span>
                   </button>
-                  <div class="collapse navbar-collapse justify-content-end " id="collapsibleNavbar">
+                  <div class="collapse navbar-collapse" id="collapsibleNavbar" style="justify-content: space-between !important;"> <!-- justify-content-end  -->
                      <div class="mobiledb height100">
                         <div class="search">
                            <input type="text" class="searchTerm" placeholder="What are you looking for?">
@@ -514,7 +515,7 @@
                            <!-- <button class="btn btn-primary" type="button"></button> -->
                         </div>
                      </div>
-                     <ul class="navbar-nav mobiledn">
+                     <ul class="navbar-nav mobiledn" style="margin-left: 50px;">
                      <li class="dropdown nav-item">
                         <a href="<?=base_url()?>Home/all_products" class="nav-link green ">
                            <span>Face</span> <!-- <i class="bi bi-chevron-down"></i> -->
@@ -618,7 +619,7 @@
                      <li class="nav-item">
                         <a class="nav-link green" href="#">Valentine's Special</a>
                      </li>
-                     <li class="nav-item ">
+                     <!-- <li class="nav-item ">
                         <a class="nav-link green" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
                            aria-controls="offcanvasTop"><i class="bi bi-search"></i></a>
                      </li>
@@ -628,7 +629,20 @@
                      <li class="nav-item">
                         <button class="btn nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightweb"
                         aria-controls="offcanvasRight"><i class="bi bi-list green" style="font-size: 20px;"></i></button>
+                     </li> -->
+                   </ul>
+                   <ul class="navbar-nav mobiledn">
+                     <li class="nav-item ">
+                        <a class="nav-link green" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                           aria-controls="offcanvasTop"><i class="bi bi-search" style="font-size:20px;"></i></a>
                      </li>
+                     <li class="nav-item">
+                        <a class="nav-link green" href="<?=base_url()?>Home/cart"><i class="bi bi-cart4" style="font-size:20px;"></i></a>
+                     </li>
+                     <li class="nav-item">
+                        <button class="btn nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightweb"
+                        aria-controls="offcanvasRight"><i class="bi bi-list green" style="font-size: 23px;"></i></button>
+                     </li></ul>
                   </div>
                </div>
             </nav>

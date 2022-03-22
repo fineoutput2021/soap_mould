@@ -23,6 +23,10 @@
       <div style="display: none;" id="myDiv" class="animate-bottom">
          <!-- model start login/register -->
          <!-- model strat -->
+
+         <!-- index model -->
+         
+
          <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
             tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">

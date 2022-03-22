@@ -15,7 +15,7 @@
 </div>
 <div class="container">
    <div class="row">
-      <div class="col-4 border">
+      <div class="col-4">
          <div class="list-group" id="list-tab" role="tablist">
             <!-- <p class="h6">CATEGORIES</p class="h6"> -->
             <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">All Product</a>

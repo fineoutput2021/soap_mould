@@ -818,8 +818,13 @@ nav {
 /*================== all prduct page ======================*/
 
 .list-group-item.active {
-  background-color: #416e7a !important;
-  border: #416e7a;
+  /* background-color: #416e7a !important;
+  border: #416e7a; */
+  background: none !important; color: #416e7a; font-weight: 700; font-size: 20px;
+}
+
+.list-group-item{
+  border:none !important;
 }
 
 .product-detail-main-img{

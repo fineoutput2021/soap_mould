@@ -11,12 +11,12 @@
       <div class="row">
          <div class="col-md-7">
             <main>
-               <a href="index.html"><img src="#" alt="logo"></a>
+               <a href="<?=base_url()?>/Home/"><img src="#" alt="logo"></a>
                <div>
                   <ul class="breadcrumb">
-                     <li><a href="cart.html">Cart</a></li>
-                     <li><a href="checkout.html">Information</a></li>
-                     <li><a href="shiping.html">Shipping</a></li>
+                     <li><a href="<?=base_url()?>/Home/cart">Cart</a></li>
+                     <li><a href="<?=base_url()?>/Home/checkout">Information</a></li>
+                     <li><a href="<?=base_url()?>/Home/shipping">Shipping</a></li>
                      <li style="font-weight: bold;">Payment</li>
                   </ul>
                </div>
@@ -34,12 +34,12 @@
                        <tr>
                          <th scope="col" class="font-weight-normal">Contact</th>
                          <th scope="col" class="font-weight-normal">hello@gmail.com</th>
-                         <th scope="col"><a href="checkout.html" class="txt-deco-no green">Change</a></th>
+                         <th scope="col"><a href="<?=base_url()?>/Home/checkout" class="txt-deco-no green">Change</a></th>
                        </tr>
                        <tr class="">
                          <th scope="col" class="font-weight-normal">Ship to</th>
                          <th scope="col" class="font-weight-normal">helloAddress</th>
-                         <th scope="col"><a href="checkout.html" class="txt-deco-no green">Change</a></th>
+                         <th scope="col"><a href="<?=base_url()?>/Home/checkout" class="txt-deco-no green">Change</a></th>
                        </tr>
                            <tr class="border-white">
                               <th scope="col" class="font-weight-normal">Method</th>
@@ -212,7 +212,7 @@
                Refunds & Returns<br><br>
                Your 100% satisfaction is important to us. We aim to satisfy our customers and provide an enjoyable shopping experience. However, please note that we cannot accept exchange or return products/parcels.
                <br><br>
-               That said, in exceptional cases, we will surely be happy to refund our customers. If you think your case is genuine, please message us on Instagram at <span><a href="index.html" class="txt-deco-no green">@CompanyName</a></span> as it is the fastest way to reach out to us.
+               That said, in exceptional cases, we will surely be happy to refund our customers. If you think your case is genuine, please message us on Instagram at <span><a href="<?=base_url()?>/Home/" class="txt-deco-no green">@CompanyName</a></span> as it is the fastest way to reach out to us.
             </div>
             <!-- <div class="modal-footer justify-content-center">
                </div> -->

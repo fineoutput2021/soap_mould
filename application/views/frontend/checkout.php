@@ -131,10 +131,10 @@
    <div class="row">
       <div class="col-md-7">
          <main>
-            <a href="index.html"><img src="#" alt="logo"></a>
+            <a href="<?=base_url()?>/Home/"><img src="#" alt="logo"></a>
             <div>
                <ul class="breadcrumb">
-                  <li><a href="cart.html">Cart</a></li>
+                  <li><a href="<?=base_url()?>/Home/cart">Cart</a></li>
                   <li style="font-weight: bold;">Information</li>
                   <li>Shipping</li>
                   <li>Payment</li>
@@ -476,7 +476,7 @@
                <button type="submit" class="btn btn-primary btn-lg">
                   <a href="<?=base_url()?>Home/shipping" class="txt-deco-no white">Continue To Shipping</a>
                </button>
-               <button type="submit" class="btn btn-lg"><a href="cart.html" class="txt-deco-no green">Return to Cart</a></button>
+               <button type="submit" class="btn btn-lg"><a href="<?=base_url()?>/Home/cart" class="txt-deco-no green">Return to Cart</a></button>
             </form>
             <hr>
             <footer class="checkout-footer" role="">
@@ -600,7 +600,7 @@
             Refunds & Returns<br><br>
             Your 100% satisfaction is important to us. We aim to satisfy our customers and provide an enjoyable shopping experience. However, please note that we cannot accept exchange or return products/parcels.
             <br><br>
-            That said, in exceptional cases, we will surely be happy to refund our customers. If you think your case is genuine, please message us on Instagram at <span><a href="index.html" class="txt-deco-no green">@CompanyName</a></span> as it is the fastest way to reach out to us.
+            That said, in exceptional cases, we will surely be happy to refund our customers. If you think your case is genuine, please message us on Instagram at <span><a href="<?=base_url()?>/Home/" class="txt-deco-no green">@CompanyName</a></span> as it is the fastest way to reach out to us.
          </div>
          <!-- <div class="modal-footer justify-content-center">
             </div> -->

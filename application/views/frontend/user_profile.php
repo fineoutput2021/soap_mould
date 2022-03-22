@@ -19,7 +19,7 @@
             <button type="button" class="btn btn-primary btn-xs waves-effect mb-2 waves-light white">Edit Profile</button>
             </a>
             <br>
-            <button class="btn btn-block order-button"><a href="index.html" class="green txt-deco-no"><i class="bi bi-arrow-left px-1"></i>Continue Shopping</a></button>
+            <button class="btn btn-block order-button"><a href="<?=base_url()?>/Home" class="green txt-deco-no"><i class="bi bi-arrow-left px-1"></i>Continue Shopping</a></button>
             <div class="text-left mt-3">
                <h4 class="font-13 text-uppercase">About Me :</h4>
                <p class="text-muted font-13 mb-3">

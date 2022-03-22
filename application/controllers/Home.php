@@ -87,6 +87,13 @@ class Home extends CI_Controller
         $this->load->view('frontend/common/footer');
     }
 
+    public function product_detail()
+    {
+        $this->load->view('frontend/common/header');
+        $this->load->view('frontend/product_detail');
+        $this->load->view('frontend/common/footer');
+    }
+
     public function error404()
     {
         $this->load->view('errors/error404');

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <!-- Css file include -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
-	<title>Royal Homes Bill</title>
+	<title>Soap Mould Bill</title>
 </head>
 <body style="padding-top:75px;">
 <div class="container main_container">
@@ -26,11 +26,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6"><span class="font-weight-bold ">Sold By</span><br>
-<span class="seller_details">Royal Home <br>
+<span class="seller_details">Soap Mould<br>
 
- PO Box 283577<br>Dubai, UAE
+ <!-- PO Box 283577<br>Dubai, UAE -->
 <br><br>
-		www.royalhomes.com<br></span>
+		www.soapmould.com<br></span>
 		</div>
 
 		<div class="col-sm-6 billing_content"><span class="font-weight-bold ">Billing Address:</span><br>
@@ -97,7 +97,7 @@ $this->db->from('tbl_products');
 $this->db->where('id',$data->product_id);
 $product_data= $this->db->get()->row();
 if(!empty($product_data)){
-echo $product_name= $product_data->productname;
+echo $product_name= $product_data->name;
 }
         ?></td>
 

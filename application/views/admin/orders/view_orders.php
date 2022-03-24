@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+dcadmin/Orders<div class="content-wrapper">
   <section class="content-header">
     <h1>
       <?=$heading;?>
@@ -152,27 +152,27 @@ if (!empty($this->session->flashdata('emessage'))) { ?>
                             <ul class="dropdown-menu" role="menu">
 
                               <?php if ($data->order_status==1) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/update_order_status/<?php echo base64_encode($data->id) ?>/accept">Accept</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/accept">Accept</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
                               <?php } elseif ($data->order_status==2) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/update_order_status/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
 
                               <?php		} elseif ($data->order_status==3) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/update_order_status/<?php echo base64_encode($data->id) ?>/delivered">Delivered</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/delivered">Delivered</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
                               <?php		} elseif ($data->order_status==4) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
                               <?php		} elseif ($data->order_status==5) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
+                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
                               <?php		}   ?>
 
                             </ul>

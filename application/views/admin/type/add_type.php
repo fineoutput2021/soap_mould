@@ -58,17 +58,18 @@
     	                                            </td>
         										</tr>
                             <tr>
+                                                      <td> <strong>SP</strong>  <span style="color:red;">*</span></strong> </td>
+                                                      <td>
+                                <input type="text" name="sp" id="sp" class="form-control" placeholder=""  required value="" />
+                                                    </td>
+                              </tr>
+                            <tr>
                                                       <td> <strong>GST(%)</strong>  <span style="color:red;">*</span></strong> </td>
                                                       <td>
       													<input type="text" name="gst" id="gst" class="form-control" placeholder="" required value="" />
       	                                            </td>
           										</tr>
-                              <tr>
-                                                        <td> <strong>SP</strong>  <span style="color:red;">*</span></strong> </td>
-                                                        <td>
-        													<input type="text" name="sp" id="sp" class="form-control" placeholder="" READONLY required value="" />
-        	                                            </td>
-            										</tr>
+
                         <tr>
                                                   <td> <strong>GST Price</strong>  <span style="color:red;">*</span></strong> </td>
                                                   <td>
@@ -78,7 +79,7 @@
                           <tr>
                                                     <td> <strong>SP GST</strong>  <span style="color:red;">*</span></strong> </td>
                                                     <td>
-    													<input type="text" name="spgst"  class="form-control" placeholder="" required value="" />
+    													<input type="text" name="spgst"  id="spgst" class="form-control" placeholder="" required value="" READONLY />
     	                                            </td>
         										</tr>
 
@@ -127,14 +128,14 @@
 <script>
 $(document).ready(function() {
   $('#gst').keyup(function(ev) {
-    var mrp = $('#mrp').val() * 1;
+    var sp = $('#sp').val() * 1;
     var gst = $('#gst').val() * 1;
-    var gst_price= (gst/100)*mrp;
-    var sp = mrp + gst_price;
-    var divobj = document.getElementById('sp');
-    var gst_p = document.getElementById('gstprice');
-    divobj.value = sp;
-    gst_p.value = gst_price;
+    var gst_price= (gst/100)*sp;
+    var spgst = sp + gst_price;
+    var divobj = document.getElementById('gstprice');
+    var gst_p = document.getElementById('spgst');
+    divobj.value = gst_price;
+    gst_p.value = spgst;
   });
 });
 </script>

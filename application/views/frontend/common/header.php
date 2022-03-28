@@ -285,7 +285,7 @@
                         <p>Tax included.</p>
                         <button type="submit" name="checkout"
                            class="btn btn-primary btn-cart-checkout white btn-effect"
-                           style="width: 100%; border-bottom: 2px;"><a href="checkout.html"
+                           style="width: 100%; border-bottom: 2px;"><a href="<?=base_url()?>/Home/checkout"
                            class="txt-deco-no white">Check Out</a></button>
                      </div>
                   </div>
@@ -338,7 +338,7 @@
                   <div class="d-flex">
                      <!-- <button class="btn mobiledb" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight2"
                         aria-controls="offcanvasRight"> <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
-                        class="bi bi-cart4"></i></span></button> --><a href="user_profile.html">
+                        class="bi bi-cart4"></i></span></button> --><a href="<?=base_url()?>/Home/user_profile">
                         <button class="btn mobiledb" type="button"> <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
                         class="bi bi-person-circle"></i></span></button></a>
                      <button class="btn mobiledb" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
@@ -507,7 +507,7 @@
                            <div class="accordion-item">
                               <h2 class="accordion-header" id="headingseven">
                                  <button class=" btn" type="button">
-                                 <a href="contact.html">Contact Now</a>
+                                 <a href="<?=base_url()?>/Home/contact">Contact Now</a>
                                  </button>
                               </h2>
                            </div>

@@ -83,7 +83,7 @@
 				<div class="col-10 border p-3">
 					<h6>RETAIL ADDRESS</h6>
 					<p class="mt-3 ">19 Kalyanpuri New Sanganer Road Sodala Jaipur Rajasthan India 302019</p>
-					<a href="index.html" class="mt-2"><b>Soap Mould</b></a>
+					<a href="<?=base_url()?>/Home" class="mt-2"><b>Soap Mould</b></a>
 				</div>
 			</div>
 		</div>

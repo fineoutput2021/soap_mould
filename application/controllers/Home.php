@@ -87,6 +87,13 @@ class Home extends CI_Controller
         $this->load->view('frontend/common/footer');
     }
 
+    public function order_failed()
+    {
+        $this->load->view('frontend/common/header');
+        $this->load->view('frontend/order_failed');
+        $this->load->view('frontend/common/footer');
+    }
+
     public function product_detail()
     {
         $this->load->view('frontend/common/header');

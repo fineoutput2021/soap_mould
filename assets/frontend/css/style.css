@@ -585,13 +585,13 @@ nav {
 
 /* @media screen and (max-width: 3000){ */
   .carousel-item img{
-    height: 550px !important;
+    /* height: 550px !important; */
   }
 /* } */
 
 @media screen and (max-width: 800px) {
   .carousel-item img{
-    height: 170px;
+    /* height: 170px; */
   }
 }
 
@@ -911,7 +911,14 @@ nav {
   .mobview-btn{
     width: 100%;
   }
+  ul.breadcrumb{
+    padding: 10px 0px !important;
+  }
+  ul.breadcrumb li{
+    font-size: 18px !important;
+  }
 }
+
 
 .progress-bar{
   background-color: #fbcd0a;

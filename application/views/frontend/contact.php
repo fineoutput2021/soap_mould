@@ -10,12 +10,12 @@
 	<div class="row">
 		<div class="col-12">
 			<h2>Contact Us</h2>
-			<p class="mt-2">To get your queries resolved as soon as possible, we would recommend you to check out our FAQ page at <a href=""><b>https://soapsquareindia.com/pages/faq.</b></a>For any other queries, feel free to contact us on the following:</p>
+			<p class="mt-2">To get your queries resolved as soon as possible, we would recommend you to check out our FAQ page at <a href=""><b>https://soap.com/pages/faq.</b></a>For any other queries, feel free to contact us on the following:</p>
 			<h6 class="mt-3"><a href="">Click here to message us on WhatsApp</a></h6>
 			<p>or</p>
 			<h6 class="mt-3"><a href="">Click here to DM us on Instagram</a></h6>
 			<p>or</p>
-			<h6 class="mt-3"><a href="">Email us at info@soapsquare.in </a></h6>
+			<h6 class="mt-3"><a href="">Email us at info@soap.in </a></h6>
 			<h6 class="mt-3"><a href="">Customer Support Availability: 9 am to 9 pm. Sundays are closed.</a></h6>
 			<p class="mt-4">You can also fill up this form to reach us:</p>
 		</div>

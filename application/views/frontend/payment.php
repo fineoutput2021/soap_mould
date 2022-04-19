@@ -86,7 +86,8 @@
                <label class="form-check-label px-2" for="flexRadioDefault2" style="font-weight:bold;"> Use a different billing address</label>
                   </div>
                   <button type="submit" class="btn btn-primary btn-lg">
-                     <a href="<?=base_url()?>/Home/order_success" class="txt-deco-no white">Complete Order</a>
+                     <a class="txt-deco-no white">Complete Order</a>
+                      <!-- href="<?=base_url()?>/Home/order_success" -->
                   </button>
                   <button type="submit" class="btn btn-lg"><a href="<?=base_url()?>/Home/shipping" class="txt-deco-no green">Return to Shipping</a></button>
                </form>

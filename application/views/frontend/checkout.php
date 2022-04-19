@@ -466,7 +466,7 @@
                   </div>
                </div>
                <div class="form-group">
-                  <input type="text" class="form-control form-control-lg mt-3" id="" placeholder="PhoneNumber">
+                  <input type="number" class="form-control form-control-lg mt-3" id="" placeholder="PhoneNumber">
                </div>
                <div class="form-group form-check py-3">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">

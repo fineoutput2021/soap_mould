@@ -238,6 +238,12 @@
                                 <div class="mt-4 mb-3">
                                     <h5 class="text-uppercase">Hibiscus, Lavender & Shea Butter Shampoo Bar (for dry &
                                         damaged hair)</h5>
+                                        <div class="price d-flex flex-row align-items-center mt-3">
+                                            <span class="h4 green">₹449.00</span>
+                                            <div class="ml-2">
+                                                <small class="px-2">80g</small> <!-- <span>40% OFF</span>  -->
+                                            </div>
+                                        </div>
                                     <div class="">
                                         <div class="ratting d-flex flex-row align-items-center">
                                             <i class="bi bi-star-fill green"></i>
@@ -247,12 +253,7 @@
                                             <i class="bi bi-star-half green"></i>
                                         </div>
                                     </div>
-                                    <div class="price d-flex flex-row align-items-center mt-3">
-                                        <span class="h4 green">₹449.00</span>
-                                        <div class="ml-2">
-                                            <small class="px-2">80g</small> <!-- <span>40% OFF</span>  -->
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="d-flex col-md-12 mobview-quantity" style="align-items: center;">
                                     <label class="green">Quantity:</label>

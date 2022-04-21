@@ -1,7 +1,7 @@
 <div class="container-fluid mt-5 mb-5" style="background-color: #f4f1eb; padding:20px 5px">
 	<div class="row">
 		<div class="col-12 text-center d-flex justify-content-center align-items-center">
-			<a href="<?=base_url()?>/Home">Home</a><span class="px-3">/</span>
+			<a href="<?=base_url()?>Home">Home</a><span class="px-3">/</span>
 			<p  class="margin-0">Contact us</p>
 		</div>
 	</div>
@@ -26,19 +26,19 @@
 <div class="py-4 subscribe">
 
   <!-- Bootstrap 5 starter form -->
-  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="<?=base_url()?>Home/contact_info_submit" method="POST" enctype="multipart/form-data">
 
     <!-- Name input -->
     <div class="mb-3">
       <label class="form-label" for="name">Name</label>
-      <input class="form-control" id="name" type="text" placeholder="Name" data-sb-validations="required" />
+      <input class="form-control" name="name" type="text" placeholder="Name" data-sb-validations="required" />
       <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
     </div>
 
     <!-- Email address input -->
     <div class="mb-3">
       <label class="form-label" for="emailAddress">Email Address</label>
-      <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required, email" />
+      <input class="form-control" name="email" type="email" placeholder="Email Address" data-sb-validations="required, email" />
       <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
       <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
     </div>
@@ -46,7 +46,7 @@
     <!-- Number address input -->
     <div class="mb-3">
       <label class="form-label" for="phonenumber">Phone Number</label>
-      <input class="form-control" id="phonenumber" type="text" placeholder="Enter Phone Number" data-sb-validations="required, phone-number" />
+      <input class="form-control" name="phone" type="text" placeholder="Enter Phone Number" data-sb-validations="required, phone-number" />
       <div class="invalid-feedback" data-sb-feedback="phonenumber:required">Phone Number is required.</div>
       <div class="invalid-feedback" data-sb-feedback="phonenumber:email">Phone Number is not valid.</div>
     </div>
@@ -54,7 +54,7 @@
     <!-- Message input -->
     <div class="mb-3">
       <label class="form-label" for="message">Message</label>
-      <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" data-sb-validations="required"></textarea>
+      <textarea class="form-control" name="message" type="text" placeholder="Message" style="height: 10rem;" data-sb-validations="required"></textarea>
       <div class="invalid-feedback" data-sb-feedback="message:required">Message is required.</div>
     </div>
 

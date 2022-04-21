@@ -66,7 +66,10 @@
                       <td>
                         <textarea  name="l_description" class="form-control" rows="4" cols="50"></textarea></td>
                     </tr>
-
+                    <tr>
+                    <td><label for="bestseller">BestSeller</label></td>
+                    <td><input type="checkbox" id="bestseller" name="bestseller" value="1"></td>
+                  </tr>
 
 
                     <tr>

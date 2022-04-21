@@ -110,52 +110,52 @@ class Type extends CI_finecontrol
                     $gstprice=$this->input->post('gstprice');
                     $spgst=$this->input->post('spgst');
                     $quantity=$this->input->post('quantity');
-
-
-
-
                     $addedby=$this->session->userdata('admin_id');
 
-                    $img3='image1';
 
-                    $image_upload_folder = FCPATH . "assets/uploads/type/";
-                    if (!file_exists($image_upload_folder)) {
-                        mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                    }
-                    $new_file_name="type".date("Ymdhms");
-                    $this->upload_config = array(
+
+                    $img1='image1';
+                    $nnnn3='';
+
+                    $file_check=($_FILES['image1']['error']);
+                    if ($file_check!=4) {
+                        $image_upload_folder = FCPATH . "assets/uploads/type/";
+                        if (!file_exists($image_upload_folder)) {
+                            mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                        }
+                        $new_file_name="type1".date("Ymdhms");
+                        $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
                              'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
                              'max_size'      => 25000
                      );
-                    $this->upload->initialize($this->upload_config);
-                    if (!$this->upload->do_upload($img3)) {
-                        $upload_error = $this->upload->display_errors();
-                    // echo json_encode($upload_error);
+                        $this->upload->initialize($this->upload_config);
+                        if (!$this->upload->do_upload($img1)) {
+                            $upload_error = $this->upload->display_errors();
+                        // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
-                    } else {
-                        $file_info = $this->upload->data();
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
+                        } else {
+                            $file_info = $this->upload->data();
 
-                        $videoNAmePath = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
-                        $file_info['new_name']=$videoNAmePath;
-                        // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                        $nnnn=$file_info['file_name'];
-                        $nnnn3=$videoNAmePath;
+                            $videoNAmePath3 = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
+                            $nnnn3=$videoNAmePath3;
 
-                        // echo json_encode($file_info);
+                            // echo json_encode($file_info);
+                        }
                     }
-
+                    // echo $nnnn3;die();
 
 
 
                     $img4='image2';
 
+                    $nnnn4= "";
 
-
-
+                    $file_check=($_FILES['image2']['error']);
+                    if ($file_check!=4) {
                     $image_upload_folder = FCPATH . "assets/uploads/type/";
                     if (!file_exists($image_upload_folder)) {
                         mkdir($image_upload_folder, DIR_WRITE_MODE, true);
@@ -172,25 +172,23 @@ class Type extends CI_finecontrol
                         $upload_error = $this->upload->display_errors();
                     // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                     } else {
                         $file_info = $this->upload->data();
 
-                        $videoNAmePath = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
-                        $file_info['new_name']=$videoNAmePath;
-                        // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                        $nnnn=$file_info['file_name'];
-                        $nnnn4=$videoNAmePath;
+                        $videoNAmePath4 = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
+                        $nnnn4=$videoNAmePath4;
 
                         // echo json_encode($file_info);
                     }
+                  }
 
-
+                  // echo $nnnn4;die();
 
 
                     $img5='image3';
-
+                    $nnnn5="";
 
                     $file_check=($_FILES['image3']['error']);
                     if ($file_check!=4) {
@@ -210,16 +208,13 @@ class Type extends CI_finecontrol
                             $upload_error = $this->upload->display_errors();
                         // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                         } else {
                             $file_info = $this->upload->data();
 
-                            $videoNAmePath = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
-                            $file_info['new_name']=$videoNAmePath;
-                            // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                            $nnnn=$file_info['file_name'];
-                            $nnnn5=$videoNAmePath;
+                            $videoNAmePath5 = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
+                            $nnnn5=$videoNAmePath5;
 
                             // echo json_encode($file_info);
                         }
@@ -228,6 +223,7 @@ class Type extends CI_finecontrol
 
 
                     $img6='image4';
+                    $nnnn6="";
 
 
                     $file_check=($_FILES['image4']['error']);
@@ -248,23 +244,21 @@ class Type extends CI_finecontrol
                             $upload_error = $this->upload->display_errors();
                         // echo json_encode($upload_error);
 
-           //$this->session->set_flashdata('emessage',$upload_error);
-             //redirect($_SERVER['HTTP_REFERER']);
+           $this->session->set_flashdata('emessage',$upload_error);
+             redirect($_SERVER['HTTP_REFERER']);
                         } else {
                             $file_info = $this->upload->data();
 
-                            $videoNAmePath = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
-                            $file_info['new_name']=$videoNAmePath;
-                            // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                            $nnnn=$file_info['file_name'];
-                            $nnnn6=$videoNAmePath;
+                            $videoNAmePath6 = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
+                            $nnnn6=$videoNAmePath6;
 
                             // echo json_encode($file_info);
                         }
                     }
 
-
+                    // echo $nnnn3."ANDD".$nnnn4; die();
                     $typ=base64_decode($t);
+                    // echo $typ;die();
                     if ($typ==1) {
                         $data_insert = array('product_id'=>$product_id,
                     'name'=>$name,
@@ -283,6 +277,7 @@ class Type extends CI_finecontrol
                     'date'=>$cur_date
 
                     );
+                    // print_r($data_insert);die();
 
 
                         $last_id=$this->base_model->insert_table("tbl_type", $data_insert, 1) ;
@@ -397,9 +392,9 @@ class Type extends CI_finecontrol
 
 
                     if ($last_id!=0) {
-                        $this->session->set_flashdata('emessage', 'Data inserted successfully');
+                        $this->session->set_flashdata('smessage', 'Data inserted successfully');
 
-                        redirect("dcadmin/Type/view_type", "refresh");
+                        redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Sorry error occured');
                         redirect($_SERVER['HTTP_REFERER']);
@@ -472,7 +467,7 @@ class Type extends CI_finecontrol
                 if ($zapak!=0) {
                     $zapak2=$this->db->delete('tbl_inventory', array('type_id' => $id));
                     if (!empty($zapak2)) {
-                        redirect("dcadmin/Type/view_type", "refresh");
+                        redirect("dcadmin/Products/view_products", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Some error occured');
                         redirect($_SERVER['HTTP_REFERER']);

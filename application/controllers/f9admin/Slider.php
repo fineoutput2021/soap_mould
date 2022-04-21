@@ -67,13 +67,6 @@ class Slider extends CI_finecontrol
             $this->load->helper(array('form', 'url'));
             $this->load->library('form_validation');
             $this->load->helper('security');
-            // if($this->input->post())
-            // {
-            //
-            //   if($this->form_validation->run()== TRUE)
-            //   {
-            $email=$this->input->post('email');
-            $passw=$this->input->post('password');
 
             $cur_date=date("Y-m-d H:i:s");
             $ip = $this->input->ip_address();
@@ -91,11 +84,11 @@ class Slider extends CI_finecontrol
                 }
                 $new_file_name="Slider_image".date("Ymdhms");
                 $this->upload_config = array(
-                                                                  'upload_path'   => $image_upload_folder,
-                                                                  'file_name' => $new_file_name,
-                                                                  'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
-                                                                  'max_size'      => 25000
-                                                          );
+                        'upload_path'   => $image_upload_folder,
+                        'file_name' => $new_file_name,
+                        'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                        'max_size'      => 25000
+                );
                 $this->upload->initialize($this->upload_config);
                 if (!$this->upload->do_upload($img1)) {
                     $upload_error = $this->upload->display_errors();
@@ -105,10 +98,7 @@ class Slider extends CI_finecontrol
                     $file_info = $this->upload->data();
 
                     $videoNAmePath = "assets/uploads/Slider/".$new_file_name.$file_info['file_ext'];
-                    $file_info['new_name']=$videoNAmePath;
-                    // $this->step6_model->updateappIconImage($imageNAmePath,$appInfoId);
-                    $nnnn=$file_info['file_name'];
-                    // echo json_encode($file_info);
+                    $nnnn=$videoNAmePath;
                 }
             }
 
@@ -144,11 +134,9 @@ class Slider extends CI_finecontrol
                 //     }
                 if (!empty($nnnn)) {
                     $data_insert = array('image'=>$nnnn
-
                                   );
                 } else {
-                    $data_insert = array(
-                            );
+                    $data_insert = array();
                 }
 
                 $this->db->where('id', $idw);
@@ -157,7 +145,7 @@ class Slider extends CI_finecontrol
 
 
             if ($last_id!=0) {
-                $this->session->set_flashdata('emessage', 'Data inserted successfully');
+                $this->session->set_flashdata('smessage', 'Data inserted successfully');
 
                 redirect("dcadmin/Slider/view_slider", "refresh");
             } else {
@@ -165,22 +153,6 @@ class Slider extends CI_finecontrol
                 redirect($_SERVER['HTTP_REFERER']);
             }
 
-
-            //               }
-              //             else{
-              //
-              // $this->session->set_flashdata('emessage',validation_errors());
-              //      redirect($_SERVER['HTTP_REFERER']);
-              //
-              //             }
-              //
-              //             }
-              //           else{
-              //
-              // $this->session->set_flashdata('emessage','Please insert some data, No data available');
-              //      redirect($_SERVER['HTTP_REFERER']);
-              //
-              //           }
         } else {
             redirect("login/admin_login", "refresh");
         }

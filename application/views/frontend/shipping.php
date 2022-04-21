@@ -47,7 +47,7 @@
           </div>
           <div class="form-group d-flex border p-3 mb-4 rounded-3">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label px-2" for="flexRadioDefault2" style="font-weight:bold;">Free Delivery</label>
+            <label class="form-check-label px-2" for="flexRadioDefault2" style="font-weight:bold;">Free Delivery</label></input>
           </div>
           <button type="submit" class="btn btn-primary btn-lg">
             <a href="<?=base_url()?>/Home/payment" class="txt-deco-no white">Continue To Payment</a>

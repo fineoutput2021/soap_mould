@@ -29,208 +29,41 @@
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                <h4>All Product</h4>
                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                 <?foreach($sub_data->result() as $data){
+                               $this->db->select('*');
+                   $this->db->from('tbl_type');
+                   $this->db->where('product_id',$data->id);
+                   $type_data= $this->db->get()->row();
+                   ?>
                   <div class="col product-grid">
             <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/1.jpg">
+               <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_data->product_id)?>" class="image">
+                 <?if(!empty($type_data->image1)){?>
+               <img src="<?=base_url().$type_data->image1;?>">
+               <?}elseif(!empty($type_data->image2)){?>
+                 <img src="<?=base_url().$type_data->image2;?>">
+                 <?}elseif(!empty($type_data->image3)){?>
+                   <img src="<?=base_url().$type_data->image3;?>">
+                   <?}elseif(!empty($type_data->image4)){?>
+                     <img src="<?=base_url().$type_data->image4;?>">
+                     <?}?>
                </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
+                     <ul class="product-links">
                   <li><a href=""><i class="bi bi-heart"></i></a></li>
                   <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
                </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
+               <?if(empty($this->session->userdata('user_data'))){?>
+          <button class="txt-deco-no add-to-cart" style="width:100%"  onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>"  quantity=1>Add To Cart</button>
+          <?}else{?>
+          <button class="txt-deco-no add-to-cart" style="width:100%" onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>" quantity=1>Add To Cart</button>
+          <?}?>
             </div>
             <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
+               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?echo $type_data->name?></a></h3>
+               <div class="price">$<?=$type_data->sp;?><span class="px-2">$<?=$type_data->sp*1.5;?></span></div>
             </div>
          </div>
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/3.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="<?=base_url()?>/Home/product_detail"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/6.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="<?=base_url()?>/Home/product_detail"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/12.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="<?=base_url()?>/Home/product_detail"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/9.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="<?=base_url()?>/Home/product_detail"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-               </div>
-            </div>
-            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-               <h4>Aloe Vera Gel</h4>
-               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/1.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/18.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/12.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-               </div>
-            </div>
-            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-               <h4>Heading 3</h4>
-               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/1.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-               </div>
-            </div>
-            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-               <h4>Heading 4</h4>
-               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/4.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
-                  <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>/Home/product_detail" class="image">
-               <img src="<?=base_url()?>assets/frontend/images/product/5.jpg">
-               </a>
-<!--                      <span class="product-discount-label">-23%</span>
--->                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a></h3>
-               <div class="price">$75.55<span class="px-2">$68.88</span></div>
-            </div>
-         </div>
+         <?}?>
                </div>
             </div>
          </div>
@@ -243,12 +76,6 @@
       <div class="col-3">
          <nav aria-label="..." style="box-shadow: none;">
             <ul class="pagination pagination-lg">
-               <!-- <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  </li> -->
                <li class="page-item disabled">
                   <a class="page-link white" href="#" tabindex="-1">1</a>
                </li>
@@ -257,8 +84,6 @@
                <li class="page-item">
                   <a class="page-link" href="#" aria-label="Next">
                      <span aria-hidden="true">&raquo;</span>
-                     <!--         <span class="sr-only">Next</span>
-                        -->
                   </a>
                </li>
             </ul>

@@ -49,10 +49,10 @@
                                                     <th>SP</th>
                                                     <th>GST Price</th>
                                                     <th>SP GST</th>
-                                                    <th>Image</th>
-                                                    <th>Image</th>
-                                                    <th>Image</th>
-                                                    <th>Image</th>
+                                                    <th>Image 1</th>
+                                                    <th>Image 2</th>
+                                                    <th>Image 3</th>
+                                                    <th>Image 4</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                       </tr>

@@ -113,28 +113,28 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
          <div class="modal-body">
-            <form>
+            <form method="POST" action="<?=base_url()?>User/login_process_page" enctype="multipart/form-data">
                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Enter Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for=" " class="form-label">Enter Email</label>
+                  <input type="text" name="email" class="form-control"  aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="myPassword exampleInputPassword1" value="">
+                  <input type="password" name="password" class="form-control" value="">
                   <!-- <input type="checkbox" onclick="myFunction()">
                      <spam class="ml_5">Show Password</spam> -->
                </div>
-            </form>
          </div>
          <div class="modal-footer justify-content-center">
-            <div class="text-center bg-green w-100">
-               <input class="btn btn-primary btn-lg" type="Submit" style="" placeholder="Submit Now"/>
+            <div class="text-center bg-green w-100" style="cursor:pointer;">
+               <button class="btn btn-primary btn-lg" type="Submit" style="">Login</button>
             </div>
             <div class="w-100 text-center">
                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
                   style="text-decoration: underline;">Register</button>
             </div>
+          </form>
             <div class="w-100 text-center"><button class="btn " data-bs-target="#exampleModalToggle3"
                data-bs-toggle="modal">Forgot Password</button></div>
             <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Register</button>
@@ -152,34 +152,29 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
          <div class="modal-body">
-            <form>
+            <form method="POST" action="<?=base_url()?>User/register_process" enctype="multipart/form-data">
                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email Name</label>
-                  <input type="name" class="form-control" id="exampleInputName">
+                  <label for=" " class="form-label">Name</label>
+                  <input type="text" name="name" class="form-control" id="Name">
                </div>
                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for=" " class="form-label">Email</label>
+                  <input type="text" name="email" class="form-control"  aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Enter Password</label>
-                  <input type="password" class="form-control" id="myPassword exampleInputPassword1">
+                  <input type="password" name="password" class="form-control" >
                   <!-- <input type="checkbox" onclick="myFunction()">
                      <spam class="ml_5">Show Password</spam> -->
                </div>
-               <!-- <div class="mb-3 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                  </div> -->
-            </form>
          </div>
          <div class="modal-footer">
             <div class="text-center bg-green w-100">
-               <input class="btn btn-primary btn-lg" type="Submit" style="" data-bs-target="#exampleModalToggle"
-                  data-bs-toggle="modal"/>
+               <button class="btn btn-primary btn-lg" type="Submit" style="">Register</button>
             </div>
-            <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Register Now</button> -->
+          </form>
+
          </div>
       </div>
    </div>
@@ -192,15 +187,18 @@
             <h5 class="modal-title green" id="exampleModalToggleLabel23">Forgot Password</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
+
+
+         <!--Forgot password-->
          <div class="modal-body">
             <form>
                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email Name</label>
-                  <input type="name" class="form-control" id="exampleInputName">
+                  <label for=" " class="form-label">Name</label>
+                  <input type="name" class="form-control" id="InputName">
                </div>
                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <label for=" " class="form-label">Address</label>
+                  <input type="email" class="form-control"  aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
@@ -209,7 +207,7 @@
                </div>
                <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Enter New Password</label>
-                  <input type="password" class="form-control" id="myPassword exampleInputPassword1 myInput"
+                  <input type="password" class="form-control"
                      value="">
                   <!-- <input type="checkbox" onclick="myFunction()">
                      <spam class="ml_5">Show Password</spam> -->
@@ -259,8 +257,10 @@
       <div class="d-flex">
          <a href=""><img src="<?=base_url()?>assets/frontend/images/logo/logo3.png" class="img-fluid"></a>
          <div class="mt-3">
-            <a href="" class="px-5"><i class="bi bi-heart" style="font-size: 20px;"></i></a>
-            <a href=""><i class="bi bi-compass" style="font-size: 20px;"></i></a>
+           <?if(!empty($this->session->userdata('user_data'))){?>
+            <a href="<?=base_url()?>Home/wishlist"  class="px-5"><i class="bi bi-heart" style="font-size: 20px;"></i></a>
+            <?}?>
+            <!-- <a href=""><i class="bi bi-compass" style="font-size: 20px;"></i></a> -->
          </div>
       </div>
      <h2 class="mt-5">Newsletter</h2>
@@ -434,6 +434,420 @@ function showPage() {
 }
 </script>
 
+<script>
 
+$(document).ready(function() {
+<?php if(!empty($this->session->flashdata('emessage'))){ ?>
+ var fail_message = '<?php echo $this->session->flashdata('emessage')?>';
+ loadErrorNotify(fail_message);
+<?php  } ?>
+
+<?php  if(!empty($this->session->flashdata('validationemessage'))){
+$valid_errors = $this->session->flashdata('validationemessage');
+$valid_errors = substr($valid_errors, 0, -1); ?>
+loadErrorNotify("<?=$valid_errors?>");
+<?php  } ?>
+
+<?php if(!empty($this->session->flashdata('smessage'))){ ?>
+  var succ_message = '<?php echo $this->session->flashdata('smessage');?>';
+  loadSuccessNotify(succ_message);
+ <?php  } ?>
+
+});
+function loadSuccessNotify(succ_message){
+  $.notify({
+             icon: 'fa fa-check',
+             title: 'Alert!',
+             message: succ_message
+         },{
+             element: 'body',
+             position: null,
+             type: "success",
+             allow_dismiss: true,
+             newest_on_top: false,
+             showProgressbar: false,
+             placement: {
+                 from: "top",
+                 align: "right"
+             },
+             offset: 0,
+             spacing: 10,
+             z_index: 1031,
+             delay: 1000,
+             animate: {
+                 enter: 'animated fadeInDown',
+                 exit: 'animated fadeOutUp'
+             },
+             icon_type: 'class',
+             template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+             '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+             '<span data-notify="title">{1}</span> ' +
+             '<span data-notify="message">{2}</span>' +
+             '<div class="progress" data-notify="progressbar">' +
+              '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    '</div>' +
+             '<a href="{3}" target="{4}" data-notify="url"></a>' +
+             '</div>'
+         });
+
+}
+
+    function loadErrorNotify(message){
+      $.notify({
+                 icon: 'fa fa-times',
+                 title: 'Alert!',
+                 message: message
+             },{
+                 element: 'body',
+                 position: null,
+                 type: "danger",
+                 allow_dismiss: true,
+                 newest_on_top: false,
+                 showProgressbar: false,
+                 placement: {
+                     from: "top",
+                     align: "right"
+                 },
+                 offset: 0,
+                 spacing: 10,
+                 z_index: 1031,
+                 delay: 1000,
+                 animate: {
+                     enter: 'animated fadeInDown',
+                     exit: 'animated fadeOutUp'
+                 },
+                 icon_type: 'class',
+                 template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+                 '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                 '<span data-notify="icon"></span> ' +
+                 '<span data-notify="title">{1}</span> ' +
+                 '<span data-notify="message">{2}</span>' +
+                 '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                 '</div>'
+             });
+
+    }
+
+
+    //-----------add to cart offline-----
+
+      function addToCartOffline(obj){
+
+        var product_id = $(obj).attr("product_id");
+        var type_id = $(obj).attr("type_id");
+        var quantity = $(obj).attr("quantity");
+        var base_path = "<?=base_url();?>";
+           $.ajax({
+           url:'<?=base_url();?>Cart/addToCartOffline',
+           method: 'post',
+           data: {product_id: product_id, type_id: type_id, quantity: quantity},
+           dataType: 'json',
+           success: function(response){
+           if(response.data == true){
+             // alert(response.data_message)
+              // var msg = response.data_message;
+              // alert("product Added")
+                  $.notify({
+                            // icon: 'fa fa-check',
+                            title: 'Alert!',
+                            message: "Item successfully added in your cart"
+                        },{
+                            element: 'body',
+                            position: null,
+                            type: "success",
+                            allow_dismiss: true,
+                            newest_on_top: false,
+                            showProgressbar: true,
+                            placement: {
+                                from: "top",
+                                align: "right"
+                            },
+                            offset: 0,
+                            spacing: 10,
+                            z_index: 1031,
+                            delay: 5000,
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            icon_type: 'class',
+                            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success  alert-dismissible fade show alert-{0}" role="alert">' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                            '<span data-notify="icon"></span> ' +
+                            '<span data-notify="title">{1}</span> ' +
+                            '<span data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                        // window.setTimeout(function(){location.reload()},2000)
+                        $( "#count" ).load(window.location.href + " #count > *" );
+                        $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
+
+           }else if(response.data == false){
+             var msg = response.data_message;
+                    // alert(msg);
+                   $.notify({
+                               icon: '',
+                               title: 'Alert!',
+                               message: msg
+                           },{
+                               element: 'body',
+                               position: null,
+                               type: "danger",
+                               allow_dismiss: true,
+                               newest_on_top: false,
+                               showProgressbar: true,
+                               placement: {
+                                   from: "top",
+                                   align: "right"
+                               },
+                               offset: 0,
+                               spacing: 10,
+                               z_index: 1031,
+                               delay: 5000,
+                               animate: {
+                                   enter: 'animated fadeInDown',
+                                   exit: 'animated fadeOutUp'
+                               },
+                               icon_type: 'class',
+                               template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+                               '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                               '<span data-notify="icon"></span> ' +
+                               '<span data-notify="title">{1}</span> ' +
+                               '<span data-notify="message">{2}</span>' +
+                               '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                               '</div>'
+                           });
+                           // window.setTimeout(function(){location.reload()},2000)
+                           $( "#count" ).load(window.location.href + " #count > *" );
+                           $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
+
+
+           }
+         }
+           });
+
+      }
+
+    ///-----------add to cart online-----------
+
+      function addToCartOnline(obj){
+
+        var product_id = $(obj).attr("product_id");
+        var type_id = $(obj).attr("type_id");
+        var quantity = $(obj).attr("quantity");
+        var base_path = "<?=base_url();?>";
+        // alert(type_id)
+           $.ajax({
+           url:'<?=base_url();?>Cart/addToCartOnline',
+           method: 'post',
+           data: {product_id: product_id, type_id: type_id, quantity: quantity},
+           dataType: 'json',
+           success: function(response){
+             // alert(response)
+           if(response.data == true){
+             // alert(response.data_message)
+              // var msg = response.data_message;
+                  $.notify({
+                            icon: 'fa fa-check',
+                            title: 'Alert!',
+                            message: "Item successfully added in your cart"
+                        },{
+                            element: 'body',
+                            position: null,
+                            type: "success",
+                            allow_dismiss: true,
+                            newest_on_top: false,
+                            showProgressbar: true,
+                            placement: {
+                                from: "top",
+                                align: "right"
+                            },
+                            offset: 0,
+                            spacing: 10,
+                            z_index: 1031,
+                            delay: 5000,
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+                            icon_type: 'class',
+                            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success  alert-dismissible fade show alert-{0}" role="alert">' +
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                            '<span data-notify="icon"></span> ' +
+                            '<span data-notify="title">{1}</span> ' +
+                            '<span data-notify="message">{2}</span>' +
+                            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                            '</div>'
+                        });
+                        // window.setTimeout(function(){location.reload()},2000)
+                        $( "#count" ).load(window.location.href + " #count > *" );
+                        $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
+
+
+
+           }else if(response.data == false){
+             var msg = response.data_message;
+                   $.notify({
+                               icon: 'fa fa-times',
+                               title: 'Alert!',
+                               message: msg
+                           },{
+                               element: 'body',
+                               position: null,
+                               type: "danger",
+                               allow_dismiss: true,
+                               newest_on_top: false,
+                               showProgressbar: true,
+                               placement: {
+                                   from: "top",
+                                   align: "right"
+                               },
+                               offset: 0,
+                               spacing: 10,
+                               z_index: 1031,
+                               delay: 5000,
+                               animate: {
+                                   enter: 'animated fadeInDown',
+                                   exit: 'animated fadeOutUp'
+                               },
+                               icon_type: 'class',
+                               template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+                               '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                               '<span data-notify="icon"></span> ' +
+                               '<span data-notify="title">{1}</span> ' +
+                               '<span data-notify="message">{2}</span>' +
+                               '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                               '</div>'
+                           });
+                           // window.setTimeout(function(){location.reload()},2000)
+                           $( "#count" ).load(window.location.href + " #count > *" );
+                           $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
+
+
+
+           }
+         }
+           });
+
+      }
+
+      //---------------wishlist----------
+function wishlist(obj) {
+  var product_id = $(obj).attr("product_id");
+  var type_id = $(obj).attr("type_id");
+  var user_id = $(obj).attr("user_id");
+  var status = $(obj).attr("status");
+  // alert(product_id);
+  // alert(user_id);
+  // alert(status);
+  // return;
+  $.ajax({
+    url: '<?=base_url();?>Cart/wishlist',
+    method: 'post',
+    data: {
+      product_id: product_id,user_id: user_id,status : status, type_id: type_id
+    },
+    dataType: 'json',
+    success: function(response) {
+      // alert(response.data_message)
+      if (response.data == true) {
+        $.notify({
+          icon: 'fa fa-check',
+          title: '',
+          message: response.data_message
+        }, {
+          element: 'body',
+          position: null,
+          type: "success",
+          allow_dismiss: true,
+          newest_on_top: false,
+          showProgressbar: false,
+          placement: {
+            from: "top",
+            align: "right"
+          },
+          offset: 0,
+          spacing: 10,
+          z_index: 1031,
+          delay: 1000,
+          animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+          },
+          icon_type: 'class',
+          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success  alert-dismissible fade show alert-{0}" role="alert">' +
+          '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+            '<span data-notify="title">{1}</span> ' +
+            '<span data-notify="message">{2}</span>' +
+            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+            '</div>'
+        });
+
+        $( "#count" ).load(window.location.href + " #count > *" );
+        $( "#wish" ).load(window.location.href + " #wish > *" );
+        $( "#w_count" ).load(window.location.href + " #w_count > *" );
+
+
+      } else if (response.data == false) {
+        $.notify({
+          icon: 'fa fa-times',
+          title: '',
+          message: response.data_message
+        }, {
+          element: 'body',
+          position: null,
+          type: "danger",
+          allow_dismiss: true,
+          newest_on_top: false,
+          showProgressbar: true,
+          placement: {
+            from: "top",
+            align: "right"
+          },
+          offset: 0,
+          spacing: 10,
+          z_index: 1031,
+          delay: 5000,
+          animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+          },
+          icon_type: 'class',
+          template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+          '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+            '<span data-notify="title">{1}</span> ' +
+            '<span data-notify="message">{2}</span>' +
+            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+            '</div>'
+        });
+        $( "#count" ).load(window.location.href + " #count > *" );
+        $( "#wish" ).load(window.location.href + " #wish > *" );
+        $( "#w_count" ).load(window.location.href + " #w_count > *" );
+
+
+
+      }
+      // window.setTimeout(function(){location.reload()},10000)
+
+    }
+  });
+}
+
+    </script>
+
+    <script type="text/javascript">
+    $(".fa-bars").click(function () {
+      $(".side_bar").css({
+        transform: 'translateX(0px)',
+      });
+    });
+    $(".close_side").click(function () {
+      $(".side_bar").css({
+        transform: 'translateX(-900px)',
+      });
+    });
+</script>
+<script src="<?=base_url()?>assets/frontend/assets/js/bootstrap-notify.min.js"></script>
 </body>
 </html>

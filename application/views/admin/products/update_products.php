@@ -70,7 +70,15 @@
                       <td> <strong>Long Description</strong> <span style="color:red;">*</span></strong> </td>
                       <td><textarea  name="l_description" class="form-control" rows="4" cols="50"><?=$products_data->l_description;?></textarea> </td>
                     </tr>
-
+                    <tr>
+                    <td><label for="bestseller">BestSeller</label></td>
+                    <td>
+                      <?if($products_data->bestseller==1){?>
+                      <input type="checkbox" id="bestseller" checked name="bestseller" value="1"></td>
+                      <?}else{?>
+                        <input type="checkbox" id="bestseller" name="bestseller" value="1"></td>
+                        <?}?>
+                    </tr>
 
 
 

@@ -65,14 +65,28 @@
          </section>
          <header class="sticky">
             <nav class="navbar navbar-expand-sm bg-white navbar-dark">
-               <div class="container-fluid mobileheader">
-                  <div class="d-flex">
+               <div class="container-fluid mobileheader" id="mobileHeader">
+                  <div class="d-flex mobiledb">
                     <a href="<?=base_url()?>/Home/user_profile">
                         <button class="btn mobiledb" type="button"> <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
                         class="bi bi-person-circle"></i></span></button></a>
-                     <button class="btn mobiledb" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                        aria-controls="offcanvasRight"> <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
-                        class="bi bi-cart4"></i></span></button>
+                     <a href="<?=base_url()?>Home/cart">
+                        <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
+                        class="bi bi-cart4">
+                        <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 2px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
+                          <?if(!empty($this->session->userdata('user_data'))){
+                            $id=$this->session->userdata('user_id');
+                            $this->db->select('*');
+                            $this->db->from('tbl_cart');
+                            $this->db->where('user_id',$id);
+                            $cart_count= $this->db->count_all_results();
+                            echo $cart_count;
+                          }else{
+                            $cart = count($this->session->userdata('user_cart'));
+                            echo $cart;
+                          }
+                          ?>
+                        </span></i></span></a>
                   </div>
                   <a class="navbar-brand" href="<?=base_url()?>Home">
                      <img src="<?=base_url()?>assets/frontend/images/logo/logo3.png" class="img-fluid">
@@ -112,29 +126,16 @@
                                    $this->db->where('category_id',$category->id);
                                    $sub_data = $this->db->get();
                                    foreach($sub_data->result() as $sub){?>
-                                    <li><a href="#">
+                                    <a href="<?=base_url()?>Home/all_products/<?=base64_encode($category->id)?>/<?=base64_encode(1)?>" class="nav-link green "><li>
                                        <?=$sub->name;?>
-                                       </a>
                                     </li>
+                                  </a>
                                     <?}?>
                                  </div>
                               </div>
                            </div>
                            <?$i++;}?>
-                           <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingseven">
-                                 <button class=" btn" type="button">
-                                 <a href="javascript:void(0)">Valentine's Special</a>
-                                 </button>
-                              </h2>
-                           </div>
-                           <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingseven">
-                                 <button class=" btn" type="button">
-                                 <a href="<?=base_url()?>Home/contact">Contact Now</a>
-                                 </button>
-                              </h2>
-                           </div>
+
                         </div>
                         <br>
                         <div class="d-grid gap-2 d-md-block">
@@ -190,10 +191,12 @@
                             ?>
                           </span></i></a>
                      </li>
+                     <?if(!empty($this->session->userdata('user_data'))){?>
                      <li class="nav-item">
-                        <button class="btn nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightweb"
-                        aria-controls="offcanvasRight"><i class="bi bi-list green" style="font-size: 23px;"></i></button>
-                     </li></ul>
+                        <a class="nav-link green" href="<?=base_url()?>Home/wishlist"  ><i class="bi bi-heart" style="font-size: 20px;"></i></a>
+                     </li>
+                     <?}?>
+                   </ul>
                   </div>
                </div>
             </nav>

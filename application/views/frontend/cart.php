@@ -73,7 +73,7 @@ $pro_data= $this->db->get()->row();?>
       <div class="row justify-content-center">
          <div class="col-lg-12 bg-green text-center mb-5">
             <h6 style="padding: 10px 0px 10px;" class="white"><i class="bi bi-truck"
-               style="margin-right: 10px;"></i>Your order is free delivery !</h6>
+               style="margin-right: 10px;"></i>Free delivery on orders above ₹999/-</h6>
          </div>
       </div>
       <div class="row justify-content-center" style="">
@@ -95,7 +95,7 @@ $pro_data= $this->db->get()->row();?>
                         $price = $pro_data->sp * $cart2->quantity;
                         $total= $total + $price;
                     }
-                    echo "$".$subtotal = $total;
+                    echo "₹".$subtotal = $total;
                     ?>
                   </h2>
                   <p>Tax included.</p><a href="<?=base_url()?>Order/calculate"
@@ -231,7 +231,7 @@ $pro_data= $this->db->get()->row();?>
       success: function(response) {
         // alert(response)
         if (response.data == true) {
-          document.getElementById('price' + i).innerHTML = "$"+response.newprice;
+          document.getElementById('price' + i).innerHTML = "₹"+response.newprice;
           $("#qty"+i).attr("price", response.newprice);
           $.notify({
             // icon: 'fa fa-check',
@@ -271,8 +271,8 @@ $pro_data= $this->db->get()->row();?>
           // window.setTimeout(function(){location.reload()},2000)
           $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
 
-    document.getElementById('price'+i).value = "$"+response.newprice;
-    document.getElementById('subTot').innerHTML = '$'+response.data_subtotal;
+    document.getElementById('price'+i).value = "₹"+response.newprice;
+    document.getElementById('subTot').innerHTML = '₹'+response.data_subtotal;
     $("#qty"+i).attr("price", newprice);
 
         } else if (response.data == false) {

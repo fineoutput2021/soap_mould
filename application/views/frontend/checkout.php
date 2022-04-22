@@ -15,21 +15,6 @@
             <h5 class="modal-title green" id="exampleModalToggleLabel">Login Now</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
-         <div class="modal-body">
-            <form>
-               <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Enter Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-               </div>
-               <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="myPassword exampleInputPassword1" value="">
-                  <!-- <input type="checkbox" onclick="myFunction()">
-                     <spam class="ml_5">Show Password</spam> -->
-               </div>
-            </form>
-         </div>
          <div class="modal-footer justify-content-center">
             <div class="text-center bg-green w-100">
                <button class="btn btn-primary btn-lg" type="Submit" style="">Login Now</button>
@@ -56,6 +41,7 @@
                   <li>Payment</li>
                </ul>
             </div>
+            <form action="<?=base_url()?>Order/checkout" method="POST" enctype="multipart/form-data">
                <div class="fixedElement" >
 <h2>Checkout</h2>
 <br />
@@ -71,6 +57,7 @@
           <div class="form-outline">
             <label class="form-label" for="name">Name<span class="sp">*</span></label>
             <input type="text" id="name" name="name" class="form-control mt-0" required onkeyup='saveValue(this);'/>
+            <input type="hidden" name="order_id" value="<?=base64_encode($order_data->id);?>">
           </div>
         </div>
         <div class="col-12 col-md-6">
@@ -121,9 +108,10 @@
    Email me with news and offers</label>
 </div>
 <button type="submit" class="btn btn-primary btn-lg">
-   <a href="shiping.html" class="txt-deco-no white">Place order</a>
+Place order
 </button>
-<button type="submit" class="btn btn-lg"><a href="cart.html" class="txt-deco-no green">Return to Cart</a></button>
+<button class="btn btn-lg"><a href="<?=base_url()?>Home/cart" class="txt-deco-no green">Return to Cart</a></button>
+</form>
 
 
             </footer>
@@ -131,7 +119,7 @@
       </div>
       <div class="col-md-5 border">
          <div class="row">
-            <div class="col">
+            <div class="col" id="orderDetails">
                <div class="table-responsive">
                   <table class="table">
                      <thead>
@@ -141,7 +129,11 @@
                         </tr>
                      </thead>
                      <tbody>
-                       <?foreach($cart_data->result() as $cart){
+                       <?$this->db->select('*');
+                        $this->db->from('tbl_order2');
+                        $this->db->where('main_id', $order_data->id);
+                        $cart_data= $this->db->get();
+                       foreach($cart_data->result() as $cart){
                                      $this->db->select('*');
                          $this->db->from('tbl_type');
                          $this->db->where('id',$cart->type_id);
@@ -161,26 +153,26 @@
                            </td>
                         </tr>
                         <?}?>
-                        <?
-                        $subtotal=0;
-                        $total=0;
-                        foreach ($cart_data->result() as $cart2) {
-                            $price=0;
-                            $this->db->select('*');
-                            $this->db->from('tbl_type');
-                            $this->db->where('id', $cart2->type_id);
-                            $pro_data= $this->db->get()->row();
-                            $price = $pro_data->sp * $cart2->quantity;
-                            $total= $total + $price;
-                        }
-                        $subtotal = $total;
-                        ?>
                         <tr>
                            <th colspan="2">
                              <form action="javascript:void(0)" id="promocode_form" method="post" enctype="multipart/form-data">
+                               <?if (!empty($order_data->promocode_id)) {
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_promocode');
+                                    $this->db->where('id', $order_data->promocode_id);
+                                    $promo_data= $this->db->get()->row(); ?>
+                            <p style="color:#416e7a">
+                            <?=$promo_data->name; ?>
+                            &nbsp
+                            <a href="javascript:void(0);" style="color:unset;"><i class="fa fa-times" aria-hidden="true" onclick="remove_promocode(this)"
+                              order_id="<?=base64_encode($order_data->id)?>"
+                            ></i></a>
+                            </p>
+                            <?
+                                }?>
                               <div class="form-group d-flex">
                                  <input type="text" name="promocode" class="form-control form-control-lg mt-3 mx-3" id="" placeholder="Apply Promocode" /><button type="submit" class="btn btn-primary btn-lg mt-3">Apply</button>
-                                 <input type="hidden" name="subtotal" value="<?=$subtotal;?>">
+                                 <input type="hidden" name="order_id" value="<?=base64_encode($order_data->id);?>">
                               </div>
                             </form>
                            </th>
@@ -190,15 +182,22 @@
                               <div class="">
                                  <div class="float-start">
                                     <h6>Subtotal</h6>
-                                    <h6 class="mt-3"><a href="#exampleModalshipping" class="btn txt-deco-no green" data-bs-toggle="modal" role="button" style="padding: 0;">Shipping</a></h6>
+                                    <h6 class="mt-3"><a href="#exampleModalshipping" class="btn txt-deco-no green" data-bs-toggle="modal" role="button" style="padding: 0;">Promocode Discount</a></h6>
                                  </div>
                                  <div class="float-end">
                                     <h4>
                                         <?
-                                        echo "$".$subtotal.".00";
+                                        echo "₹".$order_data->total_amount;
                                         ?>
                                       </h4>
-                                    <h6>Calculated at next step</h6>
+                                    <h6>
+                                      <?if(!empty($order_data->p_discount)){
+                                        echo "₹".$order_data->p_discount;
+                                      }else{
+                                        echo "₹0";
+                                      }
+                                      ?>
+                                    </h6>
                                  </div>
                               </div>
                            </th>
@@ -211,7 +210,7 @@
                                     <!-- <h6 class="mt-3">Including ₹189.50 in taxes</h6> -->
                                  </div>
                                  <div class="float-end">
-                                    <h4 class="mb-1"><?echo "$".$subtotal;?></h4>
+                                    <h4 class="mb-1"><?echo "₹".$order_data->final_amount;?></h4>
                                  </div>
                               </div>
                            </th>
@@ -280,7 +279,7 @@ $(document).ready(function() {
     e.preventDefault(); // avoid to execute the actual submit of the form.
     var frm = $(this).closest("#promocode_form");
     var dataString = frm.serialize();
-      url = "<?=base_url()?>Cart/apply_promocode";
+      url = "<?=base_url()?>Order/apply_promocode";
     $.ajax({
       url: url,
       method: 'post',
@@ -321,7 +320,7 @@ $(document).ready(function() {
               '</div>'
           });
 
-          $( "#amount_div" ).load(window.location.href + " #amount_div > *" );
+          $( "#orderDetails" ).load(window.location.href + " #orderDetails > *" );
           // window.location.reload();
 
         } else if (response.data == false) {
@@ -358,7 +357,8 @@ $(document).ready(function() {
               '</div>'
           });
           // window.location.reload();
-          $( "#amount_div" ).load(window.location.href + " #amount_div > *" );
+          $( "#orderDetails" ).load(window.location.href + " #orderDetails > *" );
+
 
         }
       }
@@ -402,8 +402,8 @@ $(document).ready(function() {
               exit: 'animated fadeOutUp'
             },
             icon_type: 'class',
-            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-              '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+            template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success  alert-dismissible fade show alert-{0}" role="alert">' +
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
               '<span data-notify="icon"></span> ' +
               '<span data-notify="title">{1}</span> ' +
               '<span data-notify="message">{2}</span>' +
@@ -411,7 +411,8 @@ $(document).ready(function() {
               '</div>'
           });
 
-          $( "#amount_div" ).load(window.location.href + " #amount_div > *" );
+          $( "#orderDetails" ).load(window.location.href + " #orderDetails > *" );
+
 
 
         } else if (response.data == false) {
@@ -447,7 +448,8 @@ $(document).ready(function() {
               '<a href="{3}" target="{4}" data-notify="url"></a>' +
               '</div>'
           });
-          $( "#amount_div" ).load(window.location.href + " #amount_div > *" );
+          $( "#orderDetails" ).load(window.location.href + " #orderDetails > *" );
+;
         }
       }
     });

@@ -60,7 +60,7 @@
                         </div>
                      </div>
                      <div class="col-lg-3 ">
-                           <p class="mb-0 green mobview-quantity"><strong id="price<?=$i;?>">$<?=$pro_data->sp*$cart['quantity']?></strong></p>
+                           <p class="mb-0 green mobview-quantity"><strong id="price<?=$i;?>">₹<?=$pro_data->sp*$cart['quantity']?></strong></p>
                            <input type="hidden" name="amount" id="amount<?=$i?>" min="1" value="<?=$cart['quantity']?>" maxlength="12" i="<?=$i?>" product_id="<?=base64_encode($cart['product_id'])?>" type_id="<?=base64_encode($cart['type_id'])?>" sp="<?=$pro_data->sp?>">
                      </div>
                   </div>
@@ -100,7 +100,7 @@
                     $total = $total + $price;
                   }
                   $subtotal = $subtotal+$total;
-                  echo '$'.$subtotal;
+                  echo '₹'.$subtotal;
                     ?>
                   </h2>
                   <p>Tax included.</p><a href="#exampleModalToggle"
@@ -273,8 +273,8 @@
               '</div>'
           });
 
-          document.getElementById('subTot').innerHTML = '$'+response.data_subtotal;
-          $('#price'+i).html('$'+response.newprice);
+          document.getElementById('subTot').innerHTML = '₹'+response.data_subtotal;
+          $('#price'+i).html('₹'+response.newprice);
           // $('#price_'+i).html(price);
         } else if (response.data == false) {
           $.notify({

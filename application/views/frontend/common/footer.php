@@ -245,37 +245,6 @@
       </div>
    </div>
 </div>
-<!-- off canvas right -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightweb"
-   aria-labelledby="offcanvasRightLabel">
-   <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel" class="white">News latter</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-         aria-label="Close"></button>
-   </div>
-   <div class="offcanvas-body">
-      <div class="d-flex">
-         <a href=""><img src="<?=base_url()?>assets/frontend/images/logo/logo3.png" class="img-fluid"></a>
-         <div class="mt-3">
-           <?if(!empty($this->session->userdata('user_data'))){?>
-            <a href="<?=base_url()?>Home/wishlist"  class="px-5"><i class="bi bi-heart" style="font-size: 20px;"></i></a>
-            <?}?>
-            <!-- <a href=""><i class="bi bi-compass" style="font-size: 20px;"></i></a> -->
-         </div>
-      </div>
-     <h2 class="mt-5">Newsletter</h2>
-     <div class="Newsletter d-flex py-3">
-         <input type="email" name="email" placeholder="Enter Email..." style="" class="w-100 p-3">
-         <button class="btn btn-primary" style=""><i class="bi bi-send-fill white" style=""></i></button>
-      </div>
-      <div class="d-flex">
-         <a href="" class="p-2"><i class="bi bi-facebook" style="font-size: 20px;"></i></a>
-         <a href="" class="p-2"><i class="bi bi-instagram"  style="font-size: 20px;"></i></a>
-         <a href="" class="p-2"><i class="bi bi-twitter"  style="font-size: 20px;"></i></a>
-      </div>
-   </div>
-</div>
-
 <!-- mobileview -->
 <div class="offcanvas minicart offcanvas-end mobiledb" tabindex="-1" id="offcanvasRight"
    aria-labelledby="offcanvasRightLabel">
@@ -479,7 +448,7 @@ function loadSuccessNotify(succ_message){
                  exit: 'animated fadeOutUp'
              },
              icon_type: 'class',
-             template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+             template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-success  alert-dismissible fade show alert-{0}" role="alert">' +
              '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
              '<span data-notify="title">{1}</span> ' +
              '<span data-notify="message">{2}</span>' +
@@ -580,8 +549,8 @@ function loadSuccessNotify(succ_message){
                             '</div>'
                         });
                         // window.setTimeout(function(){location.reload()},2000)
-                        $( "#count" ).load(window.location.href + " #count > *" );
-                        $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
+                        $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
+                            $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
            }else if(response.data == false){
              var msg = response.data_message;
@@ -619,9 +588,8 @@ function loadSuccessNotify(succ_message){
                                '</div>'
                            });
                            // window.setTimeout(function(){location.reload()},2000)
-                           $( "#count" ).load(window.location.href + " #count > *" );
-                           $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
-
+                           $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
+                               $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
            }
          }
@@ -681,9 +649,8 @@ function loadSuccessNotify(succ_message){
                             '</div>'
                         });
                         // window.setTimeout(function(){location.reload()},2000)
-                        $( "#count" ).load(window.location.href + " #count > *" );
-                        $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
-
+                        $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
+                            $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
 
            }else if(response.data == false){
@@ -721,9 +688,8 @@ function loadSuccessNotify(succ_message){
                                '</div>'
                            });
                            // window.setTimeout(function(){location.reload()},2000)
-                           $( "#count" ).load(window.location.href + " #count > *" );
-                           $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
-
+                           $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
+                               $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
 
            }
@@ -784,14 +750,13 @@ function wishlist(obj) {
             '</div>'
         });
 
-        $( "#count" ).load(window.location.href + " #count > *" );
-        $( "#wish" ).load(window.location.href + " #wish > *" );
-        $( "#w_count" ).load(window.location.href + " #w_count > *" );
+        $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
+            $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
 
       } else if (response.data == false) {
         $.notify({
-          icon: 'fa fa-times',
+          // icon: 'fa fa-times',
           title: '',
           message: response.data_message
         }, {
@@ -821,9 +786,8 @@ function wishlist(obj) {
             '<a href="{3}" target="{4}" data-notify="url"></a>' +
             '</div>'
         });
-        $( "#count" ).load(window.location.href + " #count > *" );
-        $( "#wish" ).load(window.location.href + " #wish > *" );
-        $( "#w_count" ).load(window.location.href + " #w_count > *" );
+        $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
+            $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
 
 
 

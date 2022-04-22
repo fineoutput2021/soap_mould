@@ -216,7 +216,7 @@ $pro_data= $this->db->get()->row();
                 <div class="mt-4 mb-3">
                     <h5 class="text-uppercase"><?=$pro_data->name;?></h5>
                         <div class="price d-flex flex-row align-items-center mt-3" >
-                            <span class="h4 green" id="price" value="<?=$type_data->sp;?>">$<?=$type_data->sp;?></span>
+                            <span class="h4 green" id="price" value="<?=$type_data->sp;?>">₹<?=$type_data->sp;?></span>
                             <div class="ml-2">
                                 <!-- <small class="px-2">80g(Static)</small> -->
                             </div>
@@ -467,7 +467,7 @@ function increaseValue() {
     // alert(price);
     document.getElementById('qty').value = value;
     document.getElementById('add_cart').setAttribute("quantity", value);
-    document.getElementById('price').innerHTML = '$'+newprice;
+    document.getElementById('price').innerHTML = '₹'+newprice;
   }
 
   function decreaseValue() {
@@ -484,8 +484,8 @@ function increaseValue() {
     value--;
     newprice = price*value;
     document.getElementById('qty').value = value;
-    document.getElementById('price').value = "$"+newprice;
-    document.getElementById('price').innerHTML = '$'+newprice;
+    document.getElementById('price').value = "₹"+newprice;
+    document.getElementById('price').innerHTML = '₹'+newprice;
 
   }
 </script>
@@ -513,7 +513,7 @@ function type_change(obj){
                       $("#add_cart").attr("product_id", pro_id);
                       $("#add_cart").attr("type_id", type_id);
                       // $("#price").html();
-                    document.getElementById("price").innerHTML = '$'+response.update_type.sp;
+                    document.getElementById("price").innerHTML = '₹'+response.update_type.sp;
                      $("#price").attr("value", response.update_type.sp);
 
                      $("#image1").attr('src', BASE_URL+response.update_type.image1);

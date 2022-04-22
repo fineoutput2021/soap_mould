@@ -423,7 +423,7 @@ list-style: disc;
   color: #193a43;
 }
 .mobiledb {
-  display: none;
+  display: none !important;
 }
 .search {
   width: 100%;

@@ -422,8 +422,10 @@ list-style: disc;
 .accordian.accordian-item.accordion-collapse.accordion-body li a {
   color: #193a43;
 }
+@media (min-width: 600px) {
 .mobiledb {
   display: none !important;
+}
 }
 .search {
   width: 100%;

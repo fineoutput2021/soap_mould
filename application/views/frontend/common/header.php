@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-   <head>
+  <head>
       <title>Soap Square - Herbal &amp; Handcrafted</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,7 +71,7 @@
                      <a href="<?=base_url()?>Home/cart">
                         <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
                         class="bi bi-cart4">
-                        <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 2px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
+                        <span class="navbar-tool-label badge bg-primary" id="totalCartItems" style="position: absolute; padding: 0.35em 0.65em; font-size: 9px; margin-right: 2px;margin-left: -8px;bottom: 42px;">
                           <?if(!empty($this->session->userdata('user_data'))){
                             $id=$this->session->userdata('user_id');
                             $this->db->select('*');

@@ -200,9 +200,20 @@ class Home extends CI_Controller
       }
     }
 
-    public function error404()
+    //-------search---------------
+    public function search()
     {
-        $this->load->view('errors/error404');
+        $string= $this->input->get('search');
+
+        $this->db->select('*');
+        $this->db->from('tbl_type');
+        $this->db->like('name', $string);
+        $this->db->where('is_active', 1);
+        $data['search_data']= $this->db->get();
+
+        $this->load->view('frontend/common/header', $data);
+        $this->load->view('frontend/search_results');
+        $this->load->view('frontend/common/footer');
     }
 
     //================Product Details page type change==============================
@@ -238,5 +249,10 @@ class Home extends CI_Controller
         $respone['data_message'] ="Please insert some data, No data available";
         echo json_encode($respone);
       }
+    }
+    //=============error==========================
+    public function error404()
+    {
+        $this->load->view('errors/error404');
     }
 }

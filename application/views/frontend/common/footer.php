@@ -235,14 +235,16 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
    </div>
    <div class="offcanvas-body">
+     <form action="<?=base_url()?>Home/search" method="get" enctype="multipart/form-data">
       <div class="input-group">
          <div class="form-outline d-flex" style="width: 100%;">
-            <input type="search" id="form1" class="form-control form-control-lg " placeholder="search here..." />
-            <button type="button" class="btn btn-primary">
+            <input type="text" id="search" name="search" class="form-control form-control-lg " placeholder="search here..." />
+            <button type="submit" class="btn btn-primary">
             <i class="bi bi-search"></i>
             </button>
          </div>
       </div>
+    </form>
    </div>
 </div>
 <!-- mobileview -->

@@ -2,18 +2,18 @@
 <div class="container-fluid">
    <div class="row">
       <div class="col">
-        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+         <div id="demo" class="carousel slide" data-bs-ride="carousel">
            <!-- Indicators/dots -->
            <div class="carousel-indicators">
              <?php $i=1; foreach($slider_data->result() as $data) { ?>
-              <button type="button" data-bs-target="#demo" data-bs-slide-to="<?=$i?>" class="<?if ($i==1){echo 'active';}?>"></button>
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="<?=$i?>" class="<?if ($i==1){echo ' active';}?>"></button>
               <?php $i++; } ?>
            </div>
 
            <!-- The slideshow/carousel -->
            <div class="carousel-inner">
             <?php $i=1; foreach($slider_data->result() as $data) { ?>
-              <div class="carousel-item <?if ($i==1){echo 'active';}?> ">
+              <div class="carousel-item <?if ($i==1){ echo ' active'; }?> ">
                  <img src="<?=base_url().$data->image?>" alt="Slide <?=$i?>" class="d-block" style="width:100%">
               </div>
               <?php $i++; } ?>
@@ -48,7 +48,7 @@ if(!empty($bestseller)){
             <h1 class="green">Bestsellers</h1>
          </div>
       </div>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" id="wishlist">
 
         <? //--------BestSeller-------------------------
         foreach($bestseller->result() as $best){
@@ -72,6 +72,12 @@ if(!empty($bestseller)){
                      <img src="<?=base_url().$type_data->image4;?>">
                      <?}?>
                </a>
+
+               <!-- <ul class="product-links">
+                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
+                  <li><a href="images/product/1.jpg"><i class="fa fa-compass" aria-hidden="true"></i></a></li>
+               </ul> -->
+
                <ul class="product-links">
                  <?if(!empty($this->session->userdata('user_data'))){
                                        $this->db->select('*');
@@ -83,11 +89,11 @@ if(!empty($bestseller)){
                            ?>
                    <a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="add"
                        user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" >
-                     <li><i class="bi bi-heart"></i></a></li>
+                     <li><i class="bi bi-heart green"></i></a></li>
                      <?}else{?>
                        <a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="remove"
-                           user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" >
-                         <li><i class="bi bi-heart-fill"></i></a></li>
+                           user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                         <li><i class="bi bi-heart-fill green"></i></a></li>
                                <?}}?>
                </ul>
                <?if(empty($this->session->userdata('user_data'))){?>
@@ -129,8 +135,7 @@ if(!empty($bestseller)){
                <!--                      <span class="product-discount-label">-23%</span>
                   -->
                <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
+                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
                </ul>
                <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
             </div>
@@ -147,8 +152,7 @@ if(!empty($bestseller)){
                <img src="<?base_url()?>assets/frontend/images/product/9.jpg">
                </a>
                <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="<?=base_url()?>/Home/product_detail"><i class="fa fa-compass" aria-hidden="true"></i>
+                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
                </ul>
                <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
             </div>
@@ -165,8 +169,7 @@ if(!empty($bestseller)){
                <img src="<?base_url()?>assets/frontend/images/product/12.jpg">
                </a>
                <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="<?=base_url()?>/Home/product_detail"><i class="fa fa-compass" aria-hidden="true"></i>
+                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
                </ul>
                <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
             </div>
@@ -183,8 +186,7 @@ if(!empty($bestseller)){
                <img src="<?base_url()?>assets/frontend/images/product/16.jpg">
                </a>
                <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
+                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
                </ul>
                <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
             </div>

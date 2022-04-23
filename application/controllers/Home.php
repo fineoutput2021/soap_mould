@@ -26,7 +26,7 @@ class Home extends CI_Controller
          $id=base64_decode($idd);
 
         $ty = base64_decode($typ);
-
+        // echo $ty;die();
         if($ty==1){
         $this->db->select('*');
         $this->db->from('tbl_products');
@@ -153,9 +153,14 @@ class Home extends CI_Controller
 
         $this->db->select('*');
         $this->db->from('tbl_type');
-        $this->db->where('product_id',$id);
+        $this->db->where('id',$id);
+        $this->db->where('is_active',1);
+        $data['type_data']= $this->db->get()->row();
+
+        $this->db->select('*');
+        $this->db->from('tbl_type');
+        $this->db->where('product_id',$data['type_data']->product_id);
         $data['type_full']= $this->db->get();
-        $data['type_data']= $data['type_full']->row();
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/product_detail');
         $this->load->view('frontend/common/footer');
@@ -192,6 +197,8 @@ class Home extends CI_Controller
                     'date'=>$cur_date
               );
               $last_id=$this->base_model->insert_table("tbl_contact_us", $contact_insert, 1) ;
+              $this->session->set_flashdata('smessage', 'Thank you for contacting us!');
+
               redirect("/");
 
           } else {

@@ -73,7 +73,7 @@ $pro_data= $this->db->get()->row();?>
       <div class="row justify-content-center">
          <div class="col-lg-12 bg-green text-center mb-5">
             <h6 style="padding: 10px 0px 10px;" class="white"><i class="bi bi-truck"
-               style="margin-right: 10px;"></i>Free delivery on orders above ₹999/-</h6>
+               style="margin-right: 10px;"></i>Cash on delivery</h6>
          </div>
       </div>
       <div class="row justify-content-center" style="">
@@ -130,8 +130,8 @@ $pro_data= $this->db->get()->row();?>
       success: function(response) {
         if (response.data == true) {
           $.notify({
-            icon: 'fa fa-check',
-            title: '',
+            icon: 'bi-check-circle-fill',
+            // title: '',
             message: response.data_message
           }, {
             element: 'body',
@@ -168,8 +168,8 @@ $pro_data= $this->db->get()->row();?>
 
         } else if (response.data == false) {
           $.notify({
-            icon: 'fa fa-cancel',
-            title: '',
+            icon: 'bi-exclamation-octagon-fill',
+            // title: '',
             message: response.data_message
           }, {
             element: 'body',
@@ -234,8 +234,8 @@ $pro_data= $this->db->get()->row();?>
           document.getElementById('price' + i).innerHTML = "₹"+response.newprice;
           $("#qty"+i).attr("price", response.newprice);
           $.notify({
-            // icon: 'fa fa-check',
-            title: 'Alert!',
+            icon: 'bi-check-circle-fill',
+            // title: 'Alert!',
             message: response.data_message
           }, {
             element: 'body',
@@ -277,8 +277,8 @@ $pro_data= $this->db->get()->row();?>
 
         } else if (response.data == false) {
           $.notify({
-            icon: 'fa fa-cancel',
-            title: 'Alert!',
+            icon: 'bi-exclamation-octagon-fill',
+            // title: 'Alert!',
             message: response.data_message
           }, {
             element: 'body',

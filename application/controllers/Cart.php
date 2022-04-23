@@ -141,7 +141,7 @@ function __construct()
                   $cart = array_values($cart);
                   $this->session->set_userdata('cart_data', $cart);
                   $respone['data'] = true;
-                  $respone['data_message'] ="Item successfully deleted in your cart";
+                  $respone['data_message'] ="Item successfully deleted from your cart";
                   echo json_encode($respone);
               } else {
                   $respone['data'] = false;

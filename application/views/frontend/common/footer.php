@@ -427,8 +427,8 @@ loadErrorNotify("<?=$valid_errors?>");
 });
 function loadSuccessNotify(succ_message){
   $.notify({
-             icon: 'fa fa-check',
-             title: 'Alert!',
+             icon: 'bi-check-circle-fill',
+             // title: 'Alert!',
              message: succ_message
          },{
              element: 'body',
@@ -465,8 +465,8 @@ function loadSuccessNotify(succ_message){
 
     function loadErrorNotify(message){
       $.notify({
-                 icon: 'fa fa-times',
-                 title: 'Alert!',
+                 icon: 'bi-exclamation-octagon-fill',
+                 // title: 'Alert!',
                  message: message
              },{
                  element: 'body',
@@ -519,8 +519,8 @@ function loadSuccessNotify(succ_message){
               // var msg = response.data_message;
               // alert("product Added")
                   $.notify({
-                            // icon: 'fa fa-check',
-                            title: 'Alert!',
+                            icon: 'bi-check-circle-fill',
+                            // title: 'Alert!',
                             message: "Item successfully added in your cart"
                         },{
                             element: 'body',
@@ -558,8 +558,8 @@ function loadSuccessNotify(succ_message){
              var msg = response.data_message;
                     // alert(msg);
                    $.notify({
-                               icon: '',
-                               title: 'Alert!',
+                               icon: 'bi-exclamation-octagon-fill',
+                               // title: 'Alert!',
                                message: msg
                            },{
                                element: 'body',
@@ -619,8 +619,8 @@ function loadSuccessNotify(succ_message){
              // alert(response.data_message)
               // var msg = response.data_message;
                   $.notify({
-                            icon: 'fa fa-check',
-                            title: 'Alert!',
+                            icon: 'bi-check-circle-fill',
+                            // title: 'Alert!',
                             message: "Item successfully added in your cart"
                         },{
                             element: 'body',
@@ -658,8 +658,8 @@ function loadSuccessNotify(succ_message){
            }else if(response.data == false){
              var msg = response.data_message;
                    $.notify({
-                               icon: 'fa fa-times',
-                               title: 'Alert!',
+                               icon: 'bi-exclamation-octagon-fill',
+                               // title: 'Alert!',
                                message: msg
                            },{
                                element: 'body',
@@ -754,6 +754,7 @@ function wishlist(obj) {
 
         $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
+            $( "#wishlist" ).load(window.location.href + " #wishlist > *" );
 
 
       } else if (response.data == false) {

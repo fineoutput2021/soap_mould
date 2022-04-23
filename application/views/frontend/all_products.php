@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col-12 text-center d-flex justify-content-center align-items-center">
    <a href="<?=base_url()?>/Home">Home</a><span class="px-3">/</span>
-   <p class="margin-0">All Product</p>
+   <p class="margin-0">All Products</p>
 </div>
 </div>
 </div>
@@ -25,9 +25,9 @@
          </div>
       </div>
       <div class="col-8">
-         <div class="tab-content" id="nav-tabContent">
+         <div class="tab-content"id="wishlist">
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-               <h4>All Product</h4>
+               <h4>All Products</h4>
                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                  <?foreach($sub_data->result() as $data){
                                $this->db->select('*');
@@ -37,7 +37,7 @@
                    ?>
                   <div class="col product-grid">
             <div class="card bordre-none product-image">
-               <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_data->product_id)?>" class="image">
+               <a href="<?=base_url()?>Home/product_detail/<?=base64_encode($type_data->id)?>" class="image">
                  <?if(!empty($type_data->image1)){?>
                <img src="<?=base_url().$type_data->image1;?>">
                <?}elseif(!empty($type_data->image2)){?>
@@ -48,9 +48,23 @@
                      <img src="<?=base_url().$type_data->image4;?>">
                      <?}?>
                </a>
-                     <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart"></i></a></li>
-                  <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
+               <ul class="product-links">
+                 <?if(!empty($this->session->userdata('user_data'))){
+                                       $this->db->select('*');
+                           $this->db->from('tbl_wishlist');
+                           $this->db->where('type_id',$type_data->id);
+                           $this->db->where('user_id',$this->session->userdata('user_id'));
+                           $wishlist_data= $this->db->get()->row();
+                           if(empty($wishlist_data)){
+                           ?>
+                   <a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="add"
+                       user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" >
+                     <li><i class="bi bi-heart green"></i></a></li>
+                     <?}else{?>
+                       <a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="remove"
+                           user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                         <li><i class="bi bi-heart-fill green"></i></a></li>
+                               <?}}?>
                </ul>
                <?if(empty($this->session->userdata('user_data'))){?>
           <button class="txt-deco-no add-to-cart" style="width:100%"  onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>"  quantity=1>Add To Cart</button>

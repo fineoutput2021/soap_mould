@@ -73,8 +73,7 @@ public function login(){
 	                         $data['data']=true;
 													 $data['cusomer_id']=$db_id;
 													 $data['referer'] = $referer;
-
-redirect("order/OpenCategories","refresh");
+													 redirect("/","refresh");
     					}
 							else{
 
@@ -145,7 +144,7 @@ redirect("order/OpenCategories","refresh");
 		                         $data['data']=true;
 														 $data['cusomer_id']=$db_id;
 														 $data['referer'] = $referer;
-
+														 $this->session->set_flashdata('smessage', 'Successfully Logged in!');
 	                            redirect("/","refresh");
 	    					}
 								else{
@@ -172,6 +171,8 @@ redirect("order/OpenCategories","refresh");
 		}
 	    	}
 
+
+//====================Register===============================
         public function register_process(){
 
 
@@ -232,64 +233,41 @@ redirect("order/OpenCategories","refresh");
 
         	$last_id=$this->base_model->insert_table("tbl_users",$data_insert,1) ;
 
+					//------send register email-------------
+												if(!empty($last_id)){
+                                    $config = array(
+                                      'protocol' => 'smtp',
+                                      'smtp_host' => SMTP_HOST,
+                                      'smtp_port' => SMTP_PORT,
+                                      'smtp_user' => USER_NAME, // change it to yours
+                                      'smtp_pass' => PASSWORD, // change it to yours
+                                      'mailtype' => 'html',
+                                      'charset' => 'iso-8859-1',
+                                      'wordwrap' => true
+                                           );
+                                    $to=$email;
+                                    $data['name'] = $name;
+
+                                    $message = 	$this->load->view('email/newaccount', $data, true);
+
+                                    $this->load->library('email', $config);
+                                    $this->email->set_newline("");
+                                    $this->email->from(EMAIL); // change it to yours
+                                  $this->email->to($to);// change it to yours
+                                  $this->email->subject('New account created');
+                                    $this->email->message($message);
+																		// die();
+                                    if ($this->email->send()) {
+                                        // echo 'Email sent.';die();
+                                    } else {
+                                        // show_error($this->email->print_debugger());
+                                    }
+
           $this->session->set_userdata('user_data',1);
           	$this->session->set_userdata('user_id',$last_id);
           	$this->session->set_userdata('user_name', $name);
             $this->session->set_userdata('user_email', $email);
-
-
-
-        	            // if($last_id!=0){
-                      //
-                      //
-        							// 	$this->session->set_userdata('user_data',1);
-        							// 	$this->session->set_userdata('user_id',$last_id);
-        							// 	$this->session->set_userdata('customer_name', $name);
-        							// 	// $this->session->set_userdata('customer_last_name', $last_name);
-        							//   $this->session->set_userdata('customer_email', $email);
-        							// 	$this->session->set_userdata('customer_id', $last_id);
-                      //
-                      //
-        							// 	// Email send to info@oswalsoap.com
-                      //
-        							// 						  $config = Array(
-        							// 								'protocol' => 'smtp',
-        							// 	'smtp_host' => SMTP_HOST,
-        							// 	'smtp_port' => 26,
-        							// 	'smtp_user' => USER_NAME, // change it to yours
-        							// 	'smtp_pass' => PASSWORD, // change it to yours
-        							// 	'mailtype' => 'html',
-        							// 	'charset' => 'iso-8859-1',
-        							// 	'wordwrap' => TRUE
-        							// 						  );
-        							// 	          $this->load->library('email', $config);
-                      //
-        							// 							$data=array(
-        							// 								'name'=>$first_name,
-        							// 							);
-        					    //           $mesg = $this->load->view('emails/signup',$data,true);
-        							// 	        $this->email->set_newline("");
-        							// 	        $this->email->from('office.fineoutput@gmail.com'); // change it to yours
-        							// 	        $this->email->to($email);// change it to yours
-        							// 	        $this->email->subject('Signup successfull');
-        							// 	        $this->email->message($mesg);
-        							// 	        if($this->email->send())
-        							// 	       {
-        							// 	        //echo 'Email sent.';
-        							// 	       }
-        							// 	       else
-        							// 	      {
-        							// 	       //show_error($this->email->print_debugger());
-        							// 	      }
-                      //
-                      //       }else{
-                      //         // $data['data']=false;
-                      //         // $data['data_message']='Error Occured in data insert, Please try again';
-                      //
-                      //         $this->session->set_flashdata('emessage','Error Occured in data insert, Please try again');
-                      //           redirect($_SERVER['HTTP_REFERER']);
-                      //
-                      //       }
+					}
 
 											//insert cart data into cart table---------
                                     $cart_data = $this->session->userdata('cart_data');
@@ -326,6 +304,7 @@ redirect("order/OpenCategories","refresh");
                                         }
                                     }
                                     $this->session->unset_userdata('cart_data');
+																		$this->session->set_flashdata('smessage', 'Successfully Registered!');
 
         								redirect("/","refresh");
         								// $data['data']=true;
@@ -364,6 +343,8 @@ redirect("order/OpenCategories","refresh");
                       $this->session->unset_userdata('user_email');
 
               		// redirect("home","refresh");
+									$this->session->set_flashdata('smessage', 'Successfully Logged out!');
+
               		redirect("/","refresh");
 
               		}

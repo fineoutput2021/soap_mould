@@ -23,8 +23,8 @@
             <div class="row g-0">
                 <div class="col-md-12 border-right p-5">
                     <div class="text-center order-details">
-                        <div class="d-flex justify-content-center mb-5 flex-column align-items-center"> <span class="check1"><i class="bi bi-bag-check-fill"></i></span> <span class="font-weight-bold">Order Confirmed</span> <small class="mt-2">Your Order will be delivered soon</small> <a href="javascript:void(0);" class="text-decoration-none invoice-link">View Invoice</a> </div>
-                         <a href="<?=base_url()?>Order/view_order" class="text-decoration-none invoice-link">View <button class="btn btn-primary btn-block order-button">Go to your Order</button></a>
+                        <div class="d-flex justify-content-center mb-5 flex-column align-items-center"> <span class="check1"><i class="bi bi-bag-check-fill"></i></span> <span class="font-weight-bold">Order Confirmed</span> <small class="mt-2">Your Order will be delivered soon</small> </div>
+                         <a href="<?=base_url()?>Order/view_order" class="text-decoration-none invoice-link"><button class="btn btn-primary btn-block order-button">Go to your Order</button></a>
                          <br>
                         <button class="btn btn-block order-button"><a href="<?=base_url()?>Home" class="green txt-deco-no"><i class="bi bi-arrow-left px-1"></i>Continue Shopping</a></button>
                     </div>

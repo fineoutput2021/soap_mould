@@ -33,8 +33,10 @@
          <section id="topbar" class="d-flex align-items-center p-2">
             <div class="container d-flex justify-content-center justify-content-md-between">
                <div class="contact-info d-flex align-items-center topbar">
-                  <i class="bi bi-bag-check d-flex align-items-center ms-4 white"><span class="ml_5">FREE SHIPPING ON
-                  ORDERS ABOVE ₹999/-</span></i>
+                  <!-- <i class="bi bi-bag-check d-flex align-items-center ms-4 white">
+                    <span class="ml_5">FREE SHIPPING ON
+                  ORDERS ABOVE ₹999/-</span>
+                </i> -->
                </div>
                <div class="social-links d-none d-md-flex align-items-center white">
                  <?if(empty($this->session->userdata('user_data'))){?>
@@ -74,8 +76,9 @@
                             $cart_count= $this->db->count_all_results();
                             echo $cart_count;
                           }else{
-                            if(!empty($this->session->userdata('user_cart'))){
-                            $cart = count($this->session->userdata('user_cart'));
+                           // print_r($this->session->userdata('user_cart'));die();
+                            if(!empty($this->session->userdata('cart_data'))){
+                            $cart = count($this->session->userdata('cart_data'));
                             echo $cart;
                           }else{
                             echo "0";
@@ -184,11 +187,34 @@
                         <?}?>
                      <li class="nav-item" id="cartCount">
                         <a class="nav-link green" href="<?=base_url()?>Home/cart">
-                          <i class="bi bi-cart4 navbar-tool-icon czi-cart" style="font-size:20px;">  <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 2px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
+                          <i class="bi bi-cart4 navbar-tool-icon czi-cart" style="font-size:20px;">  <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
                             <?if(!empty($this->session->userdata('user_data'))){
                               $id=$this->session->userdata('user_id');
                               $this->db->select('*');
                               $this->db->from('tbl_cart');
+                              $this->db->where('user_id',$id);
+                              $cart_count= $this->db->count_all_results();
+                              echo $cart_count;
+                            }else{
+                              if(!empty($this->session->userdata('cart_data'))){
+                              $cart = count($this->session->userdata('cart_data'));
+                              echo $cart;
+                            }else{
+                              echo "0";
+                            }
+                            }
+                            ?>
+                          </span></i></a>
+                     </li>
+                     <?if(!empty($this->session->userdata('user_data'))){?>
+                     <li class="nav-item">
+                        <a class="nav-link green" href="<?=base_url()?>Home/wishlist"  ><i class="bi bi-heart-fill" style="font-size: 20px;">
+                          <?if(!empty($this->session->userdata('user_data'))){?>
+                          <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
+                            <?if(!empty($this->session->userdata('user_data'))){
+                              $id=$this->session->userdata('user_id');
+                              $this->db->select('*');
+                              $this->db->from('tbl_wishlist');
                               $this->db->where('user_id',$id);
                               $cart_count= $this->db->count_all_results();
                               echo $cart_count;
@@ -201,11 +227,9 @@
                             }
                             }
                             ?>
-                          </span></i></a>
-                     </li>
-                     <?if(!empty($this->session->userdata('user_data'))){?>
-                     <li class="nav-item">
-                        <a class="nav-link green" href="<?=base_url()?>Home/wishlist"  ><i class="bi bi-heart" style="font-size: 20px;"></i></a>
+                          </span>
+                          <?}?>
+                        </i></a>
                      </li>
                      <?}?>
                    </ul>

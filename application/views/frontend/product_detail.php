@@ -159,9 +159,9 @@ $this->db->from('tbl_products');
 $this->db->where('id',$type_data->product_id);
 $pro_data= $this->db->get()->row();
 ?>
-<a href="<?=base_url()?>/Home/all_products/<?=base64_encode($pro_data->category_id)?>" class="green">All Product</a><span
+<a href="<?=base_url()?>/Home/all_products/<?=base64_encode($pro_data->subcategory_id)?>/<?=base64_encode(2)?>" class="green">All Products</a><span
     class="px-3">/</span>
-<p class="margin-0">Product Detail</p>
+<p class="margin-0"><?=$pro_data->name?></p>
 </div>
 </div>
 </div>
@@ -221,15 +221,6 @@ $pro_data= $this->db->get()->row();
                                 <!-- <small class="px-2">80g(Static)</small> -->
                             </div>
                         </div>
-                    <div class="">
-                        <div class="ratting d-flex flex-row align-items-center">
-                            <i class="bi bi-star-fill green"></i>
-                            <i class="bi bi-star-fill green"></i>
-                            <i class="bi bi-star-fill green"></i>
-                            <i class="bi bi-star-fill green"></i>
-                            <i class="bi bi-star-half green"></i>
-                        </div>
-                    </div>
 
                 </div>
                 <div class="row">
@@ -239,7 +230,7 @@ $pro_data= $this->db->get()->row();
                         onclick="decreaseValue()">
                         <i class="bi bi-dash green"></i>
                     </button>
-                    <input id="qty" min="1" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>" name="qty" readonly value="1" type="number"
+                    <input id="qty" min="1" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" name="qty" readonly value="1" type="number"
                         class="form-control form-control-md" style="width: 50px;" />
                     <button class="btn btn-link "
                         onclick="increaseValue()">
@@ -254,7 +245,7 @@ $pro_data= $this->db->get()->row();
                     <select class="form-control green" onchange="type_change(this)" type_id="<?=base64_encode($type_data->id)?>" name="category_id" required>
                         <?php $i=1; foreach ($type_full->result() as $data) { ?>
                         <option id="type_name" value="<?=base64_encode($data->id)?>" <?if ($data->id==$type_data->id) {
-                                 echo "selected";
+                                 echo " selected";
                              }?>><?=$data->name?></option>
                         <?php $i++; } ?>
                       </select>
@@ -295,19 +286,10 @@ $pro_data= $this->db->get()->row();
                     </div>
                 </div>
                 <?}?>
-                <div class="row mt-3">
-                    <div class="col-md-2 col-3">
-                        <p>Share:</p>
-                    </div>
-                    <div class="col-md-10 col-9"><a href="" class="green"><i class="bi bi-facebook px-2 "></i></a><a
-                            href=""><i class="bi bi-instagram green px-2"></i></a><a href=""><i
-                                class="bi bi-twitter px-2 green"></i></a>
-                    </div>
-                </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-12 bg-green text-center mb-5">
                         <h6 style="padding: 10px 0px 10px;" class="white"><i class="bi bi-truck"
-                                style="margin-right: 10px;"></i>Your order is free delivery !</h6>
+                                style="margin-right: 10px;"></i>Cash on delivery!</h6>
                     </div>
                 </div>
             </div>

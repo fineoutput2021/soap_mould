@@ -2,7 +2,7 @@
 	<div class="container mt-5">
 		<div class="row">
 			<div class="col-md-12 col-12">
-				<div class="">
+				<div  id="wishlist">
           <div class="tab-content" id="nav-tabContent">
              <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                 <h4>Wishlist</h4>
@@ -37,18 +37,18 @@
                                   ?>
                           <a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="add"
                               user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" >
-                            <li><i class="bi bi-heart"></i></a></li>
+                            <li><i class="bi bi-heart green"></i></a></li>
                             <?}else{?>
                               <a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="remove"
                                   user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" >
-                                <li><i class="bi bi-heart-fill"></i></a></li>
+                                <li><i class="bi bi-heart-fill green"></i></a></li>
                                       <?}}?>                </ul>
            <button class="txt-deco-no add-to-cart" style="width:100%"  title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="move"
                user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="move">Move To Cart</button>
              </div>
              <div class="card-body product-content">
                 <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?echo $type_data->name?></a></h3>
-                <div class="price">$<?=$type_data->sp;?><span class="px-2">$<?=$type_data->sp*1.5;?></span></div>
+                <div class="price">$<?=$type_data->sp;?><span class="px-2">$<?=$type_data->mrp;?></span></div>
              </div>
           </div>
           <?}?>

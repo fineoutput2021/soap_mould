@@ -99,7 +99,7 @@ if(!empty($bestseller)){
             <div class="card-body product-content">
                <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?=$type_data->name?></a>
                </h3>
-               <div class="price">$<?=$type_data->sp?><span class="px-2">$<?=$type_data->sp*1.5?></span></div>
+               <div class="price">$<?=$type_data->sp?><span class="px-2">$<?=$type_data->mrp;?></span></div>
             </div>
          </div>
          <?}}?>

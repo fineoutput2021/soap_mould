@@ -35,17 +35,6 @@
               <form action=" <?php echo base_url(); ?>dcadmin/Type/add_type_data/<?php echo base64_encode(2); ?>/<?=$id;?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                 <div class="table-responsive">
                   <table class="table table-hover">
-                    <tr>
-                      <td> <strong>Product Name</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <select class="form-control" name="product_id" required id="category">
-                          <option value="">------select product---------</option>
-                          <?php $i=1; foreach ($product_data->result() as $data) { ?>
-                          <option value="<?=$data->id?>" <?if ($data->id==$type_data->product_id) {
-                                   echo "selected";
-                               }?>><?=$data->name?></option>
-                          <?php $i++; } ?>
-                        </select> </td>
-                    </tr>
 
                     <tr>
                       <td> <strong>Type Name</strong> <span style="color:red;">*</span></strong> </td>
@@ -56,20 +45,20 @@
                       <td> <input type="text" name="mrp" id ="mrp" class="form-control" placeholder="" required value="<?=$type_data->mrp;?>" /> </td>
                     </tr>
                     <tr>
-                      <td> <strong>GST(%)</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" id="gst" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
+                      <td> <strong>Selling Price</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <input type="text" id="sp" name="sp" class="form-control" placeholder="" required value="<?=$type_data->sp;?>" /> </td>
                     </tr>
                     <tr>
-                      <td> <strong>SP</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" id="sp" name="sp" class="form-control" placeholder="" READONLY required value="<?=$type_data->sp;?>" /> </td>
+                      <td> <strong>GST(%)</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <input type="text" id="gst" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>GST Price</strong> <span style="color:red;">*</span></strong> </td>
                       <td> <input type="text" name="gstprice" id="gstprice" class="form-control" placeholder="" READONLY required value="<?=$type_data->gstprice;?>" /> </td>
                     </tr>
                     <tr>
-                      <td> <strong>SP GST</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="spgst" class="form-control" placeholder="" required value="<?=$type_data->spgst;?>" /> </td>
+                      <td> <strong>Selling Price (with GST)</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <input type="text" READONLY id="spgst" name="spgst" class="form-control" placeholder="" required value="<?=$type_data->spgst;?>" /> </td>
                     </tr>
 
 
@@ -161,14 +150,14 @@
 <script>
 $(document).ready(function() {
   $('#gst').keyup(function(ev) {
-    var mrp = $('#mrp').val() * 1;
+    var sp = $('#sp').val() * 1;
     var gst = $('#gst').val() * 1;
-    var gst_price= (gst/100)*mrp;
-    var sp = mrp + gst_price;
-    var divobj = document.getElementById('sp');
-    var gst_p = document.getElementById('gstprice');
-    divobj.value = sp;
-    gst_p.value = gst_price;
+    var gst_price= (gst/100)*sp;
+    var spgst = sp + gst_price;
+    var divobj = document.getElementById('gstprice');
+    var gst_p = document.getElementById('spgst');
+    divobj.value = gst_price;
+    gst_p.value = spgst;
   });
 });
 </script>

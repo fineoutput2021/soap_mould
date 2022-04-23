@@ -34,7 +34,7 @@ class Type extends CI_finecontrol
 
             $this->db->select('*');
             $this->db->from('tbl_products');
-            //$this->db->where('id',$usr);
+            // $this->db->where('id',$id);
             $data['product_data']= $this->db->get();
 
 
@@ -45,7 +45,7 @@ class Type extends CI_finecontrol
             redirect("login/admin_login", "refresh");
         }
     }
-    public function add_type()
+    public function add_type($idd)
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['type_name']=$this->load->get_var('type_name');
@@ -54,6 +54,9 @@ class Type extends CI_finecontrol
             // echo $this->session->userdata('image');
             // echo $this->session->userdata('position');
             // exit;
+             $id=base64_decode($idd);
+            $data['id']=$idd;
+
             $this->db->select('*');
             $this->db->from('tbl_products');
             $this->db->where('is_active', 1);
@@ -92,6 +95,7 @@ class Type extends CI_finecontrol
                 $this->form_validation->set_rules('gstprice', 'gstprice', 'xss_clean');
                 $this->form_validation->set_rules('spgst', 'spgst', 'xss_clean');
                 $this->form_validation->set_rules('quantity', 'quantity', 'xss_clean');
+                $this->form_validation->set_rules('product_id', 'product_id', 'xss_clean');
 
 
                 if ($this->form_validation->run()== true) {
@@ -102,7 +106,7 @@ class Type extends CI_finecontrol
                     date_default_timezone_set("Asia/Calcutta");
                     $cur_date=date("Y-m-d H:i:s");
 
-                    $product_id=$this->input->post('product_id');
+                    $product_id=base64_decode($this->input->post('product_id'));
                     $name=$this->input->post('name');
                     $mrp=$this->input->post('mrp');
                     $gst=$this->input->post('gst');
@@ -365,7 +369,7 @@ class Type extends CI_finecontrol
                         }
 
 
-                        $data_insert = array('product_id'=>$product_id,
+                        $data_insert = array(
                     'name'=>$name,
                     'mrp'=>$mrp,
                     'gst'=>$gst,
@@ -389,7 +393,11 @@ class Type extends CI_finecontrol
                                             );
 
                         $least_id=$this->db->update("tbl_inventory", $beta_insert);
+                        $product_id = $da->product_id;
+                        
                     }
+
+                    // echo $product_id;die();
 
 
                     if ($last_id!=0) {

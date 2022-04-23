@@ -416,6 +416,7 @@ class Order extends CI_Controller
         $this->db->select('*');
         $this->db->from('tbl_order1');
         $this->db->where('user_id',$user_id);
+        $this->db->where('order_status!= ',0);
         $data['order1_data']= $this->db->get();
       $this->load->view('frontend/common/header', $data);
       $this->load->view('frontend/my_orders');

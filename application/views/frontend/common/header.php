@@ -1,5 +1,5 @@
   <head>
-      <title>Soap Square - Herbal &amp; Handcrafted</title>
+      <title>Soap Mould</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- icon link  -->
@@ -46,13 +46,7 @@
                      <?}?>
                   <!-- <span href="#" class="white txt-deco-no mr_5 bd_r"></span> -->
                   <div class="">
-                    <?if(!empty($this->session->userdata('user_data'))){?>
-                     <a href="<?=base_url()?>Home/user_profile" class="white txt-deco-no ml_10 mr_10">My Profile</a>
-                     <a href="<?=base_url()?>User/logout" class="white txt-deco-no ml_10 mr_10">LogOut</a>
-                     <?}?>
-
                      <a href="<?=base_url()?>Home/contact" class="white txt-deco-no ml_10 mr_10">Contact us</a>
-                     <a href="#" class="white txt-deco-no ml_10 mr_10">Faq</a>
                   </div>
                   <!-- <span href="#" class="white txt-deco-no mr_5 bd_r"></span> -->
                   <a href="javascript:void(0)" class="facebook white ml_10 mr_10"><i class="bi bi-facebook"></i></a>
@@ -126,6 +120,7 @@
                                    <?$this->db->select('*');    //--------Mobile-----------------
                                    $this->db->from('tbl_subcategory');
                                    $this->db->where('category_id',$category->id);
+                                   $this->db->where('is_active',1);
                                    $sub_data = $this->db->get();
                                    foreach($sub_data->result() as $sub){?>
                                     <a href="<?=base_url()?>Home/all_products/<?=base64_encode($category->id)?>/<?=base64_encode(1)?>" class="nav-link green "><li>
@@ -162,6 +157,7 @@
                           <?            $this->db->select('*');
                           $this->db->from('tbl_subcategory');
                           $this->db->where('category_id',$category->id);
+                          $this->db->where('is_active',1);
                           $sub_data = $this->db->get();
                           foreach($sub_data->result() as $sub){?>
                            <li><a href="<?=base_url()?>Home/all_products/<?=base64_encode($sub->id)?>/<?=base64_encode(2)?>"><?=$sub->name?></a>
@@ -176,6 +172,16 @@
                         <a class="nav-link green" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
                            aria-controls="offcanvasTop"><i class="bi bi-search" style="font-size:20px;"></i></a>
                      </li>
+                       <?if(!empty($this->session->userdata('user_data'))){?>
+                               <a class="nav-link green" href="javascript:void(0)" role="button" id="dropdownUserIcon" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle" style="font-size:20px;"></i>
+        </a>
+        <ul class="dropdown-menu dropdownUser" aria-labelledby="dropdownUserIcon">
+          <li><a class="dropdown-item" href="<?=base_url()?>Home/user_profile">View Profile</a></li>
+          <li><a class="dropdown-item" href="<?=base_url()?>User/logout">Log Out</a></li>
+        </ul>
+
+                        <?}?>
                      <li class="nav-item" id="cartCount">
                         <a class="nav-link green" href="<?=base_url()?>Home/cart">
                           <i class="bi bi-cart4 navbar-tool-icon czi-cart" style="font-size:20px;">  <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 2px;margin-right: 2px;margin-left: -8px;bottom: 46px;">

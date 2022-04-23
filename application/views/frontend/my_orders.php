@@ -45,11 +45,11 @@
             <td>$<?=$data->final_amount;?></td>
             <td><?=$data->date;?></td>
             <td><?php if ($data->order_status==1) { ?>
-              <p class="label bg-yellow">Pending</p>
+              <p class="label bg-yellow">Placed</p>
               <?php } elseif ($data->order_status==2) { ?>
               <p class="label bg-aqua">Accepted</p>
               <?php		} elseif ($data->order_status==3) { ?>
-              <p class="label bg-blue">Dispatched</p>
+              <p class="label bg-blue">Dispatched </p>
               <?php		} elseif ($data->order_status==4) { ?>
               <p class="label bg-green">Delivered</p>
               <?} elseif ($data->order_status==5) { ?>

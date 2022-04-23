@@ -85,7 +85,11 @@ class Home extends CI_Controller
 
     public function user_profile()
     {
-        $this->load->view('frontend/common/header');
+                    $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where('id',$this->session->userdata('user_id'));
+        $data['user_data']= $this->db->get()->row();
+        $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/user_profile');
         $this->load->view('frontend/common/footer');
     }

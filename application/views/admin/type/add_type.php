@@ -35,16 +35,7 @@
                                      <form action="<?php echo base_url() ?>dcadmin/Type/add_type_data/<?php echo base64_encode(1); ?>" method="POST" id="slide_frm" enctype="multipart/form-data">
                                   <div class="table-responsive">
                                       <table class="table table-hover">
-                                        <tr>
-                                          <td> <strong>Product Name</strong> <span style="color:red;">*</span></strong> </td>
-                                          <td> <select class="form-control" name="product_id" required id="category">
-                                              <option value="">------select product---------</option>
-                                              <?php $i=1; foreach ($product_data->result() as $data) { ?>
-                                              <option value="<?=$data->id?>"><?=$data->name?></option>
-                                              <?php $i++; } ?>
-                                            </select> </td>
-                                        </tr>
-
+                                        <input type="hidden" name="product_id" value="<?=$id;?>">
   											<tr>
                                                   <td> <strong>Type Name</strong>  <span style="color:red;">*</span></strong> </td>
                                                   <td>
@@ -58,7 +49,7 @@
     	                                            </td>
         										</tr>
                             <tr>
-                                                      <td> <strong>SP</strong>  <span style="color:red;">*</span></strong> </td>
+                                                      <td> <strong>Selling Price</strong>  <span style="color:red;">*</span></strong> </td>
                                                       <td>
                                 <input type="text" name="sp" id="sp" class="form-control" placeholder=""  required value="" />
                                                     </td>
@@ -77,7 +68,7 @@
   	                                            </td>
       										</tr>
                           <tr>
-                                                    <td> <strong>SP GST</strong>  <span style="color:red;">*</span></strong> </td>
+                                                    <td> <strong>Selling Price (with GST)</strong>  <span style="color:red;">*</span></strong> </td>
                                                     <td>
     													<input type="text" name="spgst"  id="spgst" class="form-control" placeholder="" required value="" READONLY />
     	                                            </td>

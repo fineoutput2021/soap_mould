@@ -146,7 +146,7 @@ class Promocode extends CI_finecontrol
 
 
                     if ($last_id!=0) {
-                        $this->session->set_flashdata('emessage', 'Data inserted successfully');
+                        $this->session->set_flashdata('smessage', 'Data inserted successfully');
 
                         redirect("dcadmin/Promocode/view_promocode", "refresh");
                     } else {

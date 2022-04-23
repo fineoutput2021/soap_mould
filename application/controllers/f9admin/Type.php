@@ -282,6 +282,7 @@ class Type extends CI_finecontrol
 
                         $last_id=$this->base_model->insert_table("tbl_type", $data_insert, 1) ;
 
+                        //-----inventory created---------------------------------------
                         $beta_insert = array('type_id'=>$last_id,
                                         'quantity'=>100,
                                         'ip' =>$ip,

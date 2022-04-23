@@ -252,7 +252,6 @@ $pro_data= $this->db->get()->row();
                   </div>
                   <div class=col-md-9>
                     <select class="form-control green" onchange="type_change(this)" type_id="<?=base64_encode($type_data->id)?>" name="category_id" required>
-                        <option value="">Select Type</option>
                         <?php $i=1; foreach ($type_full->result() as $data) { ?>
                         <option id="type_name" value="<?=base64_encode($data->id)?>" <?if ($data->id==$type_data->id) {
                                  echo "selected";
@@ -264,9 +263,9 @@ $pro_data= $this->db->get()->row();
               </div>
                 <div class="mt-3 align-items-center justify-content-center">
                   <?if(empty($this->session->userdata('user_data'))){?>
-             <button class="mt-3 m-2 btn btn-primary text-uppercase px-4 mobview-btn"  onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>" id="add_cart"  quantity=1>Add To Cart</button>
+             <button class="mt-3 m-2 btn btn-primary text-uppercase px-4 mobview-btn"  onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_cart"  quantity=1>Add To Cart</button>
              <?}else{?>
-             <button class="mt-3 m-2 btn btn-primary text-uppercase px-4 mobview-btn"  onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>" id="add_cart" quantity=1>Add To Cart</button>
+             <button class="mt-3 m-2 btn btn-primary text-uppercase px-4 mobview-btn"  onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_cart" quantity=1>Add To Cart</button>
              <?}?>
                     <!-- <a href="<?=base_url()?>Home/checkout" class="mt-3">
                         <button class="mt-3 m-2 btn btn-primary text-uppercase px-4 mobview-btn">Buy it

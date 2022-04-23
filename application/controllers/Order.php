@@ -75,7 +75,7 @@ class Order extends CI_Controller
                         foreach ($cartInfo->result() as $cart2) {
                             $this->db->select('*');
                             $this->db->from('tbl_type');
-                            $this->db->where('id', $cart2->product_id);
+                            $this->db->where('id', $cart2->type_id);
                             $pro_data= $this->db->get()->row();
 
                             $total = $pro_data->sp * $cart2->quantity;
@@ -92,6 +92,7 @@ class Order extends CI_Controller
 
                             $last_id2=$this->base_model->insert_table("tbl_order2", $order2_insert, 1);
                         }
+                        // die();
                         if (!empty($last_id2)) {
                             $this->session->set_userdata('order_id', base64_encode($last_id));
                             redirect("Order/view_checkout", "refresh");
@@ -286,15 +287,16 @@ class Order extends CI_Controller
                     $phone=$this->input->post('phone');
                     $address=$this->input->post('address');
                     $pincode=$this->input->post('pincode');
+                    $user_id=$this->session->userdata('user_id');
                     // exit;
                     $ip = $this->input->ip_address();
                     date_default_timezone_set("Asia/Calcutta");
                     $cur_date=date("Y-m-d H:i:s");
 
-                    $guest_mode = 0;
-                    if (empty($user_id = $this->session->userdata('user_id'))) {
-                        $guest_mode = 1;
-                    }
+                    // $guest_mode = 0;
+                    // if (empty($user_id = $this->session->userdata('user_id'))) {
+                    //     $guest_mode = 1;
+                    // }
                     // exit;
                     //----------inventory check-------------------
                     $this->db->select('*');

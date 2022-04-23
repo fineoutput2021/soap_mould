@@ -53,9 +53,9 @@
                   <li><a href="#"><i class="fa fa-compass" aria-hidden="true"></i>
                </ul>
                <?if(empty($this->session->userdata('user_data'))){?>
-          <button class="txt-deco-no add-to-cart" style="width:100%"  onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>"  quantity=1>Add To Cart</button>
+          <button class="txt-deco-no add-to-cart" style="width:100%"  onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>"  quantity=1>Add To Cart</button>
           <?}else{?>
-          <button class="txt-deco-no add-to-cart" style="width:100%" onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>" quantity=1>Add To Cart</button>
+          <button class="txt-deco-no add-to-cart" style="width:100%" onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" quantity=1>Add To Cart</button>
           <?}?>
             </div>
             <div class="card-body product-content">

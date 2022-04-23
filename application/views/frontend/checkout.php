@@ -155,9 +155,21 @@ Place order
                         <?}?>
                         <tr>
                            <th colspan="2">
+                             <div id="orderDetails">
+                               <?if (!empty($order_data->promocode_id)) {
+                                    $this->db->select('*');
+                                    $this->db->from('tbl_promocode');
+                                    $this->db->where('id', $order_data->promocode_id);
+                                    $promo_data= $this->db->get()->row(); ?>
+                            <a href="javascript:void(0);" style="color:unset;"><p id="promoCode" style="color:#416e7a">
+                            <?=$promo_data->name; ?>&nbsp;<i class="fa fa-times" aria-hidden="true" onclick="remove_promocode(this)"
+                              order_id="<?=base64_encode($order_data->id)?>"
+                            ></i></p></a>
+                            <?}?>
+                          </div>
                               <form action="javascript:void(0)" id="promocode_form" method="post" enctype="multipart/form-data">
                               <div class="form-group d-flex">
-                                 <input type="text" name="promocode" class="form-control form-control-lg mt-3 mx-3" id="promocode_submit" placeholder="Apply Promocode" /><button type="submit" class="btn btn-primary btn-lg mt-3">Apply</button>
+                                 <input type="text" name="promocode" class="form-control form-control-lg mt-3 mx-3" id="promocode_submit" value="<?if (!empty($order_data->promocode_id)) {echo $promo_data->name;}?>" placeholder="Apply Promocode" /><button type="submit" class="btn btn-primary btn-lg mt-3">Apply</button>
                                  <input type="hidden" name="order_id" value="<?=base64_encode($order_data->id);?>">
                               </div>
                             </form>
@@ -165,22 +177,10 @@ Place order
                         </tr>
                         <tr>
                            <th colspan="2">
-                              <div id="orderDetails">
+                              <div >
                                  <div class="float-start">
                                     <h6>Subtotal</h6>
-                                    <?if (!empty($order_data->promocode_id)) {
-                                         $this->db->select('*');
-                                         $this->db->from('tbl_promocode');
-                                         $this->db->where('id', $order_data->promocode_id);
-                                         $promo_data= $this->db->get()->row(); ?>
-                                 <a href="javascript:void(0);" style="color:unset;"><p id="promoCode" style="color:#416e7a">
-                                 <?=$promo_data->name; ?>
-                                 &nbsp
-                               </p>
-                                 <i class="fa fa-times" aria-hidden="true" onclick="remove_promocode(this)"
-                                   order_id="<?=base64_encode($order_data->id)?>"
-                                 ></i></a>
-                                 <?}?>
+
                                  </div>
                                  <div class="float-end">
                                     <h4>
@@ -410,7 +410,7 @@ $(document).ready(function() {
           });
 
           $( "#orderDetails" ).load(window.location.href + " #orderDetails > *" );
-
+          $("#promocode_submit").val("");
 
 
         } else if (response.data == false) {

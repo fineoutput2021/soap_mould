@@ -80,8 +80,12 @@
                             $cart_count= $this->db->count_all_results();
                             echo $cart_count;
                           }else{
+                            if(!empty($this->session->userdata('user_cart'))){
                             $cart = count($this->session->userdata('user_cart'));
                             echo $cart;
+                          }else{
+                            echo "0";
+                          }
                           }
                           ?>
                         </span></i></span></a>
@@ -183,8 +187,12 @@
                               $cart_count= $this->db->count_all_results();
                               echo $cart_count;
                             }else{
+                              if(!empty($this->session->userdata('user_cart'))){
                               $cart = count($this->session->userdata('user_cart'));
                               echo $cart;
+                            }else{
+                              echo "0";
+                            }
                             }
                             ?>
                           </span></i></a>

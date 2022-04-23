@@ -294,12 +294,7 @@ function __construct()
 
                   $user_id = $this->session->userdata('user_id');
 
-                  $this->db->select('*');
-                  $this->db->from('tbl_type');
-                  $this->db->where('product_id', $product_id);
-                  $this->db->where('id', $type_id);
-                  $pro_data= $this->db->get()->row();
-
+                  //-----------inventory check-----------------------
                               $this->db->select('*');
                   $this->db->from('tbl_inventory');
                   $this->db->where('type_id',$type_id);
@@ -312,7 +307,7 @@ function __construct()
                           $this->db->select('*');
                           $this->db->from('tbl_cart');
                           $this->db->where('user_id', $user_id);
-                          $this->db->where('product_id', $product_id);
+                          $this->db->where('type_id', $type_id);
                           $cartInfo= $this->db->get()->row();
                           if (empty($cartInfo)) {
                               $cart_insert = array('user_id'=>$user_id,

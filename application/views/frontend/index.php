@@ -32,6 +32,14 @@
 </div>
 
 <!-- ======= Bestsellers ======= -->
+<?
+$this->db->select('*');
+$this->db->from('tbl_products');
+$this->db->where('is_active',1);
+$this->db->where('bestseller',1);
+$bestseller= $this->db->get();
+if(!empty($bestseller)){
+?>
 <div class="album mt-5 ">
    <div class="container">
       <div class="row text-center py-5">
@@ -43,15 +51,12 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
 
         <? //--------BestSeller-------------------------
-        $this->db->select('*');
-        $this->db->from('tbl_products');
-        $this->db->where('bestseller',1);
-        $bestseller= $this->db->get();
         foreach($bestseller->result() as $best){
                       $this->db->select('*');
           $this->db->from('tbl_type');
           $this->db->where('product_id',$best->id);
           $type_data= $this->db->get()->row();
+          if(!empty($type_data)){
           // print_r($type_data);die();
         ?>
          <div class="col product-grid">
@@ -86,9 +91,9 @@
                                <?}}?>
                </ul>
                <?if(empty($this->session->userdata('user_data'))){?>
-          <button class="txt-deco-no add-to-cart" onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>"  quantity=1>Add To Cart</button>
+          <button class="txt-deco-no add-to-cart" onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>"  quantity=1>Add To Cart</button>
           <?}else{?>
-          <button class="txt-deco-no add-to-cart" onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->product_id)?>" quantity=1>Add To Cart</button>
+          <button class="txt-deco-no add-to-cart" onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" quantity=1>Add To Cart</button>
           <?}?>
             </div>
             <div class="card-body product-content">
@@ -97,10 +102,11 @@
                <div class="price">$<?=$type_data->sp?><span class="px-2">$<?=$type_data->sp*1.5?></span></div>
             </div>
          </div>
-         <?}?>
+         <?}}?>
       </div>
    </div>
 </div>
+<?}?>
 
 <!-- ======= Winter Collection ======= -->
 <div class="album py-5 ">

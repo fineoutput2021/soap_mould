@@ -188,7 +188,7 @@ public function login(){
         // echo "yespost"; die();
 
         $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
-        $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean|trim|is_unique[tbl_users.email]');
+        $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean|trim	|is_unique[tbl_users.email]');
         $this->form_validation->set_rules('password', 'password', 'required|xss_clean|trim');
         	             if($this->form_validation->run()== TRUE)
         	             {
@@ -227,7 +227,6 @@ public function login(){
         	                            'ip' =>$ip,
         	                            'is_active' =>1,
         	                            'date'=>$cur_date
-
         	                            );
 
 
@@ -263,11 +262,11 @@ public function login(){
                                         // show_error($this->email->print_debugger());
                                     }
 
-          $this->session->set_userdata('user_data',1);
-          	$this->session->set_userdata('user_id',$last_id);
-          	$this->session->set_userdata('user_name', $name);
-            $this->session->set_userdata('user_email', $email);
 					}
+					$this->session->set_userdata('user_data',1);
+					$this->session->set_userdata('user_id',$last_id);
+					$this->session->set_userdata('user_name', $name);
+					$this->session->set_userdata('user_email', $email);
 
 											//insert cart data into cart table---------
                                     $cart_data = $this->session->userdata('cart_data');
@@ -314,7 +313,7 @@ public function login(){
         	                  } // VALIDATION PART ENDS
         	                      else{
         // echo "syy";die();
-        	                          $this->session->set_flashdata('emessage',validation_errors());
+        	                          $this->session->set_flashdata('emessage','Registeration failed, try again!');
         	                          redirect($_SERVER['HTTP_REFERER']);
 
         	                          }
@@ -328,6 +327,8 @@ public function login(){
         	          } // LOGIN CHECK ENDS HERE
 
         	      else{
+									$this->session->set_flashdata('emessage','Please insert some data');
+									redirect($_SERVER['HTTP_REFERER']);
         	        redirect("home","refresh");
         	      }
         	    }

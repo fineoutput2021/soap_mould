@@ -116,12 +116,12 @@
             <form method="POST" action="<?=base_url()?>User/login_process_page" enctype="multipart/form-data">
                <div class="mb-3">
                   <label for=" " class="form-label">Enter Email</label>
-                  <input type="text" name="email" class="form-control"  aria-describedby="emailHelp">
+                  <input type="text" name="email" required class="form-control"  aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" name="password" class="form-control" value="">
+                  <input type="password" required name="password" class="form-control" value="">
                   <!-- <input type="checkbox" onclick="myFunction()">
                      <spam class="ml_5">Show Password</spam> -->
                </div>
@@ -156,28 +156,26 @@
             <form method="POST" action="<?=base_url()?>User/register_process" enctype="multipart/form-data">
                <div class="mb-3">
                   <label for=" " class="form-label">Name</label>
-                  <input type="text" name="name" class="form-control" id="Name">
+                  <input type="text" required name="name" class="form-control" id="Name">
                </div>
                <div class="mb-3">
                   <label for=" " class="form-label">Email</label>
-                  <input type="text" name="email" class="form-control"  aria-describedby="emailHelp">
+                  <input type="text" required name="email" class="form-control"  aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Enter Password</label>
-                  <input type="password" name="password" class="form-control" >
+                  <input type="password" required name="password" class="form-control" >
                   <!-- <input type="checkbox" onclick="myFunction()">
                      <spam class="ml_5">Show Password</spam> -->
                </div>
-               </form>
          </div>
          <div class="modal-footer">
             <div class="text-center bg-green w-100">
                <button class="btn btn-primary btn-lg" type="Submit" style="">Register</button>
             </div>
-
-
          </div>
+       </form>
       </div>
    </div>
 </div>

@@ -187,8 +187,9 @@
           <i class="bi bi-person-circle dropdown-toggle" class="fa fa-caret-down btn_change_change media_q_change2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown " aria-expanded="false" style="font-size:20px;"></i>
         </a>
         <div class="dropdown-menu dd2_menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>Home/my_orders/<?=base64_encode($this->session->userdata('user_id'))?>" style="color:unset">My Orders</a>
-                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>/User_login/user_logout" style="color:unset">logout</a>
+                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>Order/view_order" style="color:unset">My Orders</a>
+                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>Home/user_profile" style="color:unset">My Profile</a>
+                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>User/logout" style="color:unset">Logout</a>
                 </div>
               </li>
         <!-- <ul class="dropdown-menu dropdownUser" aria-labelledby="dropdownUserIcon">

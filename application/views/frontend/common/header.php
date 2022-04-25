@@ -61,9 +61,11 @@
             <nav class="navbar navbar-expand-sm bg-white navbar-dark">
                <div class="container-fluid mobileheader" id="mobileHeader">
                   <div class="d-flex mobiledb">
+                    <?if(!empty($this->session->userdata('user_data'))){?>
                     <a href="<?=base_url()?>/Home/user_profile">
                         <button class="btn mobiledb" type="button"> <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
                         class="bi bi-person-circle"></i></span></button></a>
+                        <?}?>
                      <a href="<?=base_url()?>Home/cart">
                         <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
                         class="bi bi-cart4">
@@ -96,12 +98,14 @@
                   </button>
                   <div class="collapse navbar-collapse" id="collapsibleNavbar" style="justify-content: space-between !important;"> <!-- justify-content-end  -->
                      <div class="mobiledb height100">
+                       <form action="<?=base_url()?>Home/search" method="get" enctype="multipart/form-data">
                         <div class="search">
-                           <input type="text" class="searchTerm" placeholder="What are you looking for?">
+                           <input type="text" id="search" name="search" class="searchTerm" placeholder="What are you looking for?">
                            <button type="submit" class="searchButton">
                            <i class="fa fa-search"></i>
                            </button>
-                        </div>
+                         </div>
+                         </form>
                         <!--Mobile-->
                         <div class="accordion" id="accordionExample">
                         <?  $this->db->select('*');
@@ -138,11 +142,13 @@
 
                         </div>
                         <br>
+                        <?if(empty($this->session->userdata('user_data'))){?>
                         <div class="d-grid gap-2 d-md-block">
                            <a href="#exampleModalToggle" class="txt-deco-no" data-bs-toggle="modal" role="button"><button class="btn btn-primary w-100" type="button">Sign In</button></a>
                            <a href="#exampleModalToggle2" class="txt-deco-no" data-bs-toggle="modal" role="button"><button class="btn btn-primary w-100" type="button">Register</button></a>
                            <!-- <button class="btn btn-primary" type="button"></button> -->
                         </div>
+                        <?}?>
                      </div>
                      <ul class="navbar-nav mobiledn" style="margin-left: 50px;">
                        <?            $this->db->select('*'); //-----------Web--------------
@@ -176,13 +182,19 @@
                            aria-controls="offcanvasTop"><i class="bi bi-search" style="font-size:20px;"></i></a>
                      </li>
                        <?if(!empty($this->session->userdata('user_data'))){?>
+                         <li class="nav-item dropdown bbh">
                                <a class="nav-link green" href="javascript:void(0)" role="button" id="dropdownUserIcon" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-person-circle" style="font-size:20px;"></i>
+          <i class="bi bi-person-circle dropdown-toggle" class="fa fa-caret-down btn_change_change media_q_change2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown " aria-expanded="false" style="font-size:20px;"></i>
         </a>
-        <ul class="dropdown-menu dropdownUser" aria-labelledby="dropdownUserIcon">
+        <div class="dropdown-menu dd2_menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>Home/my_orders/<?=base64_encode($this->session->userdata('user_id'))?>" style="color:unset">My Orders</a>
+                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>/User_login/user_logout" style="color:unset">logout</a>
+                </div>
+              </li>
+        <!-- <ul class="dropdown-menu dropdownUser" aria-labelledby="dropdownUserIcon">
           <li><a class="dropdown-item" href="<?=base_url()?>Home/user_profile">View Profile</a></li>
           <li><a class="dropdown-item" href="<?=base_url()?>User/logout">Log Out</a></li>
-        </ul>
+        </ul> -->
 
                         <?}?>
                      <li class="nav-item" id="cartCount">
@@ -208,7 +220,7 @@
                      </li>
                      <?if(!empty($this->session->userdata('user_data'))){?>
                      <li class="nav-item">
-                        <a class="nav-link green" href="<?=base_url()?>Home/wishlist"  ><i class="bi bi-heart-fill" style="font-size: 20px;">
+                        <a class="nav-link green" href="<?=base_url()?>Home/wishlist"  ><i class="bi bi-heart" style="font-size: 20px;">
                           <?if(!empty($this->session->userdata('user_data'))){?>
                           <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
                             <?if(!empty($this->session->userdata('user_data'))){

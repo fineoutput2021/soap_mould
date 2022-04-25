@@ -19,8 +19,8 @@
 </div>
 </div>
 <section class="pt-0 mb-5">
-   <div class="container">
-      <div class="row" id="cartData">
+   <div class="container" id="cartData">
+      <div class="row">
         <?$cart_check = $cart_data->row();
 if (empty($cart_check)) {?>
 <h2>Your cart is empty! Please add some product</h2>
@@ -30,7 +30,6 @@ $i=1;
 foreach ($cart_data->result() as $cart) {
 $this->db->select('*');
 $this->db->from('tbl_type');
-$this->db->where('product_id', $cart->product_id);
 $this->db->where('id', $cart->type_id);
 $pro_data= $this->db->get()->row();?>
          <div class="col-lg-12">
@@ -38,12 +37,12 @@ $pro_data= $this->db->get()->row();?>
                <div class="col-md-12 col-lg-12">
                   <div class="row border  mb-3 py-3 mx-0">
                      <div class="col-12"><button type="button" class="btn-close"
-                        data-bs-dismiss="modal" aria-label="Close" style="float: right;" onclick="deleteCartOnline(this)" product_id="<?=base64_encode($pro_data->product_id)?>" type_id="<?=base64_encode($pro_data->id)?>"></button></div>
+                        data-bs-dismiss="modal" aria-label="Close" style="float: right;" onclick="deleteCartOnline(this)" product_id="<?=base64_encode($cart->product_id)?>" type_id="<?=base64_encode($cart->type_id)?>"></button></div>
                      <div class="col-lg-2"><img class="w-100" src="<?=base_url().$pro_data->image1;?>"></div>
                      <div class="col-lg-7">
                         <!-- <h5 class="fs-0">Details</h5>
                            <hr class=""> -->
-                        <a href="#" class="txt-deco-no green">
+                        <a href="javascript:void(0)" class="txt-deco-no green">
                            <p class="fs--1 fw-300"><?=$pro_data->name;?></p>
                         </a>
                         <div class="d-flex col-md-12 mobview-quantity" style="align-items: center;">
@@ -52,7 +51,7 @@ $pro_data= $this->db->get()->row();?>
                               onclick="decreaseValue(<?=$i;?>)">
                               <i class="bi bi-dash green"></i>
                           </button>
-                          <input id="qty<?=$i;?>" min="1" product_id="<?=base64_encode($cart->product_id)?>" type_id="<?=base64_encode($cart->product_id)?>" name="qty" readonly value="<?=$cart->quantity?>" price="<?=$pro_data->sp*$cart->quantity;?>" type="number"
+                          <input id="qty<?=$i;?>" min="1" product_id="<?=base64_encode($pro_data->product_id)?>" type_id="<?=base64_encode($pro_data->id)?>" name="qty" readonly value="<?=$cart->quantity?>" price="<?=$pro_data->sp*$cart->quantity;?>" type="number"
                               class="form-control form-control-md" style="width: 50px;" />
                           <button class="btn btn-link "
                               onclick="increaseValue(<?=$i;?>)">
@@ -129,6 +128,7 @@ $pro_data= $this->db->get()->row();?>
       dataType: 'json',
       success: function(response) {
         if (response.data == true) {
+          // alert("hi");
           $.notify({
             icon: 'bi-check-circle-fill',
             // title: '',
@@ -162,6 +162,7 @@ $pro_data= $this->db->get()->row();?>
           });
 
           $( "#cartData" ).load(window.location.href + " #cartData > *" );
+          $( "#cartCount" ).load(window.location.href + " #cartCount > *" );
 
           document.getElementById('subTot').innerHTML = '$'+response.data_subtotal;
 

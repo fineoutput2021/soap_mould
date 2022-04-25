@@ -5,8 +5,8 @@
          <div id="demo" class="carousel slide" data-bs-ride="carousel">
            <!-- Indicators/dots -->
            <div class="carousel-indicators">
-             <?php $i=1; foreach($slider_data->result() as $data) { ?>
-              <button type="button" data-bs-target="#demo" data-bs-slide-to="<?=$i?>" class="<?if ($i==1){echo ' active';}?>"></button>
+             <?php $i=0; foreach($slider_data->result() as $data) { ?>
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="<?=$i?>" class="<?if ($i==0){echo ' active';}?>" aria-current="true"></button>
               <?php $i++; } ?>
            </div>
 

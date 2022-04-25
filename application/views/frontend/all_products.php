@@ -85,7 +85,7 @@
    </div>
 </div>
 <!-- pagination -->
-<div class="container">
+<!-- <div class="container">
    <div class="row py-5 justify-content-center">
       <div class="col-3">
          <nav aria-label="..." style="box-shadow: none;">
@@ -104,7 +104,7 @@
          </nav>
       </div>
    </div>
-</div>
+</div> -->
 <!-- <div class="container">
    <div class="row justify-content-center mb-4">
       <div class="col text-center"><h2 class="green">More Product</h2></div>

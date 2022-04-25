@@ -919,7 +919,7 @@ nav {
     font-size: 18px !important;
   }
   .product-grid .add-to-cart {
-      bottom: 77px !important;
+      bottom: 0px !important;
     }
 }
 

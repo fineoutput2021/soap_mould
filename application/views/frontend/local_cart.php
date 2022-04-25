@@ -168,6 +168,7 @@
           });
 
           $( "#cartData" ).load(window.location.href + " #cartData > *" );
+          $( "#cartCount" ).load(window.location.href + " #cartCount > *" );
 
         } else if (response.data == false) {
           $.notify({

@@ -370,15 +370,18 @@ function __construct()
       $this->load->helper('security');
       if ($this->input->post()) {
           $this->form_validation->set_rules('product_id', 'product_id', 'required|xss_clean|trim');
+          $this->form_validation->set_rules('type_id', 'type_id', 'required|xss_clean|trim');
           if ($this->form_validation->run()== true) {
               $product_id=$this->input->post('product_id');
               $product_id=base64_decode($product_id);
+              $type_id=$this->input->post('type_id');
+              $type_id=base64_decode($type_id);
               $response['data'] = '';
               $response['data_message'] = '';
               if (!empty($this->session->userdata('user_data'))) {
                   $user_id = $this->session->userdata('user_id');
 
-                  $zapak=$this->db->delete('tbl_cart', array('user_id' => $user_id,'product_id'=>$product_id));
+                  $zapak=$this->db->delete('tbl_cart', array('user_id' => $user_id,'product_id'=>$product_id, 'type_id'=>$type_id));
                   $respone['data'] = true;
                   $respone['data_message'] ='Item successfully deleted in your cart';
                   echo json_encode($respone);
@@ -409,7 +412,6 @@ function __construct()
           $this->form_validation->set_rules('product_id', 'product_id', 'required|xss_clean|trim');
           $this->form_validation->set_rules('type_id', 'type_id', 'required|xss_clean|trim');
           $this->form_validation->set_rules('quantity', 'quantity', 'required|xss_clean|trim');
-          $this->form_validation->set_rules('price', 'price', 'required|xss_clean|trim');
 
           if ($this->form_validation->run()== true) {
               $product_id=$this->input->post('product_id');
@@ -418,7 +420,6 @@ function __construct()
               $type_id=base64_decode($type_id);
               // echo $type_id;die();
               $quantity=$this->input->post('quantity');
-              $pricee=$this->input->post('price');
               $user_id = $this->session->userdata('user_id');
 
                           $this->db->select('*');
@@ -461,7 +462,7 @@ function __construct()
                           $this->db->from('tbl_type');
                           $this->db->where('id',$type_id);
                           $type_da= $this->db->get()->row();
-                          $newprice = $type_da->sp*$quantity;
+                          $newprice = $type_da->sp * $quantity;
                           $respone['data'] = true;
                           $respone['data_message'] ="Cart item update successfully";
                           $respone['data_price'] =round($total);

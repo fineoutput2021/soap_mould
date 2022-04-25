@@ -177,10 +177,10 @@ Place order
                         </tr>
                         <tr>
                            <th colspan="2">
-                              <div >
+                              <div id="promoDis">
                                  <div class="float-start">
                                     <h6>Subtotal</h6>
-
+                                    <h6>Promocode discount</h6>
                                  </div>
                                  <div class="float-end">
                                     <h4>
@@ -202,7 +202,7 @@ Place order
                         </tr>
                         <tr>
                            <th colspan="2">
-                              <div class="">
+                              <div id="finalAmt">
                                  <div class="float-start">
                                     <h6>Total</h6>
                                     <!-- <h6 class="mt-3">Including ₹189.50 in taxes</h6> -->
@@ -319,6 +319,8 @@ $(document).ready(function() {
           });
 
           $( "#orderDetails" ).load(window.location.href + " #orderDetails > *" );
+          $( "#promoDis" ).load(window.location.href + " #promoDis > *" );
+          $( "#finalAmt" ).load(window.location.href + " #finalAmt > *" );
           // window.location.reload();
 
         } else if (response.data == false) {
@@ -410,6 +412,8 @@ $(document).ready(function() {
           });
 
           $( "#orderDetails" ).load(window.location.href + " #orderDetails > *" );
+          $( "#promoDis" ).load(window.location.href + " #promoDis > *" );
+          $( "#finalAmt" ).load(window.location.href + " #finalAmt > *" );
           $("#promocode_submit").val("");
 
 

@@ -20,8 +20,23 @@
                <img src="<?=base_url().$data->image4;?>">
                <?}?>
          </a>
-               <ul class="product-links">
-            <li><a href="javascript:void(0)"><i class="bi bi-heart"></i></a></li>
+         <ul class="product-links">
+           <?if(!empty($this->session->userdata('user_data'))){
+                                 $this->db->select('*');
+                     $this->db->from('tbl_wishlist');
+                     $this->db->where('type_id',$data->id);
+                     $this->db->where('user_id',$this->session->userdata('user_id'));
+                     $wishlist_data= $this->db->get()->row();
+                     if(empty($wishlist_data)){
+                     ?>
+             <a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($data->product_id)?>" type_id="<?=base64_encode($data->id)?>" status="add"
+                 user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" >
+               <li><i class="bi bi-heart green"></i></a></li>
+               <?}else{?>
+                 <a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($data->product_id)?>" type_id="<?=base64_encode($data->id)?>" status="remove"
+                     user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                   <li><i class="bi bi-heart-fill green"></i></a></li>
+                         <?}}?>
          </ul>
          <?if(empty($this->session->userdata('user_data'))){?>
     <button class="txt-deco-no add-to-cart" style="width:100%"  onclick="addToCartOffline(this)" product_id="<?=base64_encode($data->product_id)?>" type_id="<?=base64_encode($data->product_id)?>"  quantity=1>Add To Cart</button>
@@ -38,4 +53,6 @@
          </div>
       </div>
    </div>
+</div>
+</div>
 </div>

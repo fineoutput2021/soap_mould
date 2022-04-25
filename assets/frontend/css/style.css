@@ -18,6 +18,11 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.dropdown-toggle:empty::after {
+    margin-left: 4px;
+
+}
+
 .btn:focus{
   box-shadow: none !important;
 }
@@ -532,7 +537,7 @@ nav {
 }
 
 .navbar .dropdown ul li {
-    min-width: 225px;
+    min-width: 280px;
     padding: 10px 10px;
 }
 
@@ -736,6 +741,7 @@ nav {
   left: 0;
   bottom: -68px;
   transition: all 0.3s ease 0s;
+  border: none;
 }
 .product-grid:hover .add-to-cart {
   bottom: 0;
@@ -911,6 +917,10 @@ nav {
 @media (max-width: 767px){
   .mobview-btn{
     width: 100%;
+  }
+  .justify-content-sm-end{
+    justify-content: end !important;
+    text-align: right;
   }
   ul.breadcrumb{
     padding: 10px 0px !important;

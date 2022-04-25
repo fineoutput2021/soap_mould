@@ -31,63 +31,113 @@
          <!-- ======= header ======= -->
          <!-- ======= Top Bar ======= -->
          <section id="topbar" class="d-flex align-items-center p-2">
-            <div class="container d-flex justify-content-center justify-content-md-between">
+            <div class="container d-flex justify-content-center justify-content-md-between  justify-content-sm-end">
                <div class="contact-info d-flex align-items-center topbar">
                   <!-- <i class="bi bi-bag-check d-flex align-items-center ms-4 white">
                     <span class="ml_5">FREE SHIPPING ON
                   ORDERS ABOVE ₹999/-</span>
                 </i> -->
                </div>
-               <div class="social-links d-none d-md-flex align-items-center white">
-                 <?if(empty($this->session->userdata('user_data'))){?>
-                  <a href="#exampleModalToggle" class="btn white txt-deco-no" data-bs-toggle="modal" role="button">Sign
-                  in</a>
-                  <span class="ml_5 mr_5">/</span>
-                  <a href="#exampleModalToggle2" class="btn white txt-deco-no mr_4" data-bs-toggle="modal"
-                     role="button">Register</a>
-                     <?}?>
+               <div class="social-links d-flex align-items-center white">
+
+                 <div class="d-none d-md-flex">
+                   <?if(empty($this->session->userdata('user_data'))){?>
+                    <a href="#exampleModalToggle" class="btn white txt-deco-no" data-bs-toggle="modal" role="button">Sign
+                    in</a>
+                    <span class="ml_5 mr_5">/</span>
+                    <a href="#exampleModalToggle2" class="btn white txt-deco-no mr_4" data-bs-toggle="modal"
+                       role="button">Register</a>
+                       <?}?>
+                 </div>
                   <!-- <span href="#" class="white txt-deco-no mr_5 bd_r"></span> -->
                   <div class="">
                      <a href="<?=base_url()?>Home/contact" class="white txt-deco-no ml_10 mr_10">Contact us</a>
                   </div>
                   <!-- <span href="#" class="white txt-deco-no mr_5 bd_r"></span> -->
+                <div class="d-flex">
                   <a href="javascript:void(0)" class="facebook white ml_10 mr_10"><i class="bi bi-facebook"></i></a>
                   <a href="javascript:void(0)" class="twitter white ml_10 mr_10"><i class="bi bi-instagram"></i></a>
                   <a href="javascript:void(0)" class="youtube white ml_10 mr_10"><i class="bi bi-youtube"></i></a>
+                </div>
                </div>
             </div>
          </section>
+         <style media="screen">
+         .navbar .dropdown ul.mob_dropdwown a.dropp_links{
+           padding: 0px 12px !important;
+         }
+           .navbar .dropdown ul.mob_dropdwown{
+             position: absolute;
+             z-index: 999 !important;
+             left: auto  !important;
+             top: 100%  !important;
+             right: 0 !important;
+             opacity: 1 !important;
+             background: #fff !important;
+             box-shadow: 0px 0px 30px rgb(127 137 161 / 25%) !important;
+             transition: 0.3s !important;
+             display: none !important;
+           }
+           .navbar .dropdown ul.mob_dropdwown li{
+             min-width: 100% !important;
+             padding: 10px 10px !im;
+           }
+          .navbar .dropdown ul.mob_dropdwown.show{
+            display: block !important;
+          }
+         </style>
          <header class="sticky">
             <nav class="navbar navbar-expand-sm bg-white navbar-dark">
                <div class="container-fluid mobileheader" id="mobileHeader">
                   <div class="d-flex mobiledb">
-                    <?if(!empty($this->session->userdata('user_data'))){?>
-                    <a href="<?=base_url()?>/Home/user_profile">
-                        <button class="btn mobiledb" type="button"> <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
-                        class="bi bi-person-circle"></i></span></button></a>
-                        <?}?>
-                     <a href="<?=base_url()?>Home/cart">
-                        <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
-                        class="bi bi-cart4">
-                        <span class="navbar-tool-label badge bg-primary" id="totalCartItems" style="position: absolute; padding: 0.35em 0.65em; font-size: 9px; margin-right: 2px;margin-left: -8px;bottom: 42px;">
-                          <?if(!empty($this->session->userdata('user_data'))){
-                            $id=$this->session->userdata('user_id');
-                            $this->db->select('*');
-                            $this->db->from('tbl_cart');
-                            $this->db->where('user_id',$id);
-                            $cart_count= $this->db->count_all_results();
-                            echo $cart_count;
-                          }else{
-                           // print_r($this->session->userdata('user_cart'));die();
-                            if(!empty($this->session->userdata('cart_data'))){
-                            $cart = count($this->session->userdata('cart_data'));
-                            echo $cart;
-                          }else{
-                            echo "0";
-                          }
-                          }
-                          ?>
-                        </span></i></span></a>
+                    <div class="d-flex">
+                      <?if(!empty($this->session->userdata('user_data'))){?>
+                        <div class="dropdown">
+                              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color:#416e7a;"><i
+                              class="bi bi-person-circle green" style="font-size: 30px;margin-top: -8px;"></i></button>
+                              <ul class="dropdown-menu mob_dropdwown" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item dropp_links" href="http://localhost/soap_mould/Order/view_order">My Orders</a></li>
+                                <li><a class="dropdown-item dropp_links" href="http://localhost/soap_mould/Home/user_profile">My Profile</a></li>
+                                <li><a class="dropdown-item dropp_links" href="http://localhost/soap_mould/User/logout">Logout</a></li>
+                              </ul>
+
+                        </div>
+
+                          <?}?>
+                       <a href="<?=base_url()?>Home/cart" class="btn p-0">
+                          <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
+                          class="bi bi-cart4">
+                          <span class="navbar-tool-label badge bg-primary" id="totalCartItems" style="
+                          position: absolute;
+    padding: -0.65em 0.65em;
+    font-size: 9px;
+    margin-right: 2px;
+    margin-left: -8px;
+    bottom: 42px
+px
+;
+    top: auto;
+                          /* position: absolute; padding: 0.35em 0.65em; font-size: 9px; margin-right: 2px;margin-left: -8px;bottom: 42px; */
+                          ">
+                            <?if(!empty($this->session->userdata('user_data'))){
+                              $id=$this->session->userdata('user_id');
+                              $this->db->select('*');
+                              $this->db->from('tbl_cart');
+                              $this->db->where('user_id',$id);
+                              $cart_count= $this->db->count_all_results();
+                              echo $cart_count;
+                            }else{
+                             // print_r($this->session->userdata('user_cart'));die();
+                              if(!empty($this->session->userdata('cart_data'))){
+                              $cart = count($this->session->userdata('cart_data'));
+                              echo $cart;
+                            }else{
+                              echo "0";
+                            }
+                            }
+                            ?>
+                          </span></i></span></a>
+                    </div>
                   </div>
                   <a class="navbar-brand" href="<?=base_url()?>Home">
                      <img src="<?=base_url()?>assets/frontend/images/logo/logo3.png" class="img-fluid">
@@ -186,10 +236,20 @@
                                <a class="nav-link green" href="javascript:void(0)" role="button" id="dropdownUserIcon" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-person-circle dropdown-toggle" class="fa fa-caret-down btn_change_change media_q_change2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown " aria-expanded="false" style="font-size:20px;"></i>
         </a>
-        <div class="dropdown-menu dd2_menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>Order/view_order" style="color:unset">My Orders</a>
-                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>Home/user_profile" style="color:unset">My Profile</a>
-                  <a class="dropdown-item dropdown-item2" href="<?=base_url()?>User/logout" style="color:unset">Logout</a>
+        <style media="screen">
+        .dropdownUser[data-bs-popper]{
+          top: 100% !important;
+          left: unset !important;
+          right: 0 !important;
+          margin-top: 0.125rem !important;
+        }
+      </style>
+        <div class="dropdown-menu dropdownUser" aria-labelledby="dropdownUserIcon">
+          <!-- dd2_menu -->
+                  <a class="dropdown-item" href="<?=base_url()?>Order/view_order" style="color:unset">My Orders</a>
+                  <!-- dropdown-item2 -->
+                  <a class="dropdown-item" href="<?=base_url()?>Home/user_profile" style="color:unset">My Profile</a>
+                  <a class="dropdown-item" href="<?=base_url()?>User/logout" style="color:unset">Logout</a>
                 </div>
               </li>
         <!-- <ul class="dropdown-menu dropdownUser" aria-labelledby="dropdownUserIcon">
@@ -200,7 +260,7 @@
                         <?}?>
                      <li class="nav-item" id="cartCount">
                         <a class="nav-link green" href="<?=base_url()?>Home/cart">
-                          <i class="bi bi-cart4 navbar-tool-icon czi-cart" style="font-size:20px;">  <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
+                          <i class="bi bi-cart4 navbar-tool-icon czi-cart" style="font-size:20px;">  <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px 5px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
                             <?if(!empty($this->session->userdata('user_data'))){
                               $id=$this->session->userdata('user_id');
                               $this->db->select('*');
@@ -223,7 +283,7 @@
                      <li class="nav-item">
                         <a class="nav-link green" href="<?=base_url()?>Home/wishlist"  ><i class="bi bi-heart" style="font-size: 20px;">
                           <?if(!empty($this->session->userdata('user_data'))){?>
-                          <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
+                          <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px 5px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
                             <?if(!empty($this->session->userdata('user_data'))){
                               $id=$this->session->userdata('user_id');
                               $this->db->select('*');

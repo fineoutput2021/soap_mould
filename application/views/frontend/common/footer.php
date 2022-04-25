@@ -130,11 +130,12 @@
             <div class="text-center bg-green w-100" style="cursor:pointer;">
                <button class="btn btn-primary btn-lg" type="Submit" style="">Login</button>
             </div>
+            </form>
             <div class="w-100 text-center">
                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
                   style="text-decoration: underline;">Register</button>
             </div>
-          </form>
+
             <div class="w-100 text-center"><button class="btn " data-bs-target="#exampleModalToggle3"
                data-bs-toggle="modal">Forgot Password</button></div>
             <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Register</button>
@@ -168,12 +169,13 @@
                   <!-- <input type="checkbox" onclick="myFunction()">
                      <spam class="ml_5">Show Password</spam> -->
                </div>
+               </form>
          </div>
          <div class="modal-footer">
             <div class="text-center bg-green w-100">
                <button class="btn btn-primary btn-lg" type="Submit" style="">Register</button>
             </div>
-          </form>
+
 
          </div>
       </div>

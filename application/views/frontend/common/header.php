@@ -40,7 +40,7 @@
                </div>
                <div class="social-links d-flex align-items-center white">
 
-                 <div class="d-none d-md-flex">
+                 <div class="d-none d-md-flex align-items-center">
                    <?if(empty($this->session->userdata('user_data'))){?>
                     <a href="#exampleModalToggle" class="btn white txt-deco-no" data-bs-toggle="modal" role="button">Sign
                     in</a>

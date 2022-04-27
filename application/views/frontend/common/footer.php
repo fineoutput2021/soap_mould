@@ -116,7 +116,7 @@
             <form method="POST" action="<?=base_url()?>User/login_process_page" enctype="multipart/form-data">
                <div class="mb-3">
                   <label for=" " class="form-label">Enter Email</label>
-                  <input type="text" name="email" required class="form-control"  aria-describedby="emailHelp">
+                  <input type="email" name="email" required class="form-control">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
@@ -127,17 +127,15 @@
                </div>
          </div>
          <div class="modal-footer justify-content-center">
-            <div class="text-center bg-green w-100" style="cursor:pointer;">
-               <button class="btn btn-primary btn-lg" type="Submit" style="">Login</button>
-            </div>
+               <button class="btn btn-primary btn-lg text-center bg-green w-100" type="Submit" style="">Login</button>
             </form>
             <div class="w-100 text-center">
                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
                   style="text-decoration: underline;">Register</button>
             </div>
 
-            <div class="w-100 text-center"><button class="btn " data-bs-target="#exampleModalToggle3"
-               data-bs-toggle="modal">Forgot Password</button></div>
+            <!-- <div class="w-100 text-center"><button class="btn " data-bs-target="#exampleModalToggle3"
+               data-bs-toggle="modal">Forgot Password</button></div> -->
             <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Register</button>
                <button class="btn " data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Forgot Password</button> -->
          </div>
@@ -160,7 +158,7 @@
                </div>
                <div class="mb-3">
                   <label for=" " class="form-label">Email</label>
-                  <input type="text" required name="email" class="form-control"  aria-describedby="emailHelp">
+                  <input type="email" required name="email" class="form-control"  aria-describedby="emailHelp">
                   <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                </div>
                <div class="mb-3">
@@ -171,9 +169,7 @@
                </div>
          </div>
          <div class="modal-footer">
-            <div class="text-center bg-green w-100">
-               <button class="btn btn-primary btn-lg" type="Submit" style="">Register</button>
-            </div>
+               <button class="btn btn-primary btn-lg text-center bg-green w-100" type="Submit" style="">Register</button>
          </div>
        </form>
       </div>

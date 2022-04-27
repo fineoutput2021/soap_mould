@@ -3,6 +3,12 @@
 		<div class="row">
 			<div class="col-md-12 col-12">
 				<div  id="wishlist">
+					<?$a=0;
+					foreach($wish_data->result() as $wish){
+						$a=1;
+					}
+
+					if($a==1){?>
           <div class="tab-content" id="nav-tabContent">
              <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                 <h4>Wishlist</h4>
@@ -55,6 +61,11 @@
                 </div>
              </div>
           </div>
+					<?}else{?>
+						<div class="tab-pane fade show active">
+							<h4>No items found in your wishlist</h4>
+						</div>
+						<?}?>
 				</div>
 			</div>
 		</div>

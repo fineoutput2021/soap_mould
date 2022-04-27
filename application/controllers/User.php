@@ -83,7 +83,7 @@ public function login(){
 							}
 						}
 						else{
-							$this->session->set_flashdata('emessage','Invalid Credentials!');
+							$this->session->set_flashdata('emessage','Invalid email or password!');
 							redirect($_SERVER['HTTP_REFERER']);
 
 						}
@@ -155,7 +155,7 @@ public function login(){
 							}
 							else{
 
-								$this->session->set_flashdata('emessage','Invalid Credentials!');
+								$this->session->set_flashdata('emessage','Invalid email or password!');
 								redirect($_SERVER['HTTP_REFERER']);
 
 							}
@@ -188,7 +188,7 @@ public function login(){
         // echo "yespost"; die();
 
         $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
-        $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean|trim	|is_unique[tbl_users.email]');
+        $this->form_validation->set_rules('email', 'email', 'required|valid_email|xss_clean|trim');
         $this->form_validation->set_rules('password', 'password', 'required|xss_clean|trim');
         	             if($this->form_validation->run()== TRUE)
         	             {
@@ -197,28 +197,15 @@ public function login(){
         	      	 			 	$password=$this->input->post('password');
                           $pass= md5($password);
         								 	$name=$this->input->post('name');
-        //$otp_id= $this->session->userdata('user_otp_id');
-        // $this->db->select('*');
-        // $this->db->from('tbl_otp');
-        // $this->db->where('id',$otp_id);
-        // $otp_data= $this->db->get()->row();
-
-
-        								  // $genrated_otp = 	$otp_data->otp;
-        								  // $otp = $this->input->post('otp');
         	                $ip = $this->input->ip_address();
         	      					date_default_timezone_set("Asia/Calcutta");
         	                $cur_date=date("Y-m-d H:i:s");
 
-
-
-        	        // if(!empty($nnnn)){
-        	        // $nnn=$nnnn;
-        	        // }
-        	        // else{
-        	        // $nnn="";
-        	        // }
-
+													      			$this->db->select('*');
+													$this->db->from('tbl_users');
+													$this->db->where('email',$email);
+													$email_check= $this->db->get()->row();
+													if(empty($email_check)){
 
         	                  $data_insert = array(
         	                       	 'email'=>$email,
@@ -307,16 +294,14 @@ public function login(){
 
         								redirect("/","refresh");
         								// $data['data']=true;
-
+											}else{
+												$this->session->set_flashdata('emessage', 'Users already exists with this email!');
+						redirect("/","refresh");
+											}
 
 
         	                  } // VALIDATION PART ENDS
-        	                      else{
-        // echo "syy";die();
-        	                          $this->session->set_flashdata('emessage','Registeration failed, try again!');
-        	                          redirect($_SERVER['HTTP_REFERER']);
 
-        	                          }
 
         	                    } // POST DATA ENDS
         	            else{

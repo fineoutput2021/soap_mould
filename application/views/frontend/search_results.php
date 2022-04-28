@@ -2,6 +2,11 @@
    <div class="row">
 <div class="col-8">
    <div class="tab-content" id="nav-tabContent">
+     <?$a=0;
+     foreach($search_data->result() as $data){
+       $a=1;
+     }
+     if($a==1){?>
       <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
          <h4>Search Results</h4>
          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -52,6 +57,11 @@
    <?}?>
          </div>
       </div>
+      <?}else{?>
+        <div class="tab-pane fade show active">
+          <h4>No Products found.</h4>
+        </div>
+        <?}?>
    </div>
 </div>
 </div>

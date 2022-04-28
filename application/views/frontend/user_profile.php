@@ -25,7 +25,7 @@
                <p class="text-muted mb-2 font-13"><strong>Name :</strong> <span class="ml-2">Demo</span></p>
                <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 "><?=$user_data->email;?></span></p>
                <p class="text-muted mb-2 font-13">
-              <a href="<?=base_url()?>User/logout" class=" txt-deco-no ml_10 mr_10">LogOut</a>
+              <a href="<?=base_url()?>User/logout" class=" txt-deco-no ml_10 mr_10">Logout</a>
 </p>
             </div>
          </div>

@@ -117,6 +117,9 @@ public function login(){
 	    					$email=$this->input->post('email');
 	    					$passw=$this->input->post('password');
 	    					$pass=md5($passw);
+								$ip = $this->input->ip_address();
+								date_default_timezone_set("Asia/Calcutta");
+								$cur_date=date("Y-m-d H:i:s");
 	    												$this->db->select('*');
 	    												$this->db->from('tbl_users');
 	    												$this->db->where('email',$email);
@@ -134,6 +137,42 @@ public function login(){
 	    													if($db_password==$pass){
 
 	    														$db_id=$da->id;
+
+																	//insert cart data into cart table---------
+						                                    $cart_data = $this->session->userdata('cart_data');
+						                                    // print_r($cart_data);
+						                                    // exit;
+						                                    if (!empty($cart_data)) {
+						                                        foreach ($cart_data as $value) {
+						                                            $this->db->select('*');
+						                                            $this->db->from('tbl_cart');
+						                                            $this->db->where('user_id', $db_id);
+						                                            $this->db->where('product_id', $value['product_id']);
+						                                            $this->db->where('type_id', $value['type_id']);
+						                                            $cartInfo= $this->db->get()->row();
+						                                            if (empty($cartInfo)) {
+						                                                //---------inventory check------------
+						                                                $this->db->select('*');
+						                                                $this->db->from('tbl_inventory');
+						                                                $this->db->where('type_id', $value['type_id']);
+						                                                $pro_data= $this->db->get()->row();
+						                                                if (!empty($pro_data)) {
+						                                                    if ($pro_data->quantity>=$value['quantity']) {
+						                                                        $data_insert = array('user_id'=> $db_id,
+						                                              'product_id'=>$value['product_id'],
+						                                              'type_id'=>$value['type_id'],
+						                                              'quantity'=>$value['quantity'],
+						                                              'ip' =>$ip,
+						                                              'date'=>$cur_date
+						                                              );
+
+						                                                        $cart_id=$this->base_model->insert_table("tbl_cart", $data_insert, 1) ;
+						                                                    }
+						                                                }///end check innventory
+						                                            }
+						                                        }
+						                                    }
+						                                    $this->session->unset_userdata('cart_data');
 
 	    												$this->session->set_userdata('user_data',1);
 	    												$this->session->set_userdata('user_id',$db_id);

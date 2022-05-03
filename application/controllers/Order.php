@@ -357,6 +357,45 @@ class Order extends CI_Controller
                             $this->session->unset_userdata('cart_data');
                             // echo "hi";die();
                         }
+
+
+$config = Array(
+'protocol' => 'smtp',
+'smtp_host' => SMTP_HOST,
+'smtp_port' => SMTP_PORT,
+'smtp_user' => USER_NAME, // change it to yours
+'smtp_pass' => PASSWORD, // change it to yours
+'mailtype' => 'html',
+'charset' => 'iso-8859-1',
+'wordwrap' => true
+);
+$to=$email;
+$data['name']= $name;
+$data['email']= $email;
+$data['phone']= $phone;
+$data['order1_id']= $order_id;
+$data['date']= $cur_date;
+
+
+
+$message =$this->load->view('email/ordersuccess',$data,TRUE);
+// echo $to;
+// print_r($message);
+// exit;
+
+$this->load->library('email', $config);
+$this->email->set_newline("");
+$this->email->from(EMAIL); // change it to yours
+$this->email->to($to);// change it to yours
+$this->email->subject('Order Placed');
+$this->email->message($message);
+if($this->email->send()){
+// echo 'Email sent.';
+}else{
+show_error($this->email->print_debugger());
+}
+// die();
+
                         redirect("Order/order_success", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Some error occured');

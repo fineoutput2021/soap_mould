@@ -915,6 +915,9 @@ nav {
 
 }
 @media (max-width: 767px){
+  .product-grid .product-links{
+    right: 10px !important;
+  }
   .mobview-btn{
     width: 100%;
   }

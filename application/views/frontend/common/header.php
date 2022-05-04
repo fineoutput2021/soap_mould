@@ -192,6 +192,17 @@ px
 
                         </div>
                         <br>
+
+                        <?if(!empty($this->session->userdata('user_data'))){?>
+                           <a class="" href="<?=base_url()?>Home/wishlist"><button type="button" name="button" class="mb-2 btn btn-primary w-100">My Wishlist</button></a>
+                        <?}?>
+
+                        <!-- <a href="#">
+                          <button type="button" name="button" class="mb-2 btn btn-primary w-100">My Wishlist</button>
+                        </a> -->
+
+
+                        <br>
                         <?if(empty($this->session->userdata('user_data'))){?>
                         <div class="d-grid gap-2 d-md-block">
                            <a href="#exampleModalToggle" class="txt-deco-no" data-bs-toggle="modal" role="button"><button class="btn btn-primary w-100" type="button">Sign In</button></a>

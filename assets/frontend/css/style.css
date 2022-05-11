@@ -915,6 +915,9 @@ nav {
 
 }
 @media (max-width: 767px){
+  .product-grid .add-to-cart{
+    padding: 7px 26px;
+  }
   .product-grid .product-links{
     right: 10px !important;
   }

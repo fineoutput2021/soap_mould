@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5 mb-5" style="background-color: #f4f1eb; padding:20px 5px">
+<div class="container-fluid mt-5 mb-5" style="background-color: #f4f1eb; padding:20px">
 <div class="row">
 <div class="col-12 text-center d-flex justify-content-center align-items-center">
    <a href="<?=base_url()?>/Home">Home</a><span class="px-3">/</span><a href="<?=base_url()?>/Home/cart">Cart</a><span class="px-3">/</span>
@@ -33,14 +33,14 @@
    <div class="row">
       <div class="col-md-7">
          <main>
-            <div>
+            <!-- <div>
                <ul class="breadcrumb">
                   <li><a href="<?=base_url()?>/Home/cart">Cart</a></li>
                   <li style="font-weight: bold;">Information</li>
                   <li>Shipping</li>
                   <li>Payment</li>
                </ul>
-            </div>
+            </div> -->
             <form action="<?=base_url()?>Order/checkout" method="POST" enctype="multipart/form-data">
                <div class="fixedElement" >
 <h2>Checkout</h2>
@@ -164,7 +164,7 @@ Place order
                           </div>
                               <form action="javascript:void(0)" id="promocode_form" method="post" enctype="multipart/form-data">
                               <div class="form-group d-flex">
-                                 <input type="text" name="promocode" class="form-control form-control-lg mt-3 mx-3" id="promocode_submit" value="<?if (!empty($order_data->promocode_id)) {echo $promo_data->name;}?>" placeholder="Apply Promocode" /><button type="submit" class="btn btn-primary btn-lg mt-3">Apply</button>
+                                 <input type="text" name="promocode" class="form-control form-control-lg mt-3 mx-3" id="promocode_submit" value="<?if (!empty($order_data->promocode_id)) {echo $promo_data->name;}?>" placeholder="Apply Promocode" /><button type="submit" class="btn btn-primary btn-md mt-3">Apply</button>
                                  <input type="hidden" name="order_id" value="<?=base64_encode($order_data->id);?>">
                               </div>
                             </form>

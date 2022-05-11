@@ -40,7 +40,7 @@ $this->db->where('bestseller',1);
 $bestseller= $this->db->get();
 if(!empty($bestseller)){
 ?>
-<div class="album mt-5 ">
+<div class="album">
    <div class="container">
       <div class="row text-center py-5">
          <div class="col-md-12 text-center">
@@ -115,9 +115,9 @@ if(!empty($bestseller)){
 <?}?>
 
 <!-- ======= Winter Collection ======= -->
-<div class="album py-5 ">
-   <div class="container">
-      <div class="row text-center py-5">
+<div class="album">
+   <div class="container mb-5 mt-5">
+      <div class="row text-center py-3">
          <div class="col-md-12 text-center">
             <h6>BEST FOR YOU</h6>
             <h1 class="green">Winter Collection</h1>

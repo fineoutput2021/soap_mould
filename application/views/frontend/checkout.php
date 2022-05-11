@@ -74,13 +74,13 @@
         <div class="col-12 col-md-6">
           <div class="form-outline">
             <label class="form-label" for="phone">Contact<span class="sp">*</span></label>
-            <input type="text" pattern="\d*" id="phone" name="phone" maxlength="10" minlength="10" class="form-control mt-0" required onkeyup='saveValue(this);'/>
+            <input type="text" onkeypress="return isNumberKey(event)" id="phone" name="phone" maxlength="10" minlength="10" class="form-control mt-0" required onkeyup='saveValue(this);'/>
           </div>
         </div>
         <div class="col-12 col-md-6">
           <div class="form-outline">
             <label class="form-label" for="pincode">Pincode<span class="sp">*</span></label>
-            <input type="text"  id="pincode" name="pincode" maxlength="6"  minlength="4" class="form-control mt-0" required  onkeyup='saveValue(this);'/>
+            <input type="text"  id="pincode" onkeypress="return isNumberKey(event)" name="pincode" maxlength="6"  minlength="6" class="form-control mt-0" required  onkeyup='saveValue(this);'/>
             <label style="font-size:12px;color:red;" id="alert"></label>
           </div>
         </div>
@@ -452,3 +452,12 @@ $(document).ready(function() {
     });
   }
 </script>
+
+ <script>
+   function isNumberKey(evt){
+       var charCode = (evt.which) ? evt.which : evt.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+           return false;
+       return true;
+   }
+   </script>

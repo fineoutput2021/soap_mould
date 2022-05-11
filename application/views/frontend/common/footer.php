@@ -185,8 +185,6 @@
             <h5 class="modal-title green" id="exampleModalToggleLabel23">Forgot Password</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
-
-
          <!--Forgot password-->
          <div class="modal-body">
            <div class="col-12 text-center">
@@ -196,33 +194,16 @@
              <h3>Forgot Password?</h3>
              <p>You can reset your password here.</p>
            </div>
-            <form>
-               <!-- <div class="mb-3">
-                  <label for=" " class="form-label">Enter Name</label>
-                  <input type="name" class="form-control" id="InputName" required>
-               </div> -->
+            <form action="<?=base_url()?>User/form_submit_forgotpassword" method="POST" enctype="multipart/form-data">
                <div class="mb-3">
                   <label for=" " class="form-label">Enter Email</label>
-                  <input type="email" class="form-control"  aria-describedby="emailHelp" required>
+                  <input type="email" name="reset_email" class="form-control"  aria-describedby="emailHelp" required>
                   <div id="emailHelp" class="form-text" >Enter Email For Reset Passwrd</div>
                </div>
-               <!-- <div class="mb-3">
-                  <label for="exampleInputOTP" class="form-label">Enter OTP</label>
-                  <input type="number" class="form-control" id="exampleInputOTP" required>
-               </div> -->
-               <!-- <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Enter New Password</label>
-                  <input type="password" class="form-control"
-                     value="" required>
-
-               </div> -->
-               <!-- <input type="checkbox" onclick="myFunction()">
-                  <spam class="ml_5">Show Password</spam> -->
-
          </div>
          <div class="modal-footer">
             <div class="text-center bg-green w-100">
-               <input class="btn btn-primary btn-lg" type="Submit" style="">
+               <input class="btn btn-primary btn-lg" type="submit" style="">
             </div>
             </form>
             <div class="text-center w-100 d-grid">

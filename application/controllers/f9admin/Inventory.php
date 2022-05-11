@@ -14,7 +14,36 @@ class Inventory extends CI_finecontrol
         $this->load->library('user_agent');
     }
 
-    public function view_inventory()
+    public function view_products(){
+
+                     if(!empty($this->session->userdata('admin_data'))){
+
+
+                       $data['user_name']=$this->load->get_var('user_name');
+
+                       // echo SITE_NAME;
+                       // echo $this->session->userdata('image');
+                       // echo $this->session->userdata('position');
+                       // exit;
+                       $this->db->select('*');
+                       $this->db->from('tbl_products');
+                       $this->db->where('is_active',1);
+                       $data['product_data']= $this->db->get();
+
+
+                       $this->load->view('admin/common/header_view',$data);
+                       $this->load->view('admin/inventory/view_products');
+                       $this->load->view('admin/common/footer_view');
+
+                   }
+                   else{
+
+                      redirect("login/admin_login","refresh");
+                   }
+
+                   }
+
+    public function view_inventory($idd)
     {
         if (!empty($this->session->userdata('admin_data'))) {
             $data['inventory_name']=$this->load->get_var('inventory_name');
@@ -23,14 +52,11 @@ class Inventory extends CI_finecontrol
             // echo $this->session->userdata('image');
             // echo $this->session->userdata('position');
             // exit;
-            $this->db->select('*');
-            $this->db->from('tbl_inventory');
-            //$this->db->where('id',$usr);
-            $data['inventory_data']= $this->db->get();
-
+             $id=base64_decode($idd);
+            $data['id']=$idd;
             $this->db->select('*');
             $this->db->from('tbl_type');
-            //$this->db->where('id',$usr);
+            $this->db->where('product_id',$id);
             $data['type_data']= $this->db->get();
 
 
@@ -104,18 +130,21 @@ class Inventory extends CI_finecontrol
                         $dsa=$this->db->get();
                         $da=$dsa->row();
 
+                        $this->db->select('*');
+                        $this->db->from('tbl_type');
+                        $this->db->where('id',$da->type_id);
+                        $type= $this->db->get()->row();
+
 
                         $data_insert = array(
                                      'quantity'=>$quantity,
-
-
                          );
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_inventory', $data_insert);
                     }
                     if ($last_id!=0) {
                         $this->session->set_flashdata('smessage', 'Data inserted successfully');
-                        redirect("dcadmin/Inventory/view_inventory", "refresh");
+                        redirect("dcadmin/Inventory/view_inventory/".base64_encode($type->product_id), "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Sorry error occured');
                         redirect($_SERVER['HTTP_REFERER']);

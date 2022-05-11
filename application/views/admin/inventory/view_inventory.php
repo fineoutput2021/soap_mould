@@ -7,6 +7,7 @@
   <section class="content">
     <div class="row">
       <div class="col-lg-12">
+        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Inventory/view_products" role="button" style="margin-bottom:12px;">Back</a>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Inventory</h3>
@@ -42,32 +43,22 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i=1; foreach ($inventory_data->result() as $data) { ?>
+                    <?php $i=1; foreach ($type_data->result() as $data) {
+                      $this->db->select('*');
+                      $this->db->from('tbl_inventory');
+                      $this->db->where('type_id', $data->id);
+                      $inventory= $this->db->get()->row();
+                       ?>
                     <tr>
                       <td><?php echo $i ?> </td>
-
                       <td><?php
-                      $this->db->select('*');
-                      $this->db->from('tbl_type');
-                      $this->db->where('id', $data->type_id);
-                      $type_data= $this->db->get()->row();
-                       echo $type_data->name;
+                       echo $data->name;
                        ?></td>
-
-                       <td><?php echo $data->quantity ?></td>
-
-
+                       <td><?php echo $inventory->quantity ?></td>
                       </td>
                       <td>
-
-
-
-
                               <a href="<?php echo base_url() ?>dcadmin/Inventory/update_inventory/<?php echo
-        base64_encode($data->id) ?>">Edit</a>
-
-
-
+        base64_encode($inventory->id) ?>">Edit</a>
                       </td>
                     </tr>
                     <?php $i++; } ?>

@@ -129,9 +129,11 @@
          <div class="modal-footer justify-content-center">
                <button class="btn btn-primary btn-lg text-center bg-green w-100" type="Submit" style="">Login</button>
             </form>
-            <div class="w-100 text-center">
+            <div class="w-100 text-center d-grid">
                <button class="btn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
                   style="text-decoration: underline;">Register</button>
+                  <button class="btn" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
+                     style="text-decoration: underline;">Forgot Password</button>
             </div>
 
             <!-- <div class="w-100 text-center"><button class="btn " data-bs-target="#exampleModalToggle3"
@@ -187,39 +189,47 @@
 
          <!--Forgot password-->
          <div class="modal-body">
+           <div class="col-12 text-center">
+             <i class="bi bi-unlock-fill text-dark" style="font-size:30px;"></i>
+           </div>
+           <div class="col-12 mt-2 text-center">
+             <h3>Forgot Password?</h3>
+             <p>You can reset your password here.</p>
+           </div>
             <form>
+               <!-- <div class="mb-3">
+                  <label for=" " class="form-label">Enter Name</label>
+                  <input type="name" class="form-control" id="InputName" required>
+               </div> -->
                <div class="mb-3">
-                  <label for=" " class="form-label">Name</label>
-                  <input type="name" class="form-control" id="InputName">
+                  <label for=" " class="form-label">Enter Email</label>
+                  <input type="email" class="form-control"  aria-describedby="emailHelp" required>
+                  <div id="emailHelp" class="form-text" >Enter Email For Reset Passwrd</div>
                </div>
-               <div class="mb-3">
-                  <label for=" " class="form-label">Address</label>
-                  <input type="email" class="form-control"  aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-               </div>
-               <div class="mb-3">
+               <!-- <div class="mb-3">
                   <label for="exampleInputOTP" class="form-label">Enter OTP</label>
-                  <input type="number" class="form-control" id="exampleInputOTP">
-               </div>
-               <div class="mb-3">
+                  <input type="number" class="form-control" id="exampleInputOTP" required>
+               </div> -->
+               <!-- <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Enter New Password</label>
                   <input type="password" class="form-control"
-                     value="">
-                  <!-- <input type="checkbox" onclick="myFunction()">
-                     <spam class="ml_5">Show Password</spam> -->
-               </div>
-            </form>
+                     value="" required>
+
+               </div> -->
+               <!-- <input type="checkbox" onclick="myFunction()">
+                  <spam class="ml_5">Show Password</spam> -->
+
          </div>
          <div class="modal-footer">
             <div class="text-center bg-green w-100">
-               <input class="btn btn-primary btn-lg" type="Submit" style="" data-bs-target="#exampleModalToggle"
-                  data-bs-toggle="modal">
+               <input class="btn btn-primary btn-lg" type="Submit" style="">
             </div>
-            <div class="text-center w-100">
+            </form>
+            <div class="text-center w-100 d-grid">
                <a href="" class="btn green" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
-               <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+               <!-- <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
-            <!-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Submit Now</button> -->
+
          </div>
       </div>
    </div>

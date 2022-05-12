@@ -238,7 +238,7 @@ $pro_data= $this->db->get()->row();
                     </button>
                 </div>
                 <div class="d-flex col-md-6 mobview-type">
-                  <div class="col-3">
+                  <div class="col-md-3 col-2">
                     <label class="green mt-1">Type:</label>
                   </div>
                   <div class="col-9">

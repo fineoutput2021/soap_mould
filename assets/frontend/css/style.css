@@ -956,8 +956,8 @@ nav {
 }
 @media (max-width: 800px){
   .mobview-quantity,.mobview-quantity p{
-    justify-content: center;
-    text-align: center;
+    justify-content: left;
+    text-align: left;
     padding: 8px 0px;
   }
 }

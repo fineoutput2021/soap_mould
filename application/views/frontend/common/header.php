@@ -87,13 +87,13 @@
           }
          </style>
          <header class="sticky">
-            <nav class="navbar navbar-expand-sm bg-white navbar-dark">
+            <nav class="navbar navbar-expand-sm bg-white navbar-light">
                <div class="container-fluid mobileheader" id="mobileHeader">
                   <div class="d-flex mobiledb">
                     <div class="d-flex">
                       <?if(!empty($this->session->userdata('user_data'))){?>
                         <div class="dropdown">
-                              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color:#416e7a;"><i
+                              <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color:#416e7a; border:0px !important; border-color: rgb(255 255 255 / 10%);"><i
                               class="bi bi-person-circle green" style="font-size: 30px;margin-top: -8px;"></i></button>
                               <ul class="dropdown-menu mob_dropdwown" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item dropp_links" href="http://localhost/soap_mould/Order/view_order">My Orders</a></li>
@@ -104,7 +104,7 @@
                         </div>
 
                           <?}?>
-                       <a href="<?=base_url()?>Home/cart" class="btn p-0">
+                       <a href="<?=base_url()?>Home/cart" class="btn" style="padding:0px;padding-right: 3px;">
                           <span class=" green" style="font-size: 30px;margin-top: -8px;"><i
                           class="bi bi-cart4">
                           <span class="navbar-tool-label badge bg-primary" id="totalCartItems" style="

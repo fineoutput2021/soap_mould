@@ -516,10 +516,15 @@ nav {
   text-transform: uppercase;
 }
 
-.navbar-toggler .navbar-toggler-icon {
-  background-image: url('https://www.fineoutput.co.in/soap_mould/assets/frontend/images/icon/icon.png');
-}
+/* .navbar-toggler .navbar-toggler-icon {
+  background-image: url(<?php base_url();?>assets/frontend/images/icon/icon.png);
+} */
 
+
+.navbar-light .navbar-toggler{
+  border-color: rgb(255 255 255 / 10%);
+  font-size: 22px;
+}
 .navbar .dropdown ul {
   display: block;
   position: absolute;

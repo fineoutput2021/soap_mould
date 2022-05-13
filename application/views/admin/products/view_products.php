@@ -3,6 +3,10 @@
     <h1>
       View Products
     </h1>
+    <ol class="breadcrumb">
+  <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+  <li class="active">View products</li>
+</ol>
   </section>
   <section class="content">
     <div class="row">
@@ -65,7 +69,12 @@
                       $this->db->from('tbl_subcategory');
                       $this->db->where('id', $data->subcategory_id);
                       $subCat_data= $this->db->get()->row();
-                      echo $subCat_data->name ?></td>
+                      if(!empty($subCat_data->name)){
+                          echo $subCat_data->name;
+                      }else{
+                        echo "Not found";
+                      }
+                    ?></td>
                       <td><?php echo $data->name ?></td>
 
 

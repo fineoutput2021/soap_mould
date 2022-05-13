@@ -3,7 +3,10 @@
     <h1>
       Update Category
     </h1>
-
+    <ol class="breadcrumb">
+      <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/Category/view_category"><i class="fa fa-dashboard"></i> View Category </a></li>
+    </ol>
   </section>
   <section class="content">
     <div class="row">

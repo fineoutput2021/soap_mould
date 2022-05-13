@@ -86,7 +86,7 @@ class Slider extends CI_finecontrol
                 $this->upload_config = array(
                         'upload_path'   => $image_upload_folder,
                         'file_name' => $new_file_name,
-                        'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                        'allowed_types' =>'jpg|jpeg|png',
                         'max_size'      => 25000
                 );
                 $this->upload->initialize($this->upload_config);
@@ -112,26 +112,18 @@ class Slider extends CI_finecontrol
                                   );
 
                 $last_id=$this->base_model->insert_table("tbl_slider", $data_insert, 1) ;
+
+                            if ($last_id!=0) {
+                                $this->session->set_flashdata('smessage', 'Slider inserted successfully');
+
+                                redirect("dcadmin/Slider/view_slider", "refresh");
+                            } else {
+                                $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                redirect($_SERVER['HTTP_REFERER']);
+                            }
             }
             if ($typ==2) {
                 $idw=base64_decode($iw);
-
-
-                // $this->db->select('*');
-                //     $this->db->from('tbl_minor_category');
-                //    $this->db->where('name',$name);
-                //     $damm= $this->db->get();
-                //    foreach($damm->result() as $da) {
-                //      $uid=$da->id;
-                // if($uid==$idw)
-                // {
-                //
-                //  }
-                // else{
-                //    echo "Multiple Entry of Same Name";
-                //       exit;
-                //  }
-                //     }
                 if (!empty($nnnn)) {
                     $data_insert = array('image'=>$nnnn
                                   );
@@ -141,17 +133,17 @@ class Slider extends CI_finecontrol
 
                 $this->db->where('id', $idw);
                 $last_id=$this->db->update('tbl_slider', $data_insert);
+
+                            if ($last_id!=0) {
+                                $this->session->set_flashdata('smessage', 'Slider updated successfully');
+
+                                redirect("dcadmin/Slider/view_slider", "refresh");
+                            } else {
+                                $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                redirect($_SERVER['HTTP_REFERER']);
+                            }
             }
 
-
-            if ($last_id!=0) {
-                $this->session->set_flashdata('smessage', 'Data inserted successfully');
-
-                redirect("dcadmin/Slider/view_slider", "refresh");
-            } else {
-                $this->session->set_flashdata('emessage', 'Sorry error occured');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
 
         } else {
             redirect("login/admin_login", "refresh");
@@ -199,6 +191,8 @@ class Slider extends CI_finecontrol
 
                 $zapak=$this->db->delete('tbl_slider', array('id' => $id));
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Slider image deleted successfully');
+
                     redirect("dcadmin/Slider/view_slider", "refresh");
                 } else {
                     echo "Error";
@@ -235,6 +229,8 @@ class Slider extends CI_finecontrol
                 $zapak=$this->db->update('tbl_slider', $data_update);
 
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Slider status chnged successfully');
+
                     redirect("dcadmin/Slider/view_slider", "refresh");
                 } else {
                     echo "Error";
@@ -251,6 +247,8 @@ class Slider extends CI_finecontrol
                 $zapak=$this->db->update('tbl_slider', $data_update);
 
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Slider status chnged successfully');  
+
                     redirect("dcadmin/Slider/view_slider", "refresh");
                 } else {
                     $data['e']="Error Occured";

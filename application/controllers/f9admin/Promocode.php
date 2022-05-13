@@ -108,6 +108,14 @@ class Promocode extends CI_finecontrol
 
 
                         $last_id=$this->base_model->insert_table("tbl_promocode", $data_insert, 1) ;
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Promocode inserted successfully');
+
+                            redirect("dcadmin/Promocode/view_promocode", "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
                     if ($typ==2) {
                         $idw=base64_decode($iw);
@@ -142,16 +150,14 @@ class Promocode extends CI_finecontrol
 
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_promocode', $data_insert);
-                    }
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Promocode updated successfully');
 
-
-                    if ($last_id!=0) {
-                        $this->session->set_flashdata('smessage', 'Data inserted successfully');
-
-                        redirect("dcadmin/Promocode/view_promocode", "refresh");
-                    } else {
-                        $this->session->set_flashdata('emessage', 'Sorry error occured');
-                        redirect($_SERVER['HTTP_REFERER']);
+                            redirect("dcadmin/Promocode/view_promocode", "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
                 } else {
                     $this->session->set_flashdata('emessage', validation_errors());
@@ -208,12 +214,10 @@ class Promocode extends CI_finecontrol
                 $this->db->where('id', $id);
                 $dsa= $this->db->get();
                 $da=$dsa->row();
-                $img=$da->image;
 
                 $zapak=$this->db->delete('tbl_promocode', array('id' => $id));
                 if ($zapak!=0) {
-                    $path = FCPATH . "assets/public/slider/".$img;
-                    unlink($path);
+                    $this->session->set_flashdata('smessage', 'Promocode deleted successfully');
                     redirect("dcadmin/Promocode/view_promocode", "refresh");
                 } else {
                     echo "Error";
@@ -223,6 +227,58 @@ class Promocode extends CI_finecontrol
                 $data['e']="Sorry You Don't Have Permission To Delete Anything.";
                 // exit;
                 $this->load->view('errors/error500admin', $data);
+            }
+        } else {
+            $this->load->view('admin/login/index');
+        }
+    }
+
+    public function updatepromocodeStatus($idd, $t)
+    {
+        if (!empty($this->session->userdata('admin_data'))) {
+            $data['user_name']=$this->load->get_var('user_name');
+
+            // echo SITE_NAME;
+            // echo $this->session->userdata('image');
+            // echo $this->session->userdata('position');
+            // exit;
+            $id=base64_decode($idd);
+
+            if ($t=="active") {
+                $data_update = array(
+             'is_active'=>1
+
+             );
+
+                $this->db->where('id', $id);
+                $zapak=$this->db->update('tbl_promocode', $data_update);
+
+                if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Promocode status changed successfully');
+                  redirect("dcadmin/Promocode/view_promocode", "refresh");
+                } else {
+                    echo "Error";
+                    exit;
+                }
+            }
+            if ($t=="inactive") {
+                $data_update = array(
+              'is_active'=>0
+
+              );
+
+                $this->db->where('id', $id);
+                $zapak=$this->db->update('tbl_promocode', $data_update);
+
+                if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Promocode status changed successfully');
+
+                    redirect("dcadmin/Promocode/view_promocode", "refresh");
+                } else {
+                    $data['e']="Error Occured";
+                    // exit;
+                    $this->load->view('errors/error500admin', $data);
+                }
             }
         } else {
             $this->load->view('admin/login/index');

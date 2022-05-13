@@ -42,15 +42,15 @@
                     </tr>
                     <tr>
                       <td> <strong>MRP</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" name="mrp" id ="mrp" class="form-control" placeholder="" required value="<?=$type_data->mrp;?>" /> </td>
+                      <td> <input onkeypress="return isNumberKey(event)" type="text" name="mrp" id ="mrp" class="form-control" placeholder="" required value="<?=$type_data->mrp;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>Selling Price</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" id="sp" name="sp" class="form-control" placeholder="" required value="<?=$type_data->sp;?>" /> </td>
+                      <td> <input onkeypress="return isNumberKey(event)" type="text" id="sp" name="sp" class="form-control" placeholder="" required value="<?=$type_data->sp;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>GST(%)</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input type="text" id="gst" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
+                      <td> <input onkeypress="return isNumberKey(event)" type="text" id="gst" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>GST Price</strong> <span style="color:red;">*</span></strong> </td>
@@ -161,4 +161,12 @@ $(document).ready(function() {
   });
 });
 </script>
+ <script>
+   function isNumberKey(evt){
+       var charCode = (evt.which) ? evt.which : evt.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+           return false;
+       return true;
+   }
+   </script>
 <link href=" <?php echo base_url()  ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />

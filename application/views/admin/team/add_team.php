@@ -4,9 +4,8 @@
       Add New Team
     </h1>
     <ol class="breadcrumb">
-      <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All Team </a></li>
-
+      <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/System/view_team"><i class="fa fa-dashboard"></i> View Team </a></li>
     </ol>
   </section>
   <section class="content">

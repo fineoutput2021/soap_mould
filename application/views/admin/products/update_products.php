@@ -3,7 +3,10 @@
     <h1>
       Update Products
     </h1>
-
+    <ol class="breadcrumb">
+  <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+  <li><a href="<?php echo base_url() ?>dcadmin/Products/view_products"><i class="fa fa-dashboard"></i> View Products </a></li>
+</ol>
   </section>
   <section class="content">
     <div class="row">
@@ -114,7 +117,7 @@
         return false;
       } else {
         $('#subcategory option').remove();
-        var opton = "<option value='0'>No Sub Category</option>";
+        var opton = "<option value='0'>-----select subcategory-----</option>";
         $.ajax({
           url: base_url + "dcadmin/Products/getSubcategory?isl=" + vf,
           data: '',

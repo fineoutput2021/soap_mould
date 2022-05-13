@@ -41,7 +41,7 @@
                <div class="social-links d-flex align-items-center white">
 
                  <div class="d-none d-md-flex align-items-center">
-                   <?if(empty($this->session->userdata('user_data'))){?>
+                   <?if (empty($this->session->userdata('user_data'))) {?>
                     <a href="#exampleModalToggle" class="btn white txt-deco-no" data-bs-toggle="modal" role="button">Sign
                     in</a>
                     <span class="ml_5 mr_5">/</span>
@@ -91,14 +91,14 @@
                <div class="container-fluid mobileheader" id="mobileHeader">
                   <div class="d-flex mobiledb">
                     <div class="d-flex">
-                      <?if(!empty($this->session->userdata('user_data'))){?>
+                      <?if (!empty($this->session->userdata('user_data'))) {?>
                         <div class="dropdown">
                               <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color:#416e7a; border:0px !important; border-color: rgb(255 255 255 / 10%);"><i
                               class="bi bi-person-circle green" style="font-size: 30px;margin-top: -8px;"></i></button>
                               <ul class="dropdown-menu mob_dropdwown" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item dropp_links" href="http://localhost/soap_mould/Order/view_order">My Orders</a></li>
-                                <li><a class="dropdown-item dropp_links" href="http://localhost/soap_mould/Home/user_profile">My Profile</a></li>
-                                <li><a class="dropdown-item dropp_links" href="http://localhost/soap_mould/User/logout">Logout</a></li>
+                                <li><a class="dropdown-item dropp_links" href="<?=base_url()?>Order/view_order">My Orders</a></li>
+                                <li><a class="dropdown-item dropp_links" href="<?=base_url()?>Home/user_profile">My Profile</a></li>
+                                <li><a class="dropdown-item dropp_links" href="<?=base_url()?>User/logout">Logout</a></li>
                               </ul>
 
                         </div>
@@ -119,22 +119,22 @@ px
     top: auto;
                           /* position: absolute; padding: 0.35em 0.65em; font-size: 9px; margin-right: 2px;margin-left: -8px;bottom: 42px; */
                           ">
-                            <?if(!empty($this->session->userdata('user_data'))){
-                              $id=$this->session->userdata('user_id');
-                              $this->db->select('*');
-                              $this->db->from('tbl_cart');
-                              $this->db->where('user_id',$id);
-                              $cart_count= $this->db->count_all_results();
-                              echo $cart_count;
-                            }else{
-                             // print_r($this->session->userdata('user_cart'));die();
-                              if(!empty($this->session->userdata('cart_data'))){
-                              $cart = count($this->session->userdata('cart_data'));
-                              echo $cart;
-                            }else{
-                              echo "0";
-                            }
-                            }
+                            <?if (!empty($this->session->userdata('user_data'))) {
+    $id=$this->session->userdata('user_id');
+    $this->db->select('*');
+    $this->db->from('tbl_cart');
+    $this->db->where('user_id', $id);
+    $cart_count= $this->db->count_all_results();
+    echo $cart_count;
+} else {
+    // print_r($this->session->userdata('user_cart'));die();
+    if (!empty($this->session->userdata('cart_data'))) {
+        $cart = count($this->session->userdata('cart_data'));
+        echo $cart;
+    } else {
+        echo "0";
+    }
+}
                             ?>
                           </span></i></span></a>
                     </div>
@@ -158,12 +158,12 @@ px
                          </form>
                         <!--Mobile-->
                         <div class="accordion" id="accordionExample">
-                        <?  $this->db->select('*');
+                        <?php  $this->db->select('*');
                       $this->db->from('tbl_category');
-                      $this->db->where('is_active',1);
+                      $this->db->where('is_active', 1);
                       $category_data= $this->db->get();
                       $i=0;
-                      foreach($category_data->result() as $category){?>
+                      foreach ($category_data->result() as $category) {?>
                            <div class="accordion-item">
                               <h2 class="accordion-header" id="heading<?=$i;?>">
                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -176,10 +176,10 @@ px
                                  <div class="accordion-body">
                                    <?$this->db->select('*');    //--------Mobile-----------------
                                    $this->db->from('tbl_subcategory');
-                                   $this->db->where('category_id',$category->id);
-                                   $this->db->where('is_active',1);
+                                   $this->db->where('category_id', $category->id);
+                                   $this->db->where('is_active', 1);
                                    $sub_data = $this->db->get();
-                                   foreach($sub_data->result() as $sub){?>
+                                   foreach ($sub_data->result() as $sub) {?>
                                     <a href="<?=base_url()?>Home/all_products/<?=base64_encode($category->id)?>/<?=base64_encode(1)?>" class="nav-link green "><li>
                                        <?=$sub->name;?>
                                     </li>
@@ -193,7 +193,7 @@ px
                         </div>
                         <br>
 
-                        <?if(!empty($this->session->userdata('user_data'))){?>
+                        <?if (!empty($this->session->userdata('user_data'))) {?>
                            <a class="" href="<?=base_url()?>Home/wishlist"><button type="button" name="button" class="mb-2 btn btn-primary w-100">My Wishlist</button></a>
                         <?}?>
 
@@ -203,7 +203,7 @@ px
 
 
                         <br>
-                        <?if(empty($this->session->userdata('user_data'))){?>
+                        <?if (empty($this->session->userdata('user_data'))) {?>
                         <div class="d-grid gap-2 d-md-block">
                            <a href="#exampleModalToggle" class="txt-deco-no" data-bs-toggle="modal" role="button"><button class="btn btn-primary w-100" type="button">Sign In</button></a>
                            <a href="#exampleModalToggle2" class="txt-deco-no" data-bs-toggle="modal" role="button"><button class="btn btn-primary w-100" type="button">Register</button></a>
@@ -212,37 +212,38 @@ px
                         <?}?>
                      </div>
                      <ul class="navbar-nav mobiledn" style="margin-left: 50px;">
-                       <?            $this->db->select('*'); //-----------Web--------------
+                       <?php            $this->db->select('*'); //-----------Web--------------
                        $this->db->from('tbl_category');
-                       $this->db->where('is_active',1);
+                       $this->db->where('is_active', 1);
                        $category_data= $this->db->get();
                        $i=0;
-                       foreach($category_data->result() as $category){
-                       ?>
+                       foreach ($category_data->result() as $category) {
+                           ?>
                      <li class="dropdown nav-item">
                         <a href="<?=base_url()?>Home/all_products/<?=base64_encode($category->id)?>/<?=base64_encode(1)?>" class="nav-link green ">
-                           <span><?=$category->name;?></span> <!-- <i class="bi bi-chevron-down"></i> -->
+                           <span><?=$category->name; ?></span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>
-                          <?            $this->db->select('*');
-                          $this->db->from('tbl_subcategory');
-                          $this->db->where('category_id',$category->id);
-                          $this->db->where('is_active',1);
-                          $sub_data = $this->db->get();
-                          foreach($sub_data->result() as $sub){?>
+                          <?php            $this->db->select('*');
+                           $this->db->from('tbl_subcategory');
+                           $this->db->where('category_id', $category->id);
+                           $this->db->where('is_active', 1);
+                           $sub_data = $this->db->get();
+                           foreach ($sub_data->result() as $sub) {?>
                            <li><a href="<?=base_url()?>Home/all_products/<?=base64_encode($sub->id)?>/<?=base64_encode(2)?>"><?=$sub->name?></a>
                            </li>
-                           <?}?>
+                           <?} ?>
                         </ul>
                      </li>
-                     <?}?>
+                     <?
+                       }?>
                    </ul>
                    <ul class="navbar-nav mobiledn">
                      <li class="nav-item ">
                         <a class="nav-link green" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
                            aria-controls="offcanvasTop"><i class="bi bi-search" style="font-size:20px;"></i></a>
                      </li>
-                       <?if(!empty($this->session->userdata('user_data'))){?>
+                       <?if (!empty($this->session->userdata('user_data'))) {?>
                          <li class="nav-item dropdown bbh">
                                <a class="nav-link green" href="javascript:void(0)" role="button" id="dropdownUserIcon" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-person-circle dropdown-toggle" class="fa fa-caret-down btn_change_change media_q_change2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown " aria-expanded="false" style="font-size:20px;"></i>
@@ -272,43 +273,91 @@ px
                      <li class="nav-item" id="cartCount">
                         <a class="nav-link green" href="<?=base_url()?>Home/cart">
                           <i class="bi bi-cart4 navbar-tool-icon czi-cart" style="font-size:20px;">  <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px 5px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
-                            <?if(!empty($this->session->userdata('user_data'))){
-                              $id=$this->session->userdata('user_id');
-                              $this->db->select('*');
-                              $this->db->from('tbl_cart');
-                              $this->db->where('user_id',$id);
-                              $cart_count= $this->db->count_all_results();
-                              echo $cart_count;
-                            }else{
-                              if(!empty($this->session->userdata('cart_data'))){
-                              $cart = count($this->session->userdata('cart_data'));
-                              echo $cart;
-                            }else{
-                              echo "0";
-                            }
-                            }
+                            <?if (!empty($this->session->userdata('user_data'))) {
+                           $id=$this->session->userdata('user_id');
+                           $this->db->select('*');
+                           $this->db->from('tbl_cart');
+                           $this->db->where('user_id', $id);
+                           $cart_count= $this->db->count_all_results();
+                           echo $cart_count;
+                       } else {
+                           if (!empty($this->session->userdata('cart_data'))) {
+                               foreach (($this->session->userdata('cart_data')) as $cart_data) {
+                                   $this->db->select('*');
+                                   $this->db->from('tbl_product');
+                                   $this->db->where('id', $cart_data['product_id']);
+                                   $cart_row = $this->db->get()->row();
+                                   if (empty($cart_row)) {
+                                       $product_id = $cart_data['product_id'];
+                                       $index="-1";
+                                       $cart = $this->session->userdata('cart_data');
+                                       if (!empty($cart)) {
+                                           for ($i = 0; $i < count($cart); $i ++) {
+                                               if ($cart[$i]['product_id'] == $product_id) {
+                                                   $index= $i;
+                                               }
+                                           }
+                                       }
+                                       if ($index > -1) {
+                                           $cart = $this->session->userdata('cart_data');
+                                           unset($cart[$index]);
+                                           $cart = array_values($cart);
+                                           $this->session->set_userdata('cart_data', $cart);
+                                       }
+                                   }
+                               }
+                               $cart = count($this->session->userdata('cart_data'));
+                               echo $cart;
+                           } else {
+                               echo "0";
+                           }
+                       }
                             ?>
                           </span></i></a>
                      </li>
-                     <?if(!empty($this->session->userdata('user_data'))){?>
+                     <?if (!empty($this->session->userdata('user_data'))) {?>
                      <li class="nav-item">
                         <a class="nav-link green" href="<?=base_url()?>Home/wishlist"  ><i class="bi bi-heart" style="font-size: 20px;">
-                          <?if(!empty($this->session->userdata('user_data'))){?>
+                          <?if (!empty($this->session->userdata('user_data'))) {?>
                           <span class="navbar-tool-label badge bg-primary rounded-pill" id="totalCartItems" style="position: absolute;font-size: 10px;padding: 3px 5px;margin-right: 2px;margin-left: -8px;bottom: 46px;">
-                            <?if(!empty($this->session->userdata('user_data'))){
-                              $id=$this->session->userdata('user_id');
-                              $this->db->select('*');
-                              $this->db->from('tbl_wishlist');
-                              $this->db->where('user_id',$id);
-                              $cart_count= $this->db->count_all_results();
-                              echo $cart_count;
-                            }else{
-                              if(!empty($this->session->userdata('user_cart'))){
-                              $cart = count($this->session->userdata('user_cart'));
-                              echo $cart;
-                            }else{
-                              echo "0";
-                            }
+                            <?if (!empty($this->session->userdata('user_data'))) {
+                                $id=$this->session->userdata('user_id');
+                                $this->db->select('*');
+                                $this->db->from('tbl_wishlist');
+                                $this->db->where('user_id', $id);
+                                $cart_count= $this->db->count_all_results();
+                                echo $cart_count;
+                            } else {
+                                if (!empty($this->session->userdata('cart_data'))) {
+                                    foreach (($this->session->userdata('cart_data')) as $cart_data) {
+                                        $this->db->select('*');
+                                        $this->db->from('tbl_product');
+                                        $this->db->where('id', $cart_data['product_id']);
+                                        $cart_row = $this->db->get()->row();
+                                        if (empty($cart_row)) {
+                                            $product_id = $cart_data['product_id'];
+                                            $index="-1";
+                                            $cart = $this->session->userdata('cart_data');
+                                            if (!empty($cart)) {
+                                                for ($i = 0; $i < count($cart); $i ++) {
+                                                    if ($cart[$i]['product_id'] == $product_id) {
+                                                        $index= $i;
+                                                    }
+                                                }
+                                            }
+                                            if ($index > -1) {
+                                                $cart = $this->session->userdata('cart_data');
+                                                unset($cart[$index]);
+                                                $cart = array_values($cart);
+                                                $this->session->set_userdata('cart_data', $cart);
+                                            }
+                                        }
+                                    }
+                                    $cart = count($this->session->userdata('cart_data'));
+                                    echo $cart;
+                                } else {
+                                    echo "0";
+                                }
                             }
                             ?>
                           </span>

@@ -3,7 +3,10 @@
     <h1>
       Slider Images
     </h1>
-
+    <ol class="breadcrumb">
+  <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+  <li class="active">View Slider</li>
+</ol>
   </section>
   <section class="content">
     <div class="row">

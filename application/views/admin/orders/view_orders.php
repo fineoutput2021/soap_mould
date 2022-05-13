@@ -4,8 +4,7 @@ dcadmin/Orders<div class="content-wrapper">
       <?=$heading;?>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="<?php echo base_url() ?>dcadmin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_orders"><i class="fa fa-dashboard"></i> All <?=$heading;?> </a></li>
+      <li><a href="<?php echo base_url() ?>dcadmin/Home"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class="active">View <?=$heading;?></li>
     </ol>
   </section>

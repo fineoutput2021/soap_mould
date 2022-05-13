@@ -54,7 +54,7 @@ class Type extends CI_finecontrol
             // echo $this->session->userdata('image');
             // echo $this->session->userdata('position');
             // exit;
-             $id=base64_decode($idd);
+            $id=base64_decode($idd);
             $data['id']=$idd;
 
             $this->db->select('*');
@@ -94,7 +94,6 @@ class Type extends CI_finecontrol
                 $this->form_validation->set_rules('sp', 'sp', 'xss_clean');
                 $this->form_validation->set_rules('gstprice', 'gstprice', 'xss_clean');
                 $this->form_validation->set_rules('spgst', 'spgst', 'xss_clean');
-                $this->form_validation->set_rules('quantity', 'quantity', 'xss_clean');
                 $this->form_validation->set_rules('product_id', 'product_id', 'xss_clean');
 
 
@@ -113,7 +112,6 @@ class Type extends CI_finecontrol
                     $sp=$this->input->post('sp');
                     $gstprice=$this->input->post('gstprice');
                     $spgst=$this->input->post('spgst');
-                    $quantity=$this->input->post('quantity');
                     $addedby=$this->session->userdata('admin_id');
 
 
@@ -131,16 +129,16 @@ class Type extends CI_finecontrol
                         $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                         $this->upload->initialize($this->upload_config);
                         if (!$this->upload->do_upload($img1)) {
                             $upload_error = $this->upload->display_errors();
-                        // echo json_encode($upload_error);
+                            // echo json_encode($upload_error);
 
-           $this->session->set_flashdata('emessage',$upload_error);
-             redirect($_SERVER['HTTP_REFERER']);
+                            $this->session->set_flashdata('emessage', $upload_error);
+                            redirect($_SERVER['HTTP_REFERER']);
                         } else {
                             $file_info = $this->upload->data();
 
@@ -160,35 +158,35 @@ class Type extends CI_finecontrol
 
                     $file_check=($_FILES['image2']['error']);
                     if ($file_check!=4) {
-                    $image_upload_folder = FCPATH . "assets/uploads/type/";
-                    if (!file_exists($image_upload_folder)) {
-                        mkdir($image_upload_folder, DIR_WRITE_MODE, true);
-                    }
-                    $new_file_name="type2".date("Ymdhms");
-                    $this->upload_config = array(
+                        $image_upload_folder = FCPATH . "assets/uploads/type/";
+                        if (!file_exists($image_upload_folder)) {
+                            mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+                        }
+                        $new_file_name="type2".date("Ymdhms");
+                        $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
-                    $this->upload->initialize($this->upload_config);
-                    if (!$this->upload->do_upload($img4)) {
-                        $upload_error = $this->upload->display_errors();
-                    // echo json_encode($upload_error);
+                        $this->upload->initialize($this->upload_config);
+                        if (!$this->upload->do_upload($img4)) {
+                            $upload_error = $this->upload->display_errors();
+                            // echo json_encode($upload_error);
 
-           $this->session->set_flashdata('emessage',$upload_error);
-             redirect($_SERVER['HTTP_REFERER']);
-                    } else {
-                        $file_info = $this->upload->data();
+                            $this->session->set_flashdata('emessage', $upload_error);
+                            redirect($_SERVER['HTTP_REFERER']);
+                        } else {
+                            $file_info = $this->upload->data();
 
-                        $videoNAmePath4 = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
-                        $nnnn4=$videoNAmePath4;
+                            $videoNAmePath4 = "assets/uploads/type/".$new_file_name.$file_info['file_ext'];
+                            $nnnn4=$videoNAmePath4;
 
-                        // echo json_encode($file_info);
+                            // echo json_encode($file_info);
+                        }
                     }
-                  }
 
-                  // echo $nnnn4;die();
+                    // echo $nnnn4;die();
 
 
                     $img5='image3';
@@ -204,16 +202,16 @@ class Type extends CI_finecontrol
                         $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                         $this->upload->initialize($this->upload_config);
                         if (!$this->upload->do_upload($img5)) {
                             $upload_error = $this->upload->display_errors();
-                        // echo json_encode($upload_error);
+                            // echo json_encode($upload_error);
 
-           $this->session->set_flashdata('emessage',$upload_error);
-             redirect($_SERVER['HTTP_REFERER']);
+                            $this->session->set_flashdata('emessage', $upload_error);
+                            redirect($_SERVER['HTTP_REFERER']);
                         } else {
                             $file_info = $this->upload->data();
 
@@ -240,16 +238,16 @@ class Type extends CI_finecontrol
                         $this->upload_config = array(
                              'upload_path'   => $image_upload_folder,
                              'file_name' => $new_file_name,
-                             'allowed_types' =>'xlsx|csv|xls|pdf|doc|docx|txt|jpg|jpeg|png',
+                             'allowed_types' =>'jpg|jpeg|png',
                              'max_size'      => 25000
                      );
                         $this->upload->initialize($this->upload_config);
                         if (!$this->upload->do_upload($img6)) {
                             $upload_error = $this->upload->display_errors();
-                        // echo json_encode($upload_error);
+                            // echo json_encode($upload_error);
 
-           $this->session->set_flashdata('emessage',$upload_error);
-             redirect($_SERVER['HTTP_REFERER']);
+                            $this->session->set_flashdata('emessage', $upload_error);
+                            redirect($_SERVER['HTTP_REFERER']);
                         } else {
                             $file_info = $this->upload->data();
 
@@ -281,21 +279,26 @@ class Type extends CI_finecontrol
                     'date'=>$cur_date
 
                     );
-                    // print_r($data_insert);die();
-
-
+                        // print_r($data_insert);die();
                         $last_id=$this->base_model->insert_table("tbl_type", $data_insert, 1) ;
-
-                        //-----inventory created---------------------------------------
+                        //-----inventory create---------------------------------------
                         $beta_insert = array('type_id'=>$last_id,
                                         'quantity'=>100,
                                         'ip' =>$ip,
                                         'added_by' =>$addedby,
                                         'date'=>$cur_date
-
                                         );
-
                         $least_id=$this->base_model->insert_table("tbl_inventory", $beta_insert, 1);
+
+
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Type inserted successfully');
+
+                            redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
                     if ($typ==2) {
                         $idw=base64_decode($iw);
@@ -303,22 +306,6 @@ class Type extends CI_finecontrol
                         $this->db->from('tbl_type');
                         $this->db->where('id', $idw);
                         $da= $this->db->get()->row();
-                        // $this->db->select('*');
-//     $this->db->from('tbl_minor_category');
-//    $this->db->where('name',$name);
-//     $damm= $this->db->get();
-//    foreach($damm->result() as $da) {
-//      $uid=$da->id;
-                        // if($uid==$idw)
-                        // {
-//
-                        //  }
-                        // else{
-//    echo "Multiple Entry of Same Name";
-//       exit;
-                        //  }
-//     }
-
                         if (!empty($da)) {
                             $img = $da ->image1;
                             if (!empty($img)) {
@@ -387,27 +374,20 @@ class Type extends CI_finecontrol
 
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_type', $data_insert);
-
-                        $beta_insert = array('type_id'=>$last_id,
-                                            'quantity'=>$quantity
-                                            );
-
-                        $least_id=$this->db->update("tbl_inventory", $beta_insert);
                         $product_id = $da->product_id;
-                        
+
+
+                        if ($last_id!=0) {
+                            $this->session->set_flashdata('smessage', 'Type updated successfully');
+
+                            redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
+                        } else {
+                            $this->session->set_flashdata('emessage', 'Sorry error occured');
+                            redirect($_SERVER['HTTP_REFERER']);
+                        }
                     }
 
                     // echo $product_id;die();
-
-
-                    if ($last_id!=0) {
-                        $this->session->set_flashdata('smessage', 'Data inserted successfully');
-
-                        redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
-                    } else {
-                        $this->session->set_flashdata('emessage', 'Sorry error occured');
-                        redirect($_SERVER['HTTP_REFERER']);
-                    }
                 } else {
                     $this->session->set_flashdata('emessage', validation_errors());
                     redirect($_SERVER['HTTP_REFERER']);
@@ -475,7 +455,10 @@ class Type extends CI_finecontrol
                 $zapak=$this->db->delete('tbl_type', array('id' => $id));
                 if ($zapak!=0) {
                     $zapak2=$this->db->delete('tbl_inventory', array('type_id' => $id));
+                    $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));                    
                     if (!empty($zapak2)) {
+                      $this->session->set_flashdata('smessage', 'Type deleted successfully');
+
                         redirect("dcadmin/Products/view_products", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Some error occured');
@@ -515,6 +498,8 @@ class Type extends CI_finecontrol
                 $zapak=$this->db->update('tbl_type', $data_update);
 
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Type status changed successfully');
+
                     redirect("dcadmin/Type/view_type", "refresh");
                 } else {
                     echo "Error";
@@ -531,6 +516,8 @@ class Type extends CI_finecontrol
                 $zapak=$this->db->update('tbl_type', $data_update);
 
                 if ($zapak!=0) {
+                  $this->session->set_flashdata('smessage', 'Type status changed successfully');
+
                     redirect("dcadmin/Type/view_type", "refresh");
                 } else {
                     $data['e']="Error Occured";

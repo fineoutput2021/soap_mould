@@ -74,11 +74,11 @@ class System extends CI_finecontrol
 
                     $p1=$da->password;
 
-                    if ($new2==$p1) {
+                    if (md5($old)==$p1) {
                         $data_update = array(
-                                                                        'password'=>$p1,
+                            'password'=>$new2,
 
-                                                                        );
+                            );
 
                         $this->db->where('id', $usr_id);
                         $zapak=$this->db->update('tbl_team', $data_update);
@@ -289,7 +289,7 @@ class System extends CI_finecontrol
 
 
                     if ($last_id!=0) {
-                        redirect("dcadmin/system/view_team", "refresh");
+                        redirect("dcadmin/System/view_team", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Error Occured in data insert, Please try again');
                         redirect($_SERVER['HTTP_REFERER']);
@@ -334,7 +334,7 @@ class System extends CI_finecontrol
                 $zapak=$this->db->delete('tbl_team', array('id' => $id));
                 if ($zapak!=0) {
                     $this->session->set_flashdata('smessage', 'Successfully deleted');
-                    redirect("dcadmin/system/view_team", "refresh");
+                    redirect("dcadmin/System/view_team", "refresh");
                 } else {
                     $this->session->set_flashdata('emessage', 'Error Occured');
                     redirect($_SERVER['HTTP_REFERER']);
@@ -379,7 +379,7 @@ class System extends CI_finecontrol
 
                     if ($zapak!=0) {
                         $this->session->set_flashdata('smessage', 'Status successfully Updated');
-                        redirect("dcadmin/system/view_team", "refresh");
+                        redirect("dcadmin/System/view_team", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Error Occured');
                         redirect($_SERVER['HTTP_REFERER']);
@@ -397,7 +397,7 @@ class System extends CI_finecontrol
                     if ($zapak!=0) {
                         $this->session->set_flashdata('smessage', 'Status successfully Updated');
 
-                        redirect("dcadmin/system/view_team", "refresh");
+                        redirect("dcadmin/System/view_team", "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Error Occured');
                         redirect($_SERVER['HTTP_REFERER']);

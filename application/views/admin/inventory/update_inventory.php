@@ -1,9 +1,12 @@
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Update Products
+      Update Inventory
     </h1>
-
+    <ol class="breadcrumb">
+  <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+  <li><a href="<?php echo base_url() ?>dcadmin/Inventory/view_products"><i class="fa fa-dashboard"></i> View Products </a></li>
+</ol>
   </section>
   <section class="content">
     <div class="row">
@@ -11,7 +14,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Update Products </h3>
+            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Update Inventory </h3>
           </div>
 
           <?php if (!empty($this->session->flashdata('smessage'))) {  ?>

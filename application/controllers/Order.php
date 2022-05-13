@@ -419,7 +419,7 @@ show_error($this->email->print_debugger());
     public function online_payment()
     {
         $this->load->view('frontend/common/header');
-        $this->load->view('frontend/payment.php');
+        $this->load->view('frontend/payment');
         $this->load->view('frontend/common/footer');
     }
     //-----------order success---------

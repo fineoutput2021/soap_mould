@@ -143,7 +143,7 @@ class Inventory extends CI_finecontrol
                         $last_id=$this->db->update('tbl_inventory', $data_insert);
                     }
                     if ($last_id!=0) {
-                        $this->session->set_flashdata('smessage', 'Data inserted successfully');
+                        $this->session->set_flashdata('smessage', 'Inventory updated successfully');
                         redirect("dcadmin/Inventory/view_inventory/".base64_encode($type->product_id), "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Sorry error occured');

@@ -459,9 +459,9 @@ public function login(){
                   $this->email->subject('Reset your password');
                         $this->email->message($message);
                         if ($this->email->send()) {
-                            echo 'Email sent.';
+                            // echo 'Email sent.';
                         } else {
-                            show_error($this->email->print_debugger());
+                            // show_error($this->email->print_debugger());
                         }
 
                         $this->session->set_flashdata('smessage', 'Password reset link has been sent successfully');

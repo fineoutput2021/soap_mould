@@ -315,6 +315,45 @@ class Orders extends CI_finecontrol
                 $zapak=$this->db->update('tbl_order1', $data_update);
 
                 if ($zapak!=0) {
+                  $this->db->select('*');
+                  $this->db->from('tbl_order1');
+                  $this->db->where('id',$id);
+                  $user_details= $this->db->get()->row();
+
+                  $config = Array(
+                  'protocol' => 'smtp',
+                  'smtp_host' => SMTP_HOST,
+                  'smtp_port' => SMTP_PORT,
+                  'smtp_user' => USER_NAME, // change it to yours
+                  'smtp_pass' => PASSWORD, // change it to yours
+                  'mailtype' => 'html',
+                  'charset' => 'iso-8859-1',
+                  'wordwrap' => true
+                  );
+                  $to=$user_details->email;
+                  $data['name']= $user_details->name;
+                  $data['email']= $user_details->email;
+                  $data['phone']= $user_details->phone;
+                  $data['order1_id']= $id;
+                  $data['date']= $user_details->date;
+
+
+
+                  $message =$this->load->view('email/orderdelivered',$data,TRUE);
+                  // print_r($message);
+                  // exit;
+
+                  $this->load->library('email', $config);
+                  $this->email->set_newline("");
+                  $this->email->from(EMAIL); // change it to yours
+                  $this->email->to($to);// change it to yours
+                  $this->email->subject('Order Placed');
+                  $this->email->message($message);
+                  if($this->email->send()){
+                  // echo 'Email sent.';
+                  }else{
+                  show_error($this->email->print_debugger());
+                  }
                     $this->session->set_flashdata('smessage', 'Status Updated Successfully');
                     redirect($_SERVER['HTTP_REFERER']);
                 } else {

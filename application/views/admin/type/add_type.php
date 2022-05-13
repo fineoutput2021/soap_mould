@@ -45,19 +45,19 @@
                           <tr>
                                                     <td> <strong>MRP</strong>  <span style="color:red;">*</span></strong> </td>
                                                     <td>
-    													<input type="text" name="mrp"  id ="mrp" class="form-control" placeholder="" required value="" />
+    													<input type="text" name="mrp" onkeypress="return isNumberKey(event)"  id ="mrp" class="form-control" placeholder="" required value="" />
     	                                            </td>
         										</tr>
                             <tr>
                                                       <td> <strong>Selling Price</strong>  <span style="color:red;">*</span></strong> </td>
                                                       <td>
-                                <input type="text" name="sp" id="sp" class="form-control" placeholder=""  required value="" />
+                                <input type="text" name="sp" onkeypress="return isNumberKey(event)" id="sp" class="form-control" placeholder=""  required value="" />
                                                     </td>
                               </tr>
                             <tr>
                                                       <td> <strong>GST(%)</strong>  <span style="color:red;">*</span></strong> </td>
                                                       <td>
-      													<input type="text" name="gst" id="gst" class="form-control" placeholder="" required value="" />
+      													<input type="text" name="gst" onkeypress="return isNumberKey(event)" id="gst" class="form-control" placeholder="" required value="" />
       	                                            </td>
           										</tr>
 
@@ -130,4 +130,13 @@ $(document).ready(function() {
   });
 });
 </script>
+
+ <script>
+   function isNumberKey(evt){
+       var charCode = (evt.which) ? evt.which : evt.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
+           return false;
+       return true;
+   }
+   </script>
 <link href="<?php echo base_url() ?>assets/cowadmin/css/jqvmap.css" rel='stylesheet' type='text/css' />

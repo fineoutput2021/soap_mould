@@ -4,10 +4,9 @@
             Add New Promocode
             </h1>
             <ol class="breadcrumb">
-             <li><a href="<?php echo base_url() ?>admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li><a href="<?php echo base_url() ?>admin/college"><i class="fa fa-dashboard"></i> All Promocodes </a></li>
-
-            </ol>
+          <li><a href="<?php echo base_url() ?>dcadmin/home"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="<?php echo base_url() ?>dcadmin/Promocode/view_promocode"><i class="fa fa-dashboard"></i> View Promocode </a></li>
+        </ol>
           </section>
   		<section class="content">
   		<div class="row">

@@ -70,10 +70,12 @@
                    $this->db->from('tbl_category');
                    $this->db->where('is_active', 1);
                    $data['category_data']= $this->db->get();
+                   $cat_data = $data['category_data']->row();
 
                    $this->db->select('*');
                    $this->db->from('tbl_subcategory');
                    $this->db->where('is_active', 1);
+                   $this->db->where('category_id', $cat_data->id);
                    $data['subcategory_data']= $this->db->get();
 
                    $this->db->select('*');
@@ -138,6 +140,13 @@
                                            );
 
                                $last_id=$this->base_model->insert_table("tbl_products", $data_insert, 1) ;
+                               if ($last_id!=0) {
+                                   $this->session->set_flashdata('smessage', 'Products inserted successfully');
+                                   redirect("dcadmin/Products/view_products", "refresh");
+                               } else {
+                                   $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                   redirect($_SERVER['HTTP_REFERER']);
+                               }
                            }
                            if ($typ==2) {
                                $idw=base64_decode($iw);
@@ -163,13 +172,13 @@
                      );
                                $this->db->where('id', $idw);
                                $last_id=$this->db->update('tbl_products', $data_insert);
-                           }
-                           if ($last_id!=0) {
-                               $this->session->set_flashdata('smessage', 'Data inserted successfully');
-                               redirect("dcadmin/Products/view_products", "refresh");
-                           } else {
-                               $this->session->set_flashdata('emessage', 'Sorry error occured');
-                               redirect($_SERVER['HTTP_REFERER']);
+                               if ($last_id!=0) {
+                                   $this->session->set_flashdata('smessage', 'Products updated successfully');
+                                   redirect("dcadmin/Products/view_products", "refresh");
+                               } else {
+                                   $this->session->set_flashdata('emessage', 'Sorry error occured');
+                                   redirect($_SERVER['HTTP_REFERER']);
+                               }
                            }
                        } else {
                            $this->session->set_flashdata('emessage', validation_errors());
@@ -205,6 +214,8 @@
                        $zapak=$this->db->update('tbl_products', $data_update);
 
                        if ($zapak!=0) {
+                           $this->session->set_flashdata('smessage', 'Products status updated successfully');
+
                            redirect("dcadmin/products/view_products", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -221,6 +232,8 @@
                        $zapak=$this->db->update('tbl_products', $data_update);
 
                        if ($zapak!=0) {
+                           $this->session->set_flashdata('smessage', 'Products status updated successfully');
+
                            redirect("dcadmin/products/view_products", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -246,8 +259,20 @@
                    $id=base64_decode($idd);
 
                    if ($this->load->get_var('position')=="Super Admin") {
+                       $this->db->select('*');
+                       $this->db->from('tbl_type');
+                       $this->db->where('product_id', $id);
+                       $type_data= $this->db->get();
+                       foreach ($type_data->result() as $type) {
+                           $zapak1=$this->db->delete('tbl_inventory', array('type_id' => $type->id));
+                           $zapak2=$this->db->delete('tbl_type', array('id' => $type->id));
+                           $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));
+                           
+                       }
                        $zapak=$this->db->delete('tbl_products', array('id' => $id));
                        if ($zapak!=0) {
+                           $this->session->set_flashdata('smessage', 'Products deleted successfully (Along with its types)');
+
                            redirect("dcadmin/Products/view_products", "refresh");
                        } else {
                            $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -274,13 +299,10 @@
                    $i=1;
                    foreach ($data->result() as $row) {
                        $sub_category[] = array('id' =>$row->id ,'name'=>$row->name );
-
-
                        $i++;
                    }
                    if (!empty($sub_category)) {
                        // code...
-
                        echo json_encode($sub_category);
                    } else {
                        echo 'NA';

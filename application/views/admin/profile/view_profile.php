@@ -98,7 +98,8 @@
                                   </tr>
                           <tr>
     												<td colspan="2" >
-    													<input type="submit" class="btn btn-default" value="save">
+                              <a href="<?=base_url()?>dcadmin/Home">
+    													<input type="submit" class="btn btn-default" value="save"></a>
     												</td>
     											</tr>
 
@@ -140,7 +141,7 @@
             // var posting = $.post( url, { s: term } );
             $.ajax({
                        type: "POST",
-                       url: "<?php echo base_url(); ?>admin/system/change_pass",
+                       url: "<?php echo base_url(); ?>dcadmin/System/change_pass",
                        data: {
                           'old': old,
                           'new': newpass

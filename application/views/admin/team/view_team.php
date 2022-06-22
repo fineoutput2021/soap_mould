@@ -11,7 +11,7 @@
   <section class="content">
     <div class="row">
       <div class="col-lg-12">
-        <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/System/add_team" role="button" style="margin-bottom:12px;"> Add Team</a>
+        <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/System/add_team" role="button" style="margin-bottom:12px;"> Add Team</a>
         <div class="panel panel-default">
           <?php if (!empty($this->session->flashdata('smessage'))) { ?>
           <div class="alert alert-success alert-dismissible">
@@ -33,7 +33,7 @@
           <div class="panel panel-default">
 
             <div class="panel-body">
-              <div class="">
+              <div class="table table-responsive">
                 <table class="table table-bordered table-hover table-striped" id="userTable">
                   <thead>
                     <tr>

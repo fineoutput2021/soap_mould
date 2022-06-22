@@ -12,8 +12,8 @@
         		<section class="content">
         		<div class="row">
                <div class="col-lg-12">
-        				   <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Type/add_type/<?=$id;?>" role="button" style="margin-bottom:12px;"> Add Type </a>
-                   <a class="btn btn-info cticket" href="<?php echo base_url() ?>dcadmin/Products/view_products" role="button" style="margin-bottom:12px;"> Back </a>
+        				   <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Type/add_type/<?=$id;?>" role="button" style="margin-bottom:12px;"> Add Type </a>
+                   <a class="btn custom_btn" href="<?php echo base_url() ?>dcadmin/Products/view_products" role="button" style="margin-bottom:12px;"> Back </a>
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>View Type</h3>
@@ -45,10 +45,10 @@
                                                     <th>Product Name</th>
                                                     <th>Type Name</th>
                                                     <th>MRP</th>
-                                                    <th>GST</th>
-                                                    <th>SP</th>
-                                                    <th>GST Price</th>
-                                                    <th>SP GST</th>
+                                                    <th>GST (%)</th>
+                                                    <th>Selling Price</th>
+                                                    <th>GST Amount</th>
+                                                    <th>Selling Price with GSt</th>
                                                     <th>Image 1</th>
                                                     <th>Image 2</th>
                                                     <th>Image 3</th>
@@ -69,11 +69,11 @@
                                echo $product_data->name;
                                ?></td>
                                <td><?php echo $data->name ?></td>
-                               <td><?php echo $data->mrp ?></td>
-                               <td><?php echo $data->gst ?></td>
-                               <td><?php echo $data->sp ?></td>
-                               <td><?php echo $data->gstprice ?></td>
-                               <td><?php echo $data->spgst ?></td>
+                               <td>₹<?php echo $data->mrp ?></td>
+                               <td><?php echo $data->gst ?>%</td>
+                               <td>₹<?php echo $data->sp ?></td>
+                               <td>₹<?php echo $data->gstprice ?></td>
+                               <td>₹<?php echo $data->spgst ?></td>
 
 
                                <td>

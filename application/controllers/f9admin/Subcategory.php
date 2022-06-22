@@ -213,7 +213,19 @@
                        $this->db->where('id', $id);
                        $zapak=$this->db->update('tbl_subcategory', $data_update);
 
+
                        if ($zapak!=0) {
+                         foreach($pro_del->result() as $pro){
+                         $this->db->select('*');
+                         $this->db->from('tbl_type');
+                         $this->db->where('product_id', $pro->id);
+                         $type_data= $this->db->get();
+                         foreach ($type_data->result() as $type) {
+                             $zapak2=$this->db->delete('tbl_type', array('id' => $type->id));
+                             $zapak=$this->db->delete('tbl_cart', array('type_id' => $type->id));
+
+                         }
+                       }
                          $this->session->set_flashdata('smessage', 'Subcategory status changed successfully');
 
                            redirect("dcadmin/subcategory/view_subcategory", "refresh");
@@ -253,8 +265,8 @@
                      foreach ($type_data->result() as $type) {
                          $zapak1=$this->db->delete('tbl_inventory', array('type_id' => $type->id));
                          $zapak2=$this->db->delete('tbl_type', array('id' => $type->id));
-                         $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));
-                         
+                         $zapak=$this->db->delete('tbl_cart', array('type_id' => $type->id));
+
                      }
                      $zapak1=$this->db->delete('tbl_products', array('id' => $pro->id));
                    }

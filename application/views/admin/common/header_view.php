@@ -18,6 +18,46 @@
     <link href="<?php echo base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() ?>assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
   <style>
+  /* ==============================Custom theme=========================================== */
+  .custom_btn{
+    color: white;
+    background-color: #416e7a;
+  }
+  .custom_btn:hover{
+    color: white;
+    background-color: #7fadb9;
+  }
+  .custom_header_top{
+  color: white;
+  background-color: #416e7a !important;
+}
+  .custom_header{
+    color: black;
+    background-color: white !important;
+  }
+  .custom_header>a:hover{
+    color: #fff;
+    background: #416e7a !important;
+    border-left-color: #f4f1eb;
+  }
+  .custom_header>li>a:hover{
+    color: #fff;
+    background: #416e7a;
+    border-left-color: #f4f1eb;
+  }
+  .active>a{
+    color: #fff;
+    background: #416e7a !important;
+  }
+.skin-blue .sidebar-menu>li>.treeview-menu{
+    color: white !important;;
+    background-color: #262626;
+  }
+  .skin-blue .sidebar-menu>li>a:hover{
+    color: #fff;
+    background: #416e7a;
+    border-left-color: #f4f1eb;
+  }
   label{
   	margin:5px;
   }
@@ -154,11 +194,11 @@
   <body class="skin-blue">
     <div class="wrapper">
 
-      <header class="main-header">
+      <header class="main-header custom_header_top">
         <!-- Logo -->
-        <a href="<?=base_url().ADMIN_URL ?>/home" class="logo"><b><?php echo SITE_NAME ?></b></a>
+        <a href="<?=base_url().ADMIN_URL ?>/home" class="logo custom_header_top"><b><?php echo SITE_NAME ?></b></a>
         <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
+        <nav class="navbar navbar-static-top custom_header_top" role="navigation">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
@@ -186,7 +226,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
-                  <li class="user-header">
+                  <li class="user-header custom_header_top">
 <?php
                     if (!empty($imgr)) {
                         ?>
@@ -220,11 +260,11 @@
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
+      <aside class="main-sidebar custom_header">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-          <div class="user-panel">
+          <div class="user-panel custom_header">
             <div class="pull-left image">
             <?php
               if (!empty($imgr)) {
@@ -240,9 +280,9 @@
 
             </div>
             <div class="pull-left info">
-              <p> <?php print_r($user_name); ?></p>
+              <p style="color: black; margin-top: 10px"> <?php print_r($user_name); ?></p>
 
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
             </div>
           </div>
           <!-- search form -->
@@ -257,17 +297,19 @@
           <!-- /.search form -->
 
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+          <ul class="sidebar-menu custom_header">
+            <li class="header custom_header">MAIN NAVIGATION</li>
 
 
             <?php
 // print_r($sidebar);
 // exit;
             foreach ($sidebar as $sd) {
+              $currentURL = current_url();
+              $urls= base_url().ADMIN_URL."/".$sd['url'];
                 ?>
                             <li class="treeview">
-                              <a href="<?php
+                              <a style="<?php if($currentURL == $urls){ echo 'background-color:#416e7a; color: white; border-left-color: #f4f1eb;';}?>" href="<?php
                               $this->db->select('*');
                 $this->db->from('tbl_admin_sidebar2');
                 $this->db->where('main_id', $sd['id']);
@@ -275,7 +317,7 @@
                 $dawwa=$dsaww->row();
                 if (empty($dawwa)) {
                     echo base_url().ADMIN_URL."/".$sd['url'].'">'; ?>
-                                <i class="fa fa-files-o"></i>
+                                <i class="fa fa-circle-o"></i>
                                 <span><?php echo $sd['name'] ?></span>
                                 <span class="label label-primary pull-right"></span>
                                 </a>
@@ -283,7 +325,7 @@
                               </li>
                               <?php
                 } else {
-                    echo '#"> <i class="fa fa-files-o"></i>
+                    echo '#"> <i class="fa fa-circle-o"></i>
                                 <span>'.$sd['name'].'</span>
                                 <span class="label label-primary pull-right"></span>
                               </a>

@@ -274,10 +274,18 @@ class Order extends CI_Controller
   public function create_razorpay_order_id()
   {
       if ((!empty($this->session->userdata('order_id')))) {
+          $name=$this->input->post('name');
+          $email=$this->input->post('email');
+          $phone=$this->input->post('phone');
+          $address=$this->input->post('address');
+          $pincode=$this->input->post('pincode');
           $this->db->select('*');
           $this->db->from('tbl_order1');
           $this->db->where('id', base64_decode($this->session->userdata('order_id')));
           $data['order_data']= $this->db->get()->row();
+          $ip = $this->input->ip_address();
+          date_default_timezone_set("Asia/Calcutta");
+          $cur_date=date("Y-m-d H:i:s");
 
           $orderData = [
                   'receipt'         => $data['order_data']->id,
@@ -290,6 +298,23 @@ class Order extends CI_Controller
           $api = new Api($api_key, $api_secret);
 
           $razorpayOrder = $api->order->create($orderData);
+
+          //----------order1 entry-------------
+          $order1_update = array(
+                      'name'=>$name,
+                      'email'=>$email,
+                      'phone'=>$phone,
+                      'address'=>$address,
+                      'pincode'=>$pincode,
+                      'payment_status'=>1,
+                      'payment_type'=>1,
+                      'order_status'=>1,
+                      'date'=>$cur_date,
+                      'ip'=>$ip,
+                        );
+          // print_r($order1_update);die();
+          $this->db->where('id', base64_decode($this->session->userdata('order_id')));
+          $zapak2=$this->db->update('tbl_order1', $order1_update);
 
           $respone['data'] = true;
           $respone['message'] = 'success';
@@ -459,6 +484,101 @@ show_error($this->email->print_debugger());
         }
     }
 
+//==================== payment validate cronjob ======================
+public function verify_payment(){
+
+  //             $this->db->select('*');
+  // $this->db->from('tbl_payment_varify_data');
+  // //$this->db->where('id',$usr);
+  // $data= $this->db->get()->row();
+  // $body = json_decode($data->body);
+  // $event = $body->event;//order.paid
+  // $razor_id = $body->payload->order->entity->id;
+  // $status = $body->payload->order->entity->status;//paid
+  // $paid_amount = $body->payload->order->entity->amount_paid;//paid
+  // print_r($body->payload->order->entity->amount_paid);
+$entityBody = file_get_contents('php://input');
+$body = json_decode($entityBody);
+$event = $body->event;//order.paid
+$status = $body->payload->order->entity->status;//paid
+$razor_id = $body->payload->order->entity->id;
+$paid_amount = $body->payload->order->entity->amount_paid;
+if($event=='order.paid'){
+if($status=='paid'){
+  $this->db->select('*');
+  $this->db->from('tbl_order1');
+  $this->db->where('razorpay_order_id',$razor_id);
+  $order_data= $this->db->get()->row();
+
+  $this->db->select('*');
+  $this->db->from('tbl_users');
+  $this->db->where('id',$order_data->user_id);
+  $user_data= $this->db->get()->row();
+
+$online_amount = $paid_amount/100;
+
+
+if($online_amount==$order_data->final_amount){
+
+  $config = array(
+  'protocol' => 'smtp',
+  'smtp_host' => SMTP_HOST,
+  'smtp_port' => SMTP_PORT,
+  'smtp_user' => USER_NAME, // change it to yours
+  'smtp_pass' => PASSWORD, // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => true
+  );
+  $to=$email;
+  $data['name']= $order_data->name;
+  $data['email']= $order_data->email;
+  $data['phone']= $order_data->phone;
+  $data['order1_id']= $order_data->id;
+  $data['date']= $order_data->date;
+
+
+
+  $message =$this->load->view('email/ordersuccess', $data, true);
+  // echo $to;
+  // print_r($message);
+  // exit;
+
+  $this->load->library('email', $config);
+  $this->email->set_newline("");
+  $this->email->from(EMAIL); // change it to yours
+  $this->email->to($to);// change it to yours
+  $this->email->subject('Order Placed');
+  $this->email->message($message);
+  if ($this->email->send()) {
+      // echo 'Email sent.';
+  } else {
+      show_error($this->email->print_debugger());
+  }
+  $res = array('message'=>'success',
+  'status'=>200
+  );
+}else{
+
+$res = array('message'=>'Wrong amount paid! Please contact admin',
+'status'=>201
+);
+
+echo json_encode($res);
+}
+}else{
+
+$res = array('message'=>'Payment Failed',
+'status'=>201
+);
+
+echo json_encode($res);
+}
+}
+
+
+}
+
     //-------------------check payment online------------------------------
 public function check_payment()
 {
@@ -496,20 +616,6 @@ public function check_payment()
                 date_default_timezone_set("Asia/Calcutta");
                 $cur_date=date("Y-m-d H:i:s");
 
-                $this->db->select('*');
-                $this->db->from('tbl_order1');
-                $this->db->where('id', $order_id);
-                $this->db->order_by('id', 'desc');
-                $order= $this->db->get()->row();
-                if (!empty($gstin)) {
-                    if (empty($order->invoice)) {
-                        $invoice = 1;
-                    } else {
-                        $invoice = $order->invoice +1;
-                    }
-                } else {
-                    $invoice = null;
-                }
                 $this->db->select('*');
                 $this->db->from('tbl_order1');
                 $this->db->where('id', $order_id);
@@ -582,43 +688,6 @@ public function check_payment()
                                 $this->session->unset_userdata('cart_data');
                                 // echo "hi";die();
                             }
-
-
-                            $config = array(
-                            'protocol' => 'smtp',
-                            'smtp_host' => SMTP_HOST,
-                            'smtp_port' => SMTP_PORT,
-                            'smtp_user' => USER_NAME, // change it to yours
-                            'smtp_pass' => PASSWORD, // change it to yours
-                            'mailtype' => 'html',
-                            'charset' => 'iso-8859-1',
-                            'wordwrap' => true
-                            );
-                            $to=$email;
-                            $data['name']= $name;
-                            $data['email']= $email;
-                            $data['phone']= $phone;
-                            $data['order1_id']= $order_id;
-                            $data['date']= $cur_date;
-
-
-
-                            $message =$this->load->view('email/ordersuccess', $data, true);
-                            // echo $to;
-                            // print_r($message);
-                            // exit;
-
-                            $this->load->library('email', $config);
-                            $this->email->set_newline("");
-                            $this->email->from(EMAIL); // change it to yours
-                            $this->email->to($to);// change it to yours
-                            $this->email->subject('Order Placed');
-                            $this->email->message($message);
-                            if ($this->email->send()) {
-                                // echo 'Email sent.';
-                            } else {
-                                show_error($this->email->print_debugger());
-                            }
                             // die();
 
                             $respone['data'] = true;
@@ -678,6 +747,12 @@ public function check_payment()
         } else {
             redirect("/", "refresh");
         }
+    }
+
+    public function order_failed(){
+      $this->load->view('frontend/common/header');
+      $this->load->view('frontend/order_failed');
+      $this->load->view('frontend/common/footer');
     }
 
     //===========View my orders=========================

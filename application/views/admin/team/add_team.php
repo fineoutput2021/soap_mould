@@ -49,7 +49,7 @@
                       <td> <strong>Phone (optional)</strong> </strong> </td>
                       <td>
 
-                        <input type="text" name="phone" class="form-control" placeholder="" value="" />
+                        <input type="text" maxlength="10" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" name="phone" class="form-control" placeholder="" value="" />
                       </td>
                     </tr>
                     <tr>
@@ -72,7 +72,7 @@
                         <div class="form-group">
 
                           <select class="form-control" name="power" required>
-                            <option value=1">Please select Type</option>
+                            <option value="1">Please select Type</option>
                             <option value="1">Super Admin</option>
                             <option value="2">Admin</option>
                             <option value="3">Manager</option>
@@ -83,7 +83,7 @@
                     </tr>
 
                     <tr>
-                      <td> <strong>services</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <strong>Services</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
                         <div class="form-group">
                           <div class="checkbox">

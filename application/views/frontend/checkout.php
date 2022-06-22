@@ -93,7 +93,7 @@
       </div>
       <div class="row mb-4 mt-4">
         <div class="col-12 col-md-6">
-          <input type="radio" class="payment_type" required name="payment_method" value="1">
+          <input type="radio" checked class="payment_type" required name="payment_method" value="1">
           <label for="cod">COD</label><br>
         </div>
         <div class="col-12 col-md-6">
@@ -537,10 +537,14 @@ $(document).ready(function () {
               $.ajax({
               type: "POST",
               url: "<?php echo base_url(); ?>Order/create_razorpay_order_id",
-              // data: {
-              // 'old': old,
-              // 'new': newpass
-              // },
+              data: {
+                name: $("#name").val(),
+                email: $("#email").val(),
+                phone: $("#phone").val(),
+                order_id: $("#order").val(),
+                pincode: $("#pincode").val(),
+                address: $("#address").val(),
+              },
               dataType: 'json',
               success: function(response){
                     if(response.message == 'success'){
@@ -579,8 +583,6 @@ $(document).ready(function () {
                               phone: $("#phone").val(),
                               order_id: $("#order").val(),
                               pincode: $("#pincode").val(),
-                              state: $("#state").val(),
-                              gstin: $("#gstin").val(),
                               address: $("#address").val(),
                               payment_method: payment_method,
                             },
@@ -596,7 +598,7 @@ $(document).ready(function () {
                               if (respawn.data == true) {
                                 window.location.replace("<?=base_url()?>Order/order_success");
                               }else if (respawn.data == false) {
-                                window.location.replace("<?=base_url()?>Order/payment_failed");
+                                window.location.replace("<?=base_url()?>Order/order_failed");
                               }
                             }
                           });

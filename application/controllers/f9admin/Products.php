@@ -232,6 +232,14 @@
                        $zapak=$this->db->update('tbl_products', $data_update);
 
                        if ($zapak!=0) {
+                         $this->db->select('*');
+                         $this->db->from('tbl_type');
+                         $this->db->where('product_id', $id);
+                         $type_data= $this->db->get();
+                         foreach ($type_data->result() as $type) {
+                             $zapak=$this->db->delete('tbl_cart', array('type_id' => $type->id));
+                             $zapak=$this->db->delete('tbl_wishlist', array('type_id' => $type->id));
+                         }
                            $this->session->set_flashdata('smessage', 'Products status updated successfully');
 
                            redirect("dcadmin/products/view_products", "refresh");
@@ -266,8 +274,8 @@
                        foreach ($type_data->result() as $type) {
                            $zapak1=$this->db->delete('tbl_inventory', array('type_id' => $type->id));
                            $zapak2=$this->db->delete('tbl_type', array('id' => $type->id));
-                           $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));
-                           
+                           $zapak=$this->db->delete('tbl_cart', array('type_id' => $type->id));
+
                        }
                        $zapak=$this->db->delete('tbl_products', array('id' => $id));
                        if ($zapak!=0) {

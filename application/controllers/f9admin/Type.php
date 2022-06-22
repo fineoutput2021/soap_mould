@@ -209,7 +209,6 @@ class Type extends CI_finecontrol
                         if (!$this->upload->do_upload($img5)) {
                             $upload_error = $this->upload->display_errors();
                             // echo json_encode($upload_error);
-
                             $this->session->set_flashdata('emessage', $upload_error);
                             redirect($_SERVER['HTTP_REFERER']);
                         } else {
@@ -280,7 +279,7 @@ class Type extends CI_finecontrol
 
                     );
                         // print_r($data_insert);die();
-                        $last_id=$this->base_model->insert_table("tbl_type", $data_insert, 1) ;
+                        $last_id = $this->base_model->insert_table("tbl_type", $data_insert, 1) ;
                         //-----inventory create---------------------------------------
                         $beta_insert = array('type_id'=>$last_id,
                                         'quantity'=>100,
@@ -293,7 +292,6 @@ class Type extends CI_finecontrol
 
                         if ($last_id!=0) {
                             $this->session->set_flashdata('smessage', 'Type inserted successfully');
-
                             redirect("dcadmin/Type/view_type/".base64_encode($product_id), "refresh");
                         } else {
                             $this->session->set_flashdata('emessage', 'Sorry error occured');
@@ -455,7 +453,7 @@ class Type extends CI_finecontrol
                 $zapak=$this->db->delete('tbl_type', array('id' => $id));
                 if ($zapak!=0) {
                     $zapak2=$this->db->delete('tbl_inventory', array('type_id' => $id));
-                    $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));                    
+                    $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));
                     if (!empty($zapak2)) {
                       $this->session->set_flashdata('smessage', 'Type deleted successfully');
 
@@ -502,8 +500,8 @@ class Type extends CI_finecontrol
 
                     redirect("dcadmin/Type/view_type", "refresh");
                 } else {
-                    echo "Error";
-                    exit;
+                  $this->session->set_flashdata('emessage', 'Some error occured');
+                  redirect($_SERVER['HTTP_REFERER']);
                 }
             }
             if ($t=="inactive") {
@@ -516,13 +514,13 @@ class Type extends CI_finecontrol
                 $zapak=$this->db->update('tbl_type', $data_update);
 
                 if ($zapak!=0) {
+                  $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));
+                  $zapak=$this->db->delete('tbl_wishlist', array('type_id' => $id));
                   $this->session->set_flashdata('smessage', 'Type status changed successfully');
-
                     redirect("dcadmin/Type/view_type", "refresh");
                 } else {
-                    $data['e']="Error Occured";
-                    // exit;
-                    $this->load->view('errors/error500admin', $data);
+                  $this->session->set_flashdata('emessage', 'Some error occured');
+                  redirect($_SERVER['HTTP_REFERER']);
                 }
             }
         } else {

@@ -28,48 +28,27 @@
     <div class="mb-3">
       <label class="form-label" for="validationServer01">Name</label>
       <input class="form-control " name="name" type="text" placeholder="Name" id="validationServer01" required/>
-			<div class="invalid-feedback">
-      Inter Name
-    </div>
-			<div class="valid-feedback">
-      Looks good!
-    </div>
+
     </div>
 
     <!-- Email address input -->
     <div class="mb-3">
       <label class="form-label" for="validationServer02">Email Address</label>
       <input class="form-control " name="email" type="email" placeholder="Email Address" id="validationServer02" required/>
-			<div class="invalid-feedback">
-      Enter Email
-    </div>
-			<div class="valid-feedback">
-      Looks good!
-    </div>
+
 			</div>
 
     <!-- Number address input -->
     <div class="mb-3">
       <label class="form-label" for="validationServer03">Phone Number</label>
-      <input class="form-control " name="phone" type="text" placeholder="Enter Phone Number" id="validationServer03" required/>
-			<div class="invalid-feedback">
-      Enter Number
-    </div>
-			<div class="valid-feedback">
-      Looks good!
-    </div>
+      <input class="form-control " name="phone" type="text" maxlength="10" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" placeholder="Enter Phone Number" id="validationServer03" required/>
+
 			</div>
 
     <!-- Message input -->
     <div class="mb-3">
       <label class="form-label" for="validationServer04">Message</label>
       <textarea class="form-control" name="message" type="text" placeholder="Message" style="height: 10rem;" id="validationServer04" required></textarea>
-			<div class="invalid-feedback">
-      Enter Text Here
-    </div>
-			<div class="valid-feedback">
-      Looks good!
-    </div>
 			</div>
 
     <!-- Form submissions success message -->

@@ -60,7 +60,7 @@
               <a class="btn btn-primary" href="<?php echo base_url() ?>Order/order_details/<?=base64_encode($data->id);?>" role="button" style="">View Details</a>
             </td>
             <td>
-              <?if ($data->order_status!=5){?>
+              <?if ($data->order_status==1){?>
                 <a class="btn btn-danger" href="<?php echo base_url() ?>Order/cancel_order/<?=base64_encode($data->id);?>" role="button" style=""><i class="fa fa-times" aria-hidden="true"></i></a>
               <?}else{?>
 

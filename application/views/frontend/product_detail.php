@@ -1,4 +1,3 @@
-
 <head>
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
@@ -216,7 +215,7 @@ $pro_data= $this->db->get()->row();
                 <div class="mt-4 mb-3">
                     <h5 class="text-uppercase"><?=$pro_data->name;?></h5>
                         <div class="price d-flex flex-row align-items-center mt-3" >
-                            <span class="h4 green" id="price" value="<?=$type_data->sp;?>">₹<?=$type_data->sp;?></span>
+                            <span class="h4 green" id="price" value="<?=$type_data->spgst;?>">₹<?=$type_data->spgst;?></span>
                             <div class="ml-2">
                                 <!-- <small class="px-2">80g(Static)</small> -->
                             </div>

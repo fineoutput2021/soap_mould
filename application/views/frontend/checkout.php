@@ -41,7 +41,7 @@
                   <li>Payment</li>
                </ul>
             </div> -->
-            <form action="<?=base_url()?>Order/checkout" method="POST" enctype="multipart/form-data">
+            <form action="javascript:;" id="pay" method="POST" enctype="multipart/form-data">
                <div class="fixedElement" >
 <h2>Checkout</h2>
 <br />
@@ -57,7 +57,7 @@
           <div class="form-outline">
             <label class="form-label" for="name">Name<span class="sp">*</span></label>
             <input type="text" id="name" name="name" class="form-control mt-0" required onkeyup='saveValue(this);'/>
-            <input type="hidden" name="order_id" value="<?=base64_encode($order_data->id);?>">
+            <input type="hidden" name="order_id" id="order" value="<?=base64_encode($order_data->id);?>">
           </div>
         </div>
         <div class="col-12 col-md-6">
@@ -91,7 +91,16 @@
         <label class="form-label" for="address">Address<span class="sp">*</span></label>
         <textarea class="form-control" id="address" name="address" rows="4" required onkeyup='saveValue(this);'></textarea>
       </div>
-
+      <div class="row mb-4 mt-4">
+        <div class="col-12 col-md-6">
+          <input type="radio" class="payment_type" required name="payment_method" value="1">
+          <label for="cod">COD</label><br>
+        </div>
+        <div class="col-12 col-md-6">
+          <input type="radio" class="payment_type"  required name="payment_method" value="2">
+          <label for="online">Online payment</label><br>
+        </div>
+      </div>
       <!-- Checkbox -->
       <!-- <div class="form-check d-flex justify-content-center mb-2">
         <button class="chk" style="width:30%">
@@ -166,6 +175,7 @@ Place order
                               <div class="form-group d-flex">
                                  <input type="text" name="promocode" class="form-control form-control-lg mt-3 mx-3" id="promocode_submit" value="<?if (!empty($order_data->promocode_id)) {echo $promo_data->name;}?>" placeholder="Apply Promocode" /><button type="submit" class="btn btn-primary btn-md mt-3">Apply</button>
                                  <input type="hidden" name="order_id" value="<?=base64_encode($order_data->id);?>">
+                                 <input type="hidden" name="totAmt" id="totAmt" value="<?=$order_data->final_amount?>">
                               </div>
                             </form>
                            </th>
@@ -452,7 +462,6 @@ $(document).ready(function() {
     });
   }
 </script>
-
  <script>
    function isNumberKey(evt){
        var charCode = (evt.which) ? evt.which : evt.keyCode
@@ -461,3 +470,154 @@ $(document).ready(function() {
        return true;
    }
    </script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+$(document).ready(function () {
+  $("#pay").on('submit',function(e){
+    e.preventDefault();
+    var name = $("#name").val()
+    var email = $("#email").val()
+    var phone = $("#phone").val()
+    var payment_method = $(".payment_type:checked").val();
+    var formData = {
+      name: $("#name").val(),
+      email: $("#email").val(),
+      phone: $("#phone").val(),
+      order_id: $("#order").val(),
+      pincode: $("#pincode").val(),
+      address: $("#address").val(),
+      payment_method: payment_method,
+    };
+    if(payment_method==1){
+      $.ajax({
+      type: "POST",
+      url: '<?php echo base_url() ?>'+'Order/checkout',
+      data: formData,
+      dataType: "json",
+      success: function(response) {
+        if (response.data == true) {
+          window.location.replace("<?=base_url()?>Order/order_success");
+        }else if (response.data == false) {
+          $.notify({
+                     icon: 'bi-exclamation-octagon-fill',
+                     // title: 'Alert!',
+                     message: response.data_message
+                 },{
+                     element: 'body',
+                     position: null,
+                     type: "danger",
+                     allow_dismiss: true,
+                     newest_on_top: false,
+                     showProgressbar: false,
+                     placement: {
+                       from: "top",
+                       align: "right"
+                     },
+                     offset: 20,
+                     spacing: 10,
+                     z_index: 1031,
+                     delay: 1000,
+                     animate: {
+                       enter: 'animated fadeInDown',
+                       exit: 'animated fadeOutUp'
+                     },
+                     icon_type: 'class',
+                     template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-danger  alert-dismissible fade show alert-{0}" role="alert">' +
+                     '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                       '<span data-notify="title">{1}</span> ' +
+                       '<span data-notify="message">{2}</span>' +
+                       '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                       '</div>'
+                 });
+        }
+      }
+    });
+    }else{
+    //------------------------
+              $.ajax({
+              type: "POST",
+              url: "<?php echo base_url(); ?>Order/create_razorpay_order_id",
+              // data: {
+              // 'old': old,
+              // 'new': newpass
+              // },
+              dataType: 'json',
+              success: function(response){
+                    if(response.message == 'success'){
+                      // alert(response.razorpayOrder )
+                      var totalAmount = $("#totAmt").val()
+                      // alert(totalAmount)
+                      var product_id =  $("#order").val()
+                      var product_name =  "Astromoney";
+                      var options = {
+                        "key": "rzp_test_4xP4NZyxYeuqlD",
+                        "amount": totalAmount , // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        "currency": "INR",
+                        "name": product_name,
+                        "description": "Test Transaction",
+                        "prefill": {
+                        "name": name,
+                        "email": email,
+                        "contact": phone,
+                        },
+                        // "image": "https://example.com/your_logo",
+                        "order_id": response.razorpayOrder,
+                        "handler": function (response){
+// console.log("--------------"+ JSON.stringify(response))
+                            if(response.razorpay_payment_id.length!==0){
+                              // alert(response.razorpay_payment_id)
+                          $.ajax({
+                            url: '<?php echo base_url() ?>'+'Order/check_payment',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {
+                              razorpay_payment_id: response.razorpay_payment_id,
+                              razorpay_order_id: response.razorpay_order_id,
+                              razorpay_signature: response.razorpay_signature,
+                              name: $("#name").val(),
+                              email: $("#email").val(),
+                              phone: $("#phone").val(),
+                              order_id: $("#order").val(),
+                              pincode: $("#pincode").val(),
+                              state: $("#state").val(),
+                              gstin: $("#gstin").val(),
+                              address: $("#address").val(),
+                              payment_method: payment_method,
+                            },
+                            "prefill": {
+                            "name": name,
+                            "email": email,
+                            "phone": phone,
+                            },
+                            "notes": {
+                            "address": $("#address").val(),
+                        },
+                            success: function (respawn) {
+                              if (respawn.data == true) {
+                                window.location.replace("<?=base_url()?>Order/order_success");
+                              }else if (respawn.data == false) {
+                                window.location.replace("<?=base_url()?>Order/payment_failed");
+                              }
+                            }
+                          });
+                        }else{
+
+                        }
+                        },
+                        "theme": {
+                          "color": "#416e7a"
+                        }
+                      };
+                      var rzp1 = new Razorpay(options);
+                      rzp1.open();
+                    }
+                    else{
+                         alert('Not OKay');
+                        }
+                   }
+        });
+  }
+  });
+});
+
+</script>

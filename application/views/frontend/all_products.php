@@ -15,15 +15,6 @@
 </div>
 <div class="container">
    <div class="row">
-      <div class="col-4">
-         <div class="list-group" id="list-tab" role="tablist">
-            <!-- <p class="h6">CATEGORIES</p class="h6"> -->
-            <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">All Product</a>
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">Aloe Vera Gel</a>
-            <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Heading2</a>
-            <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">Heading3</a>
-         </div>
-      </div>
       <div class="col-8">
          <div class="tab-content"id="wishlist">
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
@@ -74,7 +65,7 @@
             </div>
             <div class="card-body product-content">
                <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?echo $type_data->name?></a></h3>
-               <div class="price">$<?=$type_data->sp;?><span class="px-2">$<?=$type_data->mrp;?></span></div>
+               <div class="price">₹<?=$type_data->spgst;?><span class="px-2">₹<?=$type_data->mrp;?></span></div>
             </div>
          </div>
          <?}?>

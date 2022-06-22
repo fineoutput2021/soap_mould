@@ -3,6 +3,11 @@
 if (! defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
+
+require('razorpay/Razorpay.php');
+use Razorpay\Api\Api;
+use Razorpay\Api\Errors\SignatureVerificationError;
+
 class Order extends CI_Controller
 {
     public function __construct()
@@ -44,7 +49,7 @@ class Order extends CI_Controller
                         $inventory= $this->db->get()->row();
                         if (!empty($inventory->quantity)) {
                             if ($inventory->quantity >= $cart->quantity) {
-                                $price = $pro_data->sp * $cart->quantity;
+                                $price = $pro_data->spgst * $cart->quantity;
                                 $total= $total + $price;
                             } else {
                                 $this->session->set_flashdata('emessage', ''.$pro_data->name.'  is out of stock');
@@ -78,14 +83,14 @@ class Order extends CI_Controller
                             $this->db->where('id', $cart2->type_id);
                             $pro_data= $this->db->get()->row();
 
-                            $total = $pro_data->sp * $cart2->quantity;
+                            $total = $pro_data->spgst * $cart2->quantity;
 
                             $order2_insert = array('main_id'=>$last_id,
                         'product_id'=>$cart2->product_id,
                         'type_id'=>$cart2->type_id,
                         'quantity'=>$cart2->quantity,
                         'mrp'=>$pro_data->mrp,
-                        'selling_price'=>$pro_data->sp,
+                        'selling_price'=>$pro_data->spgst,
                         'total_amount'=>$total,
                         'date'=>$cur_date
                         );
@@ -264,6 +269,38 @@ class Order extends CI_Controller
       }
   }
 
+  //--------create_razorpay_order_id---------
+
+  public function create_razorpay_order_id()
+  {
+      if ((!empty($this->session->userdata('order_id')))) {
+          $this->db->select('*');
+          $this->db->from('tbl_order1');
+          $this->db->where('id', base64_decode($this->session->userdata('order_id')));
+          $data['order_data']= $this->db->get()->row();
+
+          $orderData = [
+                  'receipt'         => $data['order_data']->id,
+                  'amount'          => $data['order_data']->final_amount*100, // 39900 rupees in paise
+                  'currency'        => 'INR'
+              ];
+
+          $api_key = 'rzp_test_4xP4NZyxYeuqlD';
+          $api_secret = 'f1hSaQG0VaMa1HrvZ99r9at2';
+          $api = new Api($api_key, $api_secret);
+
+          $razorpayOrder = $api->order->create($orderData);
+
+          $respone['data'] = true;
+          $respone['message'] = 'success';
+          $respone['razorpayOrder'] = $razorpayOrder->id;
+          echo json_encode($respone);
+      } else {
+          $respone['data'] = false;
+          echo json_encode($respone);
+      }
+  }
+
   //--------checkout----------------
     public function checkout()
     {
@@ -278,6 +315,7 @@ class Order extends CI_Controller
                 $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim');
                 $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
+                $this->form_validation->set_rules('payment_method', 'payment_method', 'required|xss_clean|trim');
 
 
                 if ($this->form_validation->run()== true) {
@@ -287,6 +325,7 @@ class Order extends CI_Controller
                     $phone=$this->input->post('phone');
                     $address=$this->input->post('address');
                     $pincode=$this->input->post('pincode');
+                    $payment_method=$this->input->post('payment_method');
                     $user_id=$this->session->userdata('user_id');
                     // exit;
                     $ip = $this->input->ip_address();
@@ -395,33 +434,227 @@ if($this->email->send()){
 show_error($this->email->print_debugger());
 }
 // die();
-
+                        $respone['data'] = true;
+                        echo json_encode($respone);
                         redirect("Order/order_success", "refresh");
                     } else {
-                        $this->session->set_flashdata('emessage', 'Some error occured');
-                        redirect($_SERVER['HTTP_REFERER']);
+                        $respone['data'] = false;
+                        $respone['data_message'] ="Some error occured";
+                        echo json_encode($respone);
                     }
                 } else {
-                    $this->session->set_flashdata('emessage', validation_errors());
-                    redirect($_SERVER['HTTP_REFERER']);
+                  $respone['data'] = true;
+                  $respone['data_message'] = validation_errors();
+                  echo json_encode($respone);
                 }
             } else {
-                $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
-                redirect($_SERVER['HTTP_REFERER']);
+              $respone['data'] = true;
+              $respone['data_message'] ="Please insert some data, No data available";
+              echo json_encode($respone);
             }
         } else {
-            redirect("/", "refresh");
+          $respone['data'] = true;
+          $respone['data_message'] ="Some unknown error occured";
+          echo json_encode($respone);
         }
     }
 
-    //-------view cart details page --------
+    //-------------------check payment online------------------------------
+public function check_payment()
+{
+    if (!empty($this->session->userdata('user_data')) || !empty($this->session->userdata('guest_data'))) {
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->load->helper('security');
+        if ($this->input->post()) {
+            // $this->form_validation->set_rules('order_id', 'order_id', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('razorpay_payment_id', 'razorpay_payment_id', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('razorpay_order_id', 'razorpay_order_id', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('razorpay_signature', 'razorpay_signature', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('name', 'name', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('email', 'email', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('phone', 'phone', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('address', 'address', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('pincode', 'pincode', 'required|xss_clean|trim');
+            $this->form_validation->set_rules('payment_method', 'payment_method', 'required|xss_clean|trim');
 
-    public function online_payment()
-    {
-        $this->load->view('frontend/common/header');
-        $this->load->view('frontend/payment');
-        $this->load->view('frontend/common/footer');
+
+            if ($this->form_validation->run()== true) {
+                $order_id=base64_decode($this->input->post('order_id'));
+                $razorpay_order_id=$this->input->post('razorpay_order_id');
+                $name=$this->input->post('name');
+                $email=$this->input->post('email');
+                $phone=$this->input->post('phone');
+                $address=$this->input->post('address');
+                $pincode=$this->input->post('pincode');
+                $payment_method=$this->input->post('payment_method');
+                $razorpay_payment_id=$this->input->post('razorpay_payment_id');
+                $razorpay_signature=$this->input->post('razorpay_signature');
+                $user_id=$this->session->userdata('user_id');
+                // exit;
+                $ip = $this->input->ip_address();
+                date_default_timezone_set("Asia/Calcutta");
+                $cur_date=date("Y-m-d H:i:s");
+
+                $this->db->select('*');
+                $this->db->from('tbl_order1');
+                $this->db->where('id', $order_id);
+                $this->db->order_by('id', 'desc');
+                $order= $this->db->get()->row();
+                if (!empty($gstin)) {
+                    if (empty($order->invoice)) {
+                        $invoice = 1;
+                    } else {
+                        $invoice = $order->invoice +1;
+                    }
+                } else {
+                    $invoice = null;
+                }
+                $this->db->select('*');
+                $this->db->from('tbl_order1');
+                $this->db->where('id', $order_id);
+                $order1_data= $this->db->get()->row();
+                $amount = $order1_data->final_amount;
+                $this->db->select('*');
+                $this->db->from('tbl_order2');
+                $this->db->where('main_id', $order_id);
+                $order2_data= $this->db->get();
+
+
+                if ($payment_method==2) {
+                    $success = true;
+
+                    $error = "Payment Failed";
+                    $keyId = 'rzp_test_4xP4NZyxYeuqlD';
+                    $keySecret = 'f1hSaQG0VaMa1HrvZ99r9at2';
+
+                    if (empty($razorpay_payment_id) === false) {
+                        $api = new Api($keyId, $keySecret);
+
+                        try {
+                            // Please note that the razorpay order ID must
+                            // come from a trusted source (session here, but
+                            // could be database or something else)
+                            $attributes = array(
+                                                  'razorpay_order_id' => $razorpay_order_id,
+                                                  'razorpay_payment_id' => $razorpay_payment_id,
+                                                  'razorpay_signature' => $razorpay_signature
+                                              );
+
+                            $api->utility->verifyPaymentSignature($attributes);
+                        } catch (SignatureVerificationError $e) {
+                            $success = false;
+                            $error = 'Razorpay Error : ' . $e->getMessage();
+                        }
+                    }
+
+                    if ($success == true) {
+                        // echo "excellent";
+                        // die();
+                        //----------order1 entry-------------
+                        $order1_update = array(
+                          'name'=>$name,
+                          'email'=>$email,
+                          'phone'=>$phone,
+                          'address'=>$address,
+                          'pincode'=>$pincode,
+                          'payment_status'=>1,
+                          'payment_type'=>2, //online---------------------
+                          'order_status'=>1,
+                          'razorpay_order_id' => $razorpay_order_id,
+                          'razorpay_payment_id' => $razorpay_payment_id,
+                          'date'=>$cur_date,
+                          'ip'=>$ip,
+                            );
+                        // print_r($order1_update);die();
+                        $this->db->where('id', $order_id);
+                        $zapak2=$this->db->update('tbl_order1', $order1_update);
+
+
+
+
+                        if (!empty($zapak2)) {
+                            // redirect("Order/online_payment");
+
+                            foreach ($order2_data->result() as $odr2) {
+                                //-------cart delete---------
+                                $delete=$this->db->delete('tbl_cart', array('user_id' => $user_id));
+                                $this->session->unset_userdata('cart_data');
+                                // echo "hi";die();
+                            }
+
+
+                            $config = array(
+                            'protocol' => 'smtp',
+                            'smtp_host' => SMTP_HOST,
+                            'smtp_port' => SMTP_PORT,
+                            'smtp_user' => USER_NAME, // change it to yours
+                            'smtp_pass' => PASSWORD, // change it to yours
+                            'mailtype' => 'html',
+                            'charset' => 'iso-8859-1',
+                            'wordwrap' => true
+                            );
+                            $to=$email;
+                            $data['name']= $name;
+                            $data['email']= $email;
+                            $data['phone']= $phone;
+                            $data['order1_id']= $order_id;
+                            $data['date']= $cur_date;
+
+
+
+                            $message =$this->load->view('email/ordersuccess', $data, true);
+                            // echo $to;
+                            // print_r($message);
+                            // exit;
+
+                            $this->load->library('email', $config);
+                            $this->email->set_newline("");
+                            $this->email->from(EMAIL); // change it to yours
+                            $this->email->to($to);// change it to yours
+                            $this->email->subject('Order Placed');
+                            $this->email->message($message);
+                            if ($this->email->send()) {
+                                // echo 'Email sent.';
+                            } else {
+                                show_error($this->email->print_debugger());
+                            }
+                            // die();
+
+                            $respone['data'] = true;
+                            echo json_encode($respone);
+                        } else {
+                            $respone['data'] = false;
+                            $respone['data_message'] ="Some error occured";
+                            echo json_encode($respone);
+                        }
+                    } else {
+                        $respone['data'] = false;
+                        $respone['data_message'] ="Unknown error occured";
+                        echo json_encode($respone);
+                    }
+                } else {
+                    //cod---------------------------------------------
+                    die();
+                    // $respone['data'] = true;
+                // echo json_encode($respone);
+                }
+            } else {
+                $respone['data'] = false;
+                $respone['data_message'] = validation_errors();
+                echo json_encode($respone);
+            }
+        } else {
+            $respone['data'] = false;
+            $respone['data_message'] ="Please insert some data. No data available";
+            echo json_encode($respone);
+        }
+    } else {
+        redirect("/", "refresh");
     }
+}
+
+
     //-----------order success---------
     public function order_success()
     {

@@ -51,7 +51,7 @@
                               onclick="decreaseValue(<?=$i;?>)">
                               <i class="bi bi-dash green"></i>
                           </button>
-                          <input id="qty<?=$i;?>" min="1" product_id="<?=base64_encode($cart['product_id'])?>" type_id="<?=base64_encode($cart['type_id'])?>" name="qty" readonly value="<?=$cart['quantity']?>" price="<?=$pro_data->sp*$cart['quantity'];?>" type="number"
+                          <input id="qty<?=$i;?>" min="1" product_id="<?=base64_encode($cart['product_id'])?>" type_id="<?=base64_encode($cart['type_id'])?>" name="qty" readonly value="<?=$cart['quantity']?>" price="<?=$pro_data->spgst*$cart['quantity'];?>" type="number"
                               class="form-control form-control-md" style="width: 50px;" />
                           <button class="btn btn-link "
                               onclick="increaseValue(<?=$i;?>)">
@@ -60,8 +60,8 @@
                         </div>
                      </div>
                      <div class="col-lg-3 ">
-                           <p class="mb-0 green mobview-quantity"><strong id="price<?=$i;?>">₹<?=$pro_data->sp*$cart['quantity']?></strong></p>
-                           <input type="hidden" name="amount" id="amount<?=$i?>" min="1" value="<?=$cart['quantity']?>" maxlength="12" i="<?=$i?>" product_id="<?=base64_encode($cart['product_id'])?>" type_id="<?=base64_encode($cart['type_id'])?>" sp="<?=$pro_data->sp?>">
+                           <p class="mb-0 green mobview-quantity"><strong id="price<?=$i;?>">₹<?=$pro_data->spgst*$cart['quantity']?></strong></p>
+                           <input type="hidden" name="amount" id="amount<?=$i?>" min="1" value="<?=$cart['quantity']?>" maxlength="12" i="<?=$i?>" product_id="<?=base64_encode($cart['product_id'])?>" type_id="<?=base64_encode($cart['type_id'])?>" sp="<?=$pro_data->spgst?>">
                      </div>
                   </div>
                </div>
@@ -96,7 +96,7 @@
                     $this->db->where('product_id', $cart['product_id']);
                     $this->db->where('id', $cart['type_id']);
                     $pro_data= $this->db->get()->row();
-                    $price = $pro_data->sp*$cart['quantity'];
+                    $price = $pro_data->spgst*$cart['quantity'];
                     $total = $total + $price;
                   }
                   $subtotal = $subtotal+$total;

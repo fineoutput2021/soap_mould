@@ -51,7 +51,7 @@ $pro_data= $this->db->get()->row();?>
                               onclick="decreaseValue(<?=$i;?>)">
                               <i class="bi bi-dash green"></i>
                           </button>
-                          <input id="qty<?=$i;?>" min="1" product_id="<?=base64_encode($pro_data->product_id)?>" type_id="<?=base64_encode($pro_data->id)?>" name="qty" readonly value="<?=$cart->quantity?>" price="<?=$pro_data->sp*$cart->quantity;?>" type="number"
+                          <input id="qty<?=$i;?>" min="1" product_id="<?=base64_encode($pro_data->product_id)?>" type_id="<?=base64_encode($pro_data->id)?>" name="qty" readonly value="<?=$cart->quantity?>" price="<?=$pro_data->spgst*$cart->quantity;?>" type="number"
                               class="form-control form-control-md" style="width: 50px;" />
                           <button class="btn btn-link "
                               onclick="increaseValue(<?=$i;?>)">
@@ -60,7 +60,7 @@ $pro_data= $this->db->get()->row();?>
                         </div>
                      </div>
                      <div class="col-lg-3 ">
-                           <p class="mb-0 green mobview-quantity"><strong id="price<?=$i?>">₹<?=$pro_data->sp*$cart->quantity;?></strong></p>
+                           <p class="mb-0 green mobview-quantity"><strong id="price<?=$i?>">₹<?=$pro_data->spgst*$cart->quantity;?></strong></p>
                      </div>
                   </div>
                </div>
@@ -91,7 +91,7 @@ $pro_data= $this->db->get()->row();?>
                         $this->db->from('tbl_type');
                         $this->db->where('id', $cart2->type_id);
                         $pro_data= $this->db->get()->row();
-                        $price = $pro_data->sp * $cart2->quantity;
+                        $price = $pro_data->spgst * $cart2->quantity;
                         $total= $total + $price;
                     }
                     echo "₹".$subtotal = $total;
@@ -163,8 +163,6 @@ $pro_data= $this->db->get()->row();?>
 
           $( "#cartData" ).load(window.location.href + " #cartData > *" );
           $( "#cartCount" ).load(window.location.href + " #cartCount > *" );
-
-          document.getElementById('subTot').innerHTML = '$'+response.data_subtotal;
 
 
         } else if (response.data == false) {
@@ -271,10 +269,9 @@ $pro_data= $this->db->get()->row();?>
 
           // window.setTimeout(function(){location.reload()},2000)
           $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
-
+    $("#qty"+i).attr("price", newprice);
     document.getElementById('price'+i).value = "₹"+response.newprice;
     document.getElementById('subTot').innerHTML = '₹'+response.data_subtotal;
-    $("#qty"+i).attr("price", newprice);
 
         } else if (response.data == false) {
           $.notify({

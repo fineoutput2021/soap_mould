@@ -284,7 +284,7 @@ px
                            if (!empty($this->session->userdata('cart_data'))) {
                                foreach (($this->session->userdata('cart_data')) as $cart_data) {
                                    $this->db->select('*');
-                                   $this->db->from('tbl_product');
+                                   $this->db->from('tbl_products');
                                    $this->db->where('id', $cart_data['product_id']);
                                    $cart_row = $this->db->get()->row();
                                    if (empty($cart_row)) {
@@ -331,7 +331,7 @@ px
                                 if (!empty($this->session->userdata('cart_data'))) {
                                     foreach (($this->session->userdata('cart_data')) as $cart_data) {
                                         $this->db->select('*');
-                                        $this->db->from('tbl_product');
+                                        $this->db->from('tbl_products');
                                         $this->db->where('id', $cart_data['product_id']);
                                         $cart_row = $this->db->get()->row();
                                         if (empty($cart_row)) {

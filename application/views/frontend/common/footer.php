@@ -383,7 +383,7 @@ function backToTop() {
 var myVar;
 
 function myFunction() {
-  myVar = setTimeout(showPage, 0000);
+  myVar = setTimeout(showPage(), 5000);
 }
 
 function showPage() {
@@ -428,7 +428,7 @@ function loadSuccessNotify(succ_message){
                  from: "top",
                  align: "right"
              },
-             offset: 0,
+             offset: 20,
              spacing: 10,
              z_index: 1031,
              delay: 1000,
@@ -466,7 +466,7 @@ function loadSuccessNotify(succ_message){
                      from: "top",
                      align: "right"
                  },
-                 offset: 0,
+                 offset: 20,
                  spacing: 10,
                  z_index: 1031,
                  delay: 1000,
@@ -520,7 +520,7 @@ function loadSuccessNotify(succ_message){
                                 from: "top",
                                 align: "right"
                             },
-                            offset: 0,
+                            offset: 20,
                             spacing: 10,
                             z_index: 1031,
                             delay: 5000,
@@ -559,7 +559,7 @@ function loadSuccessNotify(succ_message){
                                    from: "top",
                                    align: "right"
                                },
-                               offset: 0,
+                               offset: 20,
                                spacing: 10,
                                z_index: 1031,
                                delay: 5000,
@@ -620,7 +620,7 @@ function loadSuccessNotify(succ_message){
                                 from: "top",
                                 align: "right"
                             },
-                            offset: 0,
+                            offset: 20,
                             spacing: 10,
                             z_index: 1031,
                             delay: 5000,
@@ -659,7 +659,7 @@ function loadSuccessNotify(succ_message){
                                    from: "top",
                                    align: "right"
                                },
-                               offset: 0,
+                               offset: 20,
                                spacing: 10,
                                z_index: 1031,
                                delay: 5000,
@@ -722,7 +722,7 @@ function wishlist(obj) {
             from: "top",
             align: "right"
           },
-          offset: 0,
+          offset: 20,
           spacing: 10,
           z_index: 1031,
           delay: 1000,
@@ -760,7 +760,7 @@ function wishlist(obj) {
             from: "top",
             align: "right"
           },
-          offset: 0,
+          offset: 20,
           spacing: 10,
           z_index: 1031,
           delay: 5000,

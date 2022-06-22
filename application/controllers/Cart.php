@@ -222,7 +222,7 @@ function __construct()
                               $this->db->where('product_id', $value['product_id']);
                               $this->db->where('id', $value['type_id']);
                               $pro_data= $this->db->get()->row();
-                              $price = $pro_data->sp * $value['quantity'];
+                              $price = $pro_data->spgst * $value['quantity'];
                               $total= $total + $price;
                           }
                           $subtotal = $total;
@@ -454,7 +454,7 @@ function __construct()
                               $this->db->from('tbl_type');
                               $this->db->where('id', $cart->type_id);
                               $pro_data= $this->db->get()->row();
-                              $price = $pro_data->sp * $cart->quantity;
+                              $price = $pro_data->spgst * $cart->quantity;
                               $total= $total + $price;
                           }
                           $subtotal = $total;
@@ -462,7 +462,7 @@ function __construct()
                           $this->db->from('tbl_type');
                           $this->db->where('id',$type_id);
                           $type_da= $this->db->get()->row();
-                          $newprice = $type_da->sp * $quantity;
+                          $newprice = $type_da->spgst * $quantity;
                           $respone['data'] = true;
                           $respone['data_message'] ="Cart item update successfully";
                           $respone['data_price'] =round($total);

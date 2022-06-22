@@ -1,4 +1,4 @@
-dcadmin/Orders<div class="content-wrapper">
+<div class="content-wrapper">
   <section class="content-header">
     <h1>
       <?=$heading;?>
@@ -36,7 +36,7 @@ if (!empty($this->session->flashdata('emessage'))) { ?>
 
             <div class="panel-body">
               <div class="box-body table-responsive no-padding">
-                <table class="table table-bordered table-hover table-striped" id="userTable">
+                <table class="table table-bordered table-hover table-striped" id="printTable">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -156,14 +156,12 @@ if (!empty($this->session->flashdata('emessage'))) { ?>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
                               <?php } elseif ($data->order_status==2) { ?>
-                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/dispatch">Dispatch</a></li>
 
                               <?php		} elseif ($data->order_status==3) { ?>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/delivered">Delivered</a></li>
-                              <li><a href="<?php echo base_url() ?>dcadmin/Orders/update_order_status/<?php echo base64_encode($data->id) ?>/reject">Reject</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_product_details/<?php echo base64_encode($data->id) ?>">View details</a></li>
                               <li><a href="<?php echo base_url() ?>dcadmin/Orders/view_order_bill/<?php echo base64_encode($data->id) ?>">View Bill</a></li>
                               <?php		} elseif ($data->order_status==4) { ?>
@@ -200,12 +198,71 @@ if (!empty($this->session->flashdata('emessage'))) { ?>
     margin: 5px;
   }
 </style>
+
 <script src="<?php echo base_url() ?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?php echo base_url() ?>assets/admin/plugins/datatables/dataTables.bootstrap.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
 <script type="text/javascript">
+  // buttons: [
+  //     'copy', 'csv', 'excel', 'pdf', 'print'
+  // ]
   $(document).ready(function() {
+    $('#printTable').DataTable({
+      responsive: true,
+      "bStateSave": true,
+      "fnStateSave": function (oSettings, oData) {
+          localStorage.setItem('offersDataTables', JSON.stringify(oData));
+      },
+      "fnStateLoad": function (oSettings) {
+          return JSON.parse(localStorage.getItem('offersDataTables'));
+      },
+      dom: 'Bfrtip',
+      buttons: [{
+          extend: 'copyHtml5',
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] //number of columns, excluding # column
+          }
+        },
+        {
+          extend: 'csvHtml5',
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+          }
+        },
+        {
+          extend: 'excelHtml5',
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+          }
+        },
+        {
+          extend: 'pdfHtml5',
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+          }
+        },
+        {
+          extend: 'print',
+          exportOptions: {
+            columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+          }
+        },
+
+      ]
 
 
+    });
     $(document.body).on('click', '.dCnf', function() {
       var i = $(this).attr("mydata");
       console.log(i);

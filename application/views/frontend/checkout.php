@@ -552,7 +552,7 @@ $(document).ready(function () {
                       var totalAmount = $("#totAmt").val()
                       // alert(totalAmount)
                       var product_id =  $("#order").val()
-                      var product_name =  "Astromoney";
+                      var product_name =  "Soap Mould";
                       var options = {
                         "key": "rzp_test_4xP4NZyxYeuqlD",
                         "amount": totalAmount , // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise

@@ -15,7 +15,7 @@
 <div class="container main_container">
 	<div class="row">
 		<div class="col-sm-6">
-		<img src="<?=base_url()?>assets/frontend/assets/img/web_logo.png" class="img-fluid" style="width:150px;">
+		<img src="<?=base_url()?>assets/frontend/images/logo/logo3.png" class="img-fluid" style="width:150px;">
     <!-- <span style="color: #d76a46; font-size:40px !important;border-bottom: 2px solid grey ;">0</span> -->
 		</div>
 		<div class="col-sm-6 content_part">Tax Invoice/Bill of Supply/Cash Memo
@@ -80,7 +80,8 @@ Zipcode: <?if(!empty($order1_data->pincode)){
       <tr>
         <th>SNo.</th>
         <th>Product</th>
-        <th>MRP</th>
+        <th>Type</th>
+        <th>Price</th>
         <th>Qty</th>
         <th>Total Amount</th>
       </tr>
@@ -100,10 +101,19 @@ if(!empty($product_data)){
 echo $product_name= $product_data->name;
 }
         ?></td>
-
-        <td >£<?if(!empty($data->mrp)){echo $data->mrp;}?></td>
+<td>
+  <?$this->db->select('*');
+  $this->db->from('tbl_type');
+  $this->db->where('id', $data->type_id);
+  $type_data = $this->db->get()->row();
+  if(!empty($type_data)){
+    echo $type_data->name;
+  }
+  ?>
+</td>
+        <td ><?if(!empty($data->selling_price)){echo "₹".$data->selling_price;}?></td>
         <td ><?php echo $data->quantity;?></td>
-        <td><?php echo "£".$data->total_amount;?></td>
+        <td><?php echo "₹".$data->total_amount;?></td>
       </tr>
   <?php $i++;} }?>
 
@@ -111,32 +121,32 @@ echo $product_name= $product_data->name;
         <th>Total</th>
 
         <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
-        <th class="product_table" colspan="2"><?php if(!empty($order1_data)){ echo ""; }?></th>
+        <th class="product_table" colspan="3"><?php if(!empty($order1_data)){ echo ""; }?></th>
 
-        <th class="product_table"><?php if(!empty($order1_data)){ echo "£".$order1_data->total_amount; }?></th>
+        <th class="product_table"><?php if(!empty($order1_data)){ echo "₹".$order1_data->total_amount; }?></th>
       </tr>
       <tr>
         <th>Shipping charge:</th>
 
         <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
-        <th class="product_table" colspan="2"><?php if(!empty($order1_data)){ echo ""; }?></th>
+        <th class="product_table" colspan="3"><?php if(!empty($order1_data)){ echo ""; }?></th>
 
-        <th class="product_table"><?php if(!empty($order1_data)){ echo "+ £".$order1_data->delivery_charge; }?></th>
+        <th class="product_table">Free</th>
       </tr>
       <tr>
         <th>Promocode discount:</th>
 
         <th class="product_table" ><?php if(!empty($order1_data)){ echo ""; }?></th>
-        <th class="product_table" colspan="2"><?php if(!empty($order1_data)){ echo ""; }?></th>
-        <th class="product_table"><?php if(!empty($order1_data->promocode_id)){ echo "- £".$order1_data->p_discount; }else{"NA";}?></th>
+        <th class="product_table" colspan="3"><?php if(!empty($order1_data)){ echo ""; }?></th>
+        <th class="product_table"><?php if(!empty($order1_data->promocode_id)){ echo "- ₹".$order1_data->p_discount; }else{"NA";}?></th>
       </tr>
 
       <tr>
       </tr>
 
       <tr>
-        <th colspan="4">SubTotal</th>
-        <th class="product_table">£<?php if(!empty($order1_data)){ echo  $order1_data->final_amount; }?></th>
+        <th colspan="5">SubTotal</th>
+        <th class="product_table"><?php if(!empty($order1_data)){ echo  "₹".$order1_data->final_amount; }?></th>
 
       </tr>
     </tbody>
@@ -204,18 +214,18 @@ window.onload = function() {
 
 
 
-var a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
-var b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+var a = ['','One ','Two ','Three ','Four ', 'Five ','Six ','Seven ','Eight ','Nine ','Ten ','Eleven ','Twelve ','Thirteen ','Fourteen ','Fifteen ','Sixteen ','Seventeen ','Eighteen ','Nineteen '];
+var b = ['', '', 'Twenty','Thirty','Forty','Fifty', 'Sixty','Seventy','Eighty','Ninety'];
 
 function inWords (num) {
     if ((num = num.toString()).length > 9) return 'overflow';
     n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
     if (!n) return; var str = '';
-    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
-    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
-    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
-    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
-    str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'Crore ' : '';
+    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'Lakh ' : '';
+    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'Thousand ' : '';
+    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'Hundred ' : '';
+    str += (n[5] != 0) ? ((str != '') ? 'And ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'Only ' : '';
     //return str;
     // alert(str);
     $("#checks123").text(str);

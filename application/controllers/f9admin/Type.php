@@ -448,6 +448,10 @@ class Type extends CI_finecontrol
             // echo $this->session->userdata('position');
             // exit;
             $id=base64_decode($idd);
+            $this->db->select('*');
+            $this->db->from('tbl_type');
+            $this->db->where('id', $id);
+            $type = $this->db->get()->row();
 
             if ($this->load->get_var('position')=="Super Admin") {
                 $zapak=$this->db->delete('tbl_type', array('id' => $id));
@@ -456,8 +460,7 @@ class Type extends CI_finecontrol
                     $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));
                     if (!empty($zapak2)) {
                       $this->session->set_flashdata('smessage', 'Type deleted successfully');
-
-                        redirect("dcadmin/Products/view_products", "refresh");
+                        redirect("dcadmin/Type/view_type/".$type->product_id, "refresh");
                     } else {
                         $this->session->set_flashdata('emessage', 'Some error occured');
                         redirect($_SERVER['HTTP_REFERER']);
@@ -485,6 +488,10 @@ class Type extends CI_finecontrol
             // echo $this->session->userdata('position');
             // exit;
             $id=base64_decode($idd);
+            $this->db->select('*');
+            $this->db->from('tbl_type');
+            $this->db->where('id', $id);
+            $type = $this->db->get()->row();
 
             if ($t=="active") {
                 $data_update = array(
@@ -498,7 +505,7 @@ class Type extends CI_finecontrol
                 if ($zapak!=0) {
                   $this->session->set_flashdata('smessage', 'Type status changed successfully');
 
-                    redirect("dcadmin/Type/view_type", "refresh");
+                    redirect("dcadmin/Type/view_type/".base64_encode($type->product_id), "refresh");
                 } else {
                   $this->session->set_flashdata('emessage', 'Some error occured');
                   redirect($_SERVER['HTTP_REFERER']);
@@ -517,7 +524,7 @@ class Type extends CI_finecontrol
                   $zapak=$this->db->delete('tbl_cart', array('type_id' => $id));
                   $zapak=$this->db->delete('tbl_wishlist', array('type_id' => $id));
                   $this->session->set_flashdata('smessage', 'Type status changed successfully');
-                    redirect("dcadmin/Type/view_type", "refresh");
+                    redirect("dcadmin/Type/view_type/".base64_encode($type->product_id), "refresh");
                 } else {
                   $this->session->set_flashdata('emessage', 'Some error occured');
                   redirect($_SERVER['HTTP_REFERER']);

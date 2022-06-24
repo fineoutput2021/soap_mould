@@ -67,11 +67,11 @@
                     <tr>
                       <td> <strong>Short Description</strong> <span style="color:red;">*</span></strong> </td>
                       <td>
-                          <textarea  name="s_description" class="form-control" rows="4" cols="50"><?=$products_data->s_description;?></textarea> </td>
+                          <textarea  name="s_description" id="sdesc" class="form-control" rows="4" cols="50"><?=$products_data->s_description;?></textarea> </td>
                     </tr>
                     <tr>
                       <td> <strong>Long Description</strong> <span style="color:red;">*</span></strong> </td>
-                      <td><textarea  name="l_description" class="form-control" rows="4" cols="50"><?=$products_data->l_description;?></textarea> </td>
+                      <td><textarea  name="l_description" id="ldesc" class="form-control" rows="4" cols="50"><?=$products_data->l_description;?></textarea> </td>
                     </tr>
                     <tr>
                     <td><label for="bestseller">BestSeller</label></td>
@@ -107,7 +107,13 @@
     </div>
   </section>
 </div>
-
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace('sdesc');
+</script>
+<script>
+  CKEDITOR.replace('ldesc');
+</script>
 <script type="text/javascript">
   $(document).ready(function() {
     $("#category").change(function() {

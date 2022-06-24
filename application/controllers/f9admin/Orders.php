@@ -380,20 +380,60 @@ class Orders extends CI_finecontrol
 
                 foreach ($data_order2->result() as $data) {
                     $this->db->select('*');
-                    $this->db->from('tbl_products');
-                    $this->db->where('id', $data->product_id);
+                    $this->db->from('tbl_inventory');
+                    $this->db->where('type_id', $data->type_id);
                     $pro_data= $this->db->get()->row();
                     if (!empty($pro_data)) {
-                        $update_inv = $pro_data->inventory + $data->quantity;
-                        $data_update = array('inventory'=>$update_inv,
+                        $update_inv = $pro_data->quantity + $data->quantity;
+                        $data_update = array('quantity'=>$update_inv,
                 );
                         $this->db->where('id', $pro_data->id);
-                        $zapak=$this->db->update('tbl_products', $data_update);
+                        $zapak=$this->db->update('tbl_inventory', $data_update);
                     }
                 }
 
 
                 if ($zapak!=0) {
+                  $this->db->select('*');
+                  $this->db->from('tbl_order1');
+                  $this->db->where('id',$id);
+                  $user_details= $this->db->get()->row();
+
+                  $config = Array(
+                  'protocol' => 'smtp',
+                  'smtp_host' => SMTP_HOST,
+                  'smtp_port' => SMTP_PORT,
+                  'smtp_user' => USER_NAME, // change it to yours
+                  'smtp_pass' => PASSWORD, // change it to yours
+                  'mailtype' => 'html',
+                  'charset' => 'iso-8859-1',
+                  'wordwrap' => true
+                  );
+                  $to=$user_details->email;
+                  // $data['name']= $user_details->name;
+                  // $data['email']= $user_details->email;
+                  // $data['phone']= $user_details->phone;
+                  // $data['order1_id']= $id;
+                  // $data['date']= $user_details->date;
+
+
+
+                  // $message =$this->load->view('email/orderdelivered',$data,TRUE);
+                  // print_r($message);
+                  // exit;
+                  $mess = "Order- #".$id." has been cancelled :(";
+
+                  $this->load->library('email', $config);
+                  $this->email->set_newline("");
+                  $this->email->from(EMAIL); // change it to yours
+                  $this->email->to($to);// change it to yours
+                  $this->email->subject('Order Cancelled');
+                  $this->email->message($mess);
+                  if($this->email->send()){
+                  // echo 'Email sent.';
+                  }else{
+                  show_error($this->email->print_debugger());
+                  }
                     $this->session->set_flashdata('smessage', 'Status Updated Successfully');
                     redirect($_SERVER['HTTP_REFERER']);
                 } else {

@@ -275,20 +275,20 @@ $pro_data= $this->db->get()->row();
                                 ?>
                         <div class="hover-green"><a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="add"
                             user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" class="green">
-                          <i class="bi bi-heart-half px-2"></i>Add to Wishlist</a></div>
+                          <i class="bi bi-heart px-2"></i>Add to Wishlist</a></div>
                           <?}else{?>
                             <div class="hover-green"><a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="remove"
                                 user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" class="green">
-                              <i class="bi bi-heart-half px-2"></i>Remove from Wishlist</a></div>
+                              <i class="bi bi-heart px-2"></i>Remove from Wishlist</a></div>
                                     <?}}?>
 
                     </div>
                 </div>
                 <?}?>
                 <div class="row justify-content-center">
-                    <div class="col-lg-12 bg-green text-center mb-5">
+                    <div class="col-lg-12 bg-green text-center mb-5 mt-4">
                         <h6 style="padding: 10px 0px 10px;" class="white"><i class="bi bi-truck"
-                                style="margin-right: 10px;"></i>Cash on delivery!</h6>
+                                style="margin-right: 10px;"></i>Free Delivery On All Orders!</h6>
                     </div>
                 </div>
             </div>

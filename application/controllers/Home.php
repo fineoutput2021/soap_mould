@@ -32,11 +32,21 @@ class Home extends CI_Controller
         $this->db->from('tbl_products');
         $this->db->where('category_id',$id);
         $data['sub_data']= $this->db->get();
+        $this->db->select('*');
+        $this->db->from('tbl_category');
+        $this->db->where('id', $id);
+        $cat_dat = $this->db->get()->row();
+        $data['heading'] = $cat_dat->name;
       }else{
         $this->db->select('*');
         $this->db->from('tbl_products');
         $this->db->where('subcategory_id',$id);
         $data['sub_data']= $this->db->get();
+        $this->db->select('*');
+        $this->db->from('tbl_subcategory');
+        $this->db->where('id', $id);
+        $cat_dat = $this->db->get()->row();
+        $data['heading'] = $cat_dat->name;
       }
         $this->load->view('frontend/common/header',$data);
         $this->load->view('frontend/all_products');

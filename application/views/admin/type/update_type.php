@@ -156,8 +156,22 @@ $(document).ready(function() {
     var spgst = sp + gst_price;
     var divobj = document.getElementById('gstprice');
     var gst_p = document.getElementById('spgst');
-    divobj.value = gst_price;
-    gst_p.value = spgst;
+    divobj.value = gst_price.toFixed(2);
+    gst_p.value = spgst.toFixed(2);
+  });
+});
+</script>
+<script>
+$(document).ready(function() {
+  $('#sp').keyup(function(ev) {
+    var sp = $('#sp').val() * 1;
+    var gst = $('#gst').val() * 1;
+    var gst_price= (gst/100)*sp;
+    var spgst = sp + gst_price;
+    var divobj = document.getElementById('gstprice');
+    var gst_p = document.getElementById('spgst');
+    divobj.value = gst_price.toFixed(2);
+    gst_p.value = spgst.toFixed(2);
   });
 });
 </script>

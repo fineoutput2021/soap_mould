@@ -9,7 +9,7 @@
                </div>
                <div class="content green-dark">
                   <h4>Free Shipping</h4>
-                  <p class="green">Free Shipping of all orders above $999</p>
+                  <p class="green">Free Shipping on all orders</p>
                </div>
             </div>
          </div>

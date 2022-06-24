@@ -72,7 +72,7 @@ $pro_data= $this->db->get()->row();?>
       <div class="row justify-content-center">
          <div class="col-lg-12 bg-green text-center mb-5">
             <h6 style="padding: 10px 0px 10px;" class="white"><i class="bi bi-truck"
-               style="margin-right: 10px;"></i>Cash on delivery</h6>
+               style="margin-right: 10px;"></i>Free Shipping On All Orders!</h6>
          </div>
       </div>
       <div class="row justify-content-center" style="">

@@ -73,6 +73,10 @@
                     <td><label for="bestseller">BestSeller</label></td>
                     <td><input type="checkbox" id="bestseller" name="bestseller" value="1"></td>
                   </tr>
+                    <tr>
+                    <td><label for="season">Season Collection</label></td>
+                    <td><input type="checkbox" id="season" name="season" value="1"></td>
+                  </tr>
 
 
                     <tr>

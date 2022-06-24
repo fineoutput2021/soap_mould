@@ -215,13 +215,17 @@
 
 
                        if ($zapak!=0) {
+                         $this->db->select('*');
+                         $this->db->from('tbl_subcategory');
+                         $this->db->where('id', $id);
+                         $pro_del= $this->db->get();
                          foreach($pro_del->result() as $pro){
                          $this->db->select('*');
                          $this->db->from('tbl_type');
                          $this->db->where('product_id', $pro->id);
                          $type_data= $this->db->get();
                          foreach ($type_data->result() as $type) {
-                             $zapak2=$this->db->delete('tbl_type', array('id' => $type->id));
+                             $zapak2=$this->db->delete('tbl_wishlist', array('type_id' => $type->id));
                              $zapak=$this->db->delete('tbl_cart', array('type_id' => $type->id));
 
                          }
@@ -266,6 +270,7 @@
                          $zapak1=$this->db->delete('tbl_inventory', array('type_id' => $type->id));
                          $zapak2=$this->db->delete('tbl_type', array('id' => $type->id));
                          $zapak=$this->db->delete('tbl_cart', array('type_id' => $type->id));
+                         $zapak=$this->db->delete('tbl_wishlist', array('type_id' => $type->id));
 
                      }
                      $zapak1=$this->db->delete('tbl_products', array('id' => $pro->id));

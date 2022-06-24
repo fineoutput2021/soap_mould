@@ -107,6 +107,7 @@
                        $this->form_validation->set_rules('s_description', 's_description', 'required');
                        $this->form_validation->set_rules('l_description', 'l_description', 'required');
                        $this->form_validation->set_rules('bestseller', 'bestseller');
+                       $this->form_validation->set_rules('season', 'season');
 
 
 
@@ -117,6 +118,7 @@
                            $s_description=$this->input->post('s_description');
                            $l_description=$this->input->post('l_description');
                            $bestseller=$this->input->post('bestseller');
+                           $season=$this->input->post('season');
 
                            $ip = $this->input->ip_address();
                            date_default_timezone_set("Asia/Calcutta");
@@ -132,6 +134,7 @@
                                            's_description'=>$s_description,
                                            'l_description'=>$l_description,
                                            'bestseller'=>$bestseller,
+                                           'season'=>$season,
                                            'ip' =>$ip,
                                            'added_by' =>$addedby,
                                            'is_active' =>1,
@@ -165,6 +168,7 @@
                                 'category_id'=>$category_id,
                                 'subcategory_id'=>$subcategory_id,
                                 'bestseller'=>$bestseller,
+                                'season'=>$season,
                                 'name'=>$name,
                                 's_description'=>$s_description,
                                 'l_description'=>$l_description,

@@ -60,6 +60,44 @@ class Home extends CI_Controller
         $this->load->view('frontend/common/footer');
     }
 
+    public function subscribe()
+    {
+          $this->load->helper(array('form', 'url'));
+        	$this->load->library('form_validation');
+        	$this->load->helper('security');
+        	if($this->input->post())
+        	{
+        	$this->form_validation->set_rules('email', 'email', 'required|xss_clean|trim');
+
+        		if($this->form_validation->run()== TRUE)
+        		{
+               $email=$this->input->post('email');
+               $ip = $this->input->ip_address();
+               date_default_timezone_set("Asia/Calcutta");
+               $cur_date=date("Y-m-d H:i:s");
+               $this->db->select('*');
+               $this->db->from('tbl_subscribe');
+               $this->db->where('email', $email);
+               $sub_da = $this->db->get()->row();
+               if(empty($sub_da)){
+                 $insert = array('email'=>$email, 'ip'=>$ip, 'date'=>$cur_date);
+                 $last_id=$this->base_model->insert_table("tbl_subscribe", $insert, 1) ;
+                 $this->session->set_flashdata('smessage', 'Thank you for subscribing us!');
+                 redirect($_SERVER['HTTP_REFERER']);
+               }else{
+                 $this->session->set_flashdata('smessage', 'You are already subscribed to us');
+                 redirect($_SERVER['HTTP_REFERER']);
+               }
+            } else {
+                $this->session->set_flashdata('emessage', validation_errors());
+                redirect($_SERVER['HTTP_REFERER']);
+            }
+        } else {
+            $this->session->set_flashdata('emessage', 'Please insert some data, No data available');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
     public function cart()
     {
       if (!empty($this->session->userdata('user_data'))) {

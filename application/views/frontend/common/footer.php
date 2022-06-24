@@ -61,10 +61,13 @@
                <ul class="green text-center">
                   <li>We promise we won't write to you often</li>
                </ul>
-               <div class="text-center subscribe d-flex justify-content-center">
-                  <input type="email" name="email" placeholder="Enter Email..." style="" class="p-2">
-                  <button class="btn green-dark" style="">Subscribe</button>
-               </div>
+               <form action="<?=base_url()?>Home/subscribe" method="POST" enctype="multipart/form-data">
+                 <div class="text-center subscribe d-flex justify-content-center">
+                    <input type="email" name="email" required placeholder="Enter Email..." style="" class="p-2">
+                    <button class="btn green-dark" type="submit">Subscribe</button>
+                 </div>
+               </form>
+
             </div>
             <div class="col">
                <h2 class="green-dark text-center">

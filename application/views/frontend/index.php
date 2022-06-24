@@ -117,86 +117,83 @@ if(!empty($bestseller)){
 <!-- ======= Winter Collection ======= -->
 <div class="album">
    <div class="container mb-5 mt-5">
+     <?
+     $this->db->select('*');
+     $this->db->from('tbl_products');
+     $this->db->where('is_active',1);
+     $this->db->where('season',1);
+     $seasonal= $this->db->get();
+     if(!empty($seasonal)){
+     ?>
       <div class="row text-center py-3">
          <div class="col-md-12 text-center">
             <h6>BEST FOR YOU</h6>
-            <h1 class="green">Winter Collection</h1>
+            <h1 class="green">Season Collection</h1>
             <p>Shea butter is one of the best moisturizing, anti-aging, regenerating and protecting natural agent
                for the skin.
             </p>
          </div>
       </div>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        <? //--------Seasonal Collection-------------------------
+        foreach($seasonal->result() as $season){
+                      $this->db->select('*');
+          $this->db->from('tbl_type');
+          $this->db->where('product_id',$season->id);
+          $type_data= $this->db->get()->row();
+          if(!empty($type_data)){
+          // print_r($type_data);die();
+        ?>
          <div class="col product-grid">
             <div class="card bordre-none product-image">
-               <a href="javascript:;" class="image">
-               <img src="<?base_url()?>assets/frontend/images/product/13.jpg">
+               <a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="image">
+                 <?if(!empty($type_data->image1)){?>
+               <img src="<?=base_url().$type_data->image1;?>">
+               <?}elseif(!empty($type_data->image2)){?>
+                 <img src="<?=base_url().$type_data->image2;?>">
+                 <?}elseif(!empty($type_data->image3)){?>
+                   <img src="<?=base_url().$type_data->image3;?>">
+                   <?}elseif(!empty($type_data->image4)){?>
+                     <img src="<?=base_url().$type_data->image4;?>">
+                     <?}?>
                </a>
-               <!--                      <span class="product-discount-label">-23%</span>
-                  -->
-               <ul class="product-links">
+
+               <!-- <ul class="product-links">
                   <li><a href=""><i class="bi bi-heart green"></i></a></li>
+                  <li><a href="images/product/1.jpg"><i class="fa fa-compass" aria-hidden="true"></i></a></li>
+               </ul> -->
+
+               <ul class="product-links">
+                 <?if(!empty($this->session->userdata('user_data'))){
+                                       $this->db->select('*');
+                           $this->db->from('tbl_wishlist');
+                           $this->db->where('type_id',$type_data->id);
+                           $this->db->where('user_id',$this->session->userdata('user_id'));
+                           $wishlist_data= $this->db->get()->row();
+                           if(empty($wishlist_data)){
+                           ?>
+                   <a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="add"
+                       user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" >
+                     <li><i class="bi bi-heart green"></i></a></li>
+                     <?}else{?>
+                       <a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="remove"
+                           user_id="<?=base64_encode($this->session->userdata('user_id'))?>">
+                         <li><i class="bi bi-heart-fill green"></i></a></li>
+                               <?}}?>
                </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
+               <?if(empty($this->session->userdata('user_data'))){?>
+          <button class="txt-deco-no add-to-cart" onclick="addToCartOffline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>"  quantity=1>Add To Cart</button>
+          <?}else{?>
+          <button class="txt-deco-no add-to-cart" onclick="addToCartOnline(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" quantity=1>Add To Cart</button>
+          <?}?>
             </div>
             <div class="card-body product-content">
-               <h3 class="title card-text"><a href="javascript:;" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
-                  SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a>
+               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?=$type_data->name?></a>
                </h3>
-               <div class="price">₹75.55<span class="px-2">₹68.88</span></div>
+               <div class="price">₹<?=$type_data->spgst?><span class="px-2">₹<?=$type_data->mrp;?></span></div>
             </div>
          </div>
-         <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="javascript:;" class="image">
-               <img src="<?base_url()?>assets/frontend/images/product/9.jpg">
-               </a>
-               <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="javascript:;" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
-                  SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a>
-               </h3>
-               <div class="price">₹75.55<span class="px-2">₹68.88</span></div>
-            </div>
-         </div>
-         <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="javascript:;" class="image">
-               <img src="<?base_url()?>assets/frontend/images/product/12.jpg">
-               </a>
-               <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="javascript:;" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
-                  SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a>
-               </h3>
-               <div class="price">₹75.55<span class="px-2">₹68.88</span></div>
-            </div>
-         </div>
-         <div class="col product-grid">
-            <div class="card bordre-none product-image">
-               <a href="javascript:;" class="image">
-               <img src="<?base_url()?>assets/frontend/images/product/16.jpg">
-               </a>
-               <ul class="product-links">
-                  <li><a href=""><i class="bi bi-heart green"></i></a></li>
-               </ul>
-               <a href="<?=base_url()?>/Home/cart" class="txt-deco-no add-to-cart">Add to Cart</a>
-            </div>
-            <div class="card-body product-content">
-               <h3 class="title card-text"><a href="javascript:;" class="txt-deco-no">HIBISCUS, LAVENDER & SHEA BUTTER
-                  SHAMPOO BAR (FOR DRY & DAMAGED HAIR)</a>
-               </h3>
-               <div class="price">₹75.55<span class="px-2">₹68.88</span></div>
-            </div>
-         </div>
-      </div>
+         <?}}?>
    </div>
+   <?}?>
 </div>

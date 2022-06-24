@@ -82,6 +82,15 @@
                         <input type="checkbox" id="bestseller" name="bestseller" value="1"></td>
                         <?}?>
                     </tr>
+                    <tr>
+                    <td><label for="season">Season Collection </label></td>
+                    <td>
+                      <?if($products_data->season==1){?>
+                      <input type="checkbox" id="season" checked name="season" value="1"></td>
+                      <?}else{?>
+                        <input type="checkbox" id="season" name="season" value="1"></td>
+                        <?}?>
+                    </tr>
 
 
 

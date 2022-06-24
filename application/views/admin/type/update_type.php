@@ -63,22 +63,22 @@
 
 
                     <tr>
-                                          <td> <strong>Image1</strong> <span style="color:red;">*</span></strong> </td>
+                                          <td> <strong>Image1</strong> <span style="color:red;">*<br />980X980px</span></strong> </td>
                                           <td> <input type="file" name="image1" class="form-control" placeholder="" />
                                             <?php if ($type_data->image1!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$type_data->image1; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
                                         </tr>
                                         <tr>
-                                          <td> <strong>Image2</strong> <span style="color:red;">*</span></strong> </td>
+                                          <td> <strong>Image2</strong> <span style="color:red;">*<br />980X980px</span></strong> </td>
                                           <td> <input type="file" name="image2" class="form-control" placeholder="" />
                                             <?php if ($type_data->image2!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$type_data->image2; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
                                         </tr>
                                         <tr>
-                                          <td> <strong>Image3</strong> <span style="color:red;">*</span></strong> </td>
+                                          <td> <strong>Image3</strong> <span style="color:red;">*<br />980X980px</span></strong> </td>
                                           <td> <input type="file" name="image3" class="form-control" placeholder="" />
                                             <?php if ($type_data->image3!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$type_data->image3; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
                                         </tr>
                                         <tr>
-                                          <td> <strong>Image4</strong> <span style="color:red;">*</span></strong> </td>
+                                          <td> <strong>Image4</strong> <span style="color:red;">*<br />980X980px</span></strong> </td>
                                           <td> <input type="file" name="image4" class="form-control" placeholder="" />
                                             <?php if ($type_data->image4!="") { ?> <img id="slide_img_path" height=200 width=300 src="<?php echo base_url().$type_data->image4; ?> "> <?php } else { ?> Sorry No File Found <?php } ?> </td>
                                         </tr>

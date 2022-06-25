@@ -42,7 +42,7 @@
               echo "N/A";
             }
             ?></td>
-            <td>$<?=$data->final_amount;?></td>
+            <td>₹<?=$data->final_amount;?></td>
             <td><?=$data->date;?></td>
             <td><?php if ($data->order_status==1) { ?>
               <p class="label bg-yellow">Placed</p>

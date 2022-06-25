@@ -139,7 +139,6 @@
                                            'added_by' =>$addedby,
                                            'is_active' =>1,
                                            'date'=>$cur_date
-
                                            );
 
                                $last_id=$this->base_model->insert_table("tbl_products", $data_insert, 1) ;

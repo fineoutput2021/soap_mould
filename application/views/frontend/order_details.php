@@ -36,18 +36,18 @@
             $this->db->from('tbl_type');
             $this->db->where('id',$data->type_id);
             $type_img= $this->db->get()->row();
-            if(!empty($type_img->image1)){?>
+            if(!empty($type_img)){?>
               <img src="<?=base_url().$type_img->image1?>" height="80px">
             <?}elseif(!empty($type_img->image2)){?>
-              <img src="<?=base_url().$type_img->image2?>">
+              <img src="<?=base_url().$type_img->image2?>" height="80px">
           <?  }
             ?></td>
             <td><?
-                        $this->db->select('*');
+            $this->db->select('*');
             $this->db->from('tbl_products');
             $this->db->where('id',$data->product_id);
             $promo_data= $this->db->get()->row();
-            if(!empty($promo_data->name)){
+            if(!empty($promo_data)){
               echo $promo_data->name;
             }else{
               echo "N/A";
@@ -55,19 +55,15 @@
             }
             ?></td>
             <td><?
-                        $this->db->select('*');
-            $this->db->from('tbl_type');
-            $this->db->where('id',$data->type_id);
-            $type_data= $this->db->get()->row();
-            if(!empty($type_data->name)){
-              echo $type_data->name;
+            if(!empty($type_img)){
+              echo $type_img->name;
             }else{
               echo "N/A";
 
             }
             ?></td>
             <td><?=$data->quantity;?></td>
-            <td>$<?=$data->total_amount;?></td>
+            <td>₹<?=$data->total_amount;?></td>
 
          </tr>
          <?$i++;}?>

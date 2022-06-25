@@ -39,7 +39,7 @@
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <tr>
-                      <td> <strong>Image</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <strong>Image</strong> <span style="color:red;"><br />1280X720px</span></strong> </td>
                       <td> <input type="file" name="image" class="form-control" placeholder="" />
                         <img id="slide_img_path" height=200 width=400 src="<?php echo base_url().$image_data->image ?>">
                     </tr>

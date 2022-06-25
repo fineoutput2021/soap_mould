@@ -216,8 +216,8 @@
 
                        if ($zapak!=0) {
                          $this->db->select('*');
-                         $this->db->from('tbl_subcategory');
-                         $this->db->where('id', $id);
+                         $this->db->from('tbl_products');
+                         $this->db->where('subcategory_id',$id);
                          $pro_del= $this->db->get();
                          foreach($pro_del->result() as $pro){
                          $this->db->select('*');

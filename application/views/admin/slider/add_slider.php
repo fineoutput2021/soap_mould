@@ -40,7 +40,7 @@
                   <table class="table table-hover">
 
                     <tr>
-                      <td> <strong>Image</strong> <span style="color:red;">*</span></strong> </td>
+                      <td> <strong>Image</strong> <span style="color:red;">*<br />1280X720px</span></strong> </td>
                       <td>
                         <input type="file" name="image" class="form-control" placeholder="" required value="" />
                       </td>

@@ -33,14 +33,6 @@
    <div class="row">
       <div class="col-md-7">
          <main>
-            <!-- <div>
-               <ul class="breadcrumb">
-                  <li><a href="<?=base_url()?>/Home/cart">Cart</a></li>
-                  <li style="font-weight: bold;">Information</li>
-                  <li>Shipping</li>
-                  <li>Payment</li>
-               </ul>
-            </div> -->
             <form action="javascript:;" id="pay" method="POST" enctype="multipart/form-data">
                <div class="fixedElement" >
 <h2>Checkout</h2>
@@ -153,7 +145,7 @@ Place order
                               </div>
                            </th>
                            <td class="align-middle">
-                              <p class="mb-0" style="font-weight: 500;">₹<?=$type_data->sp*$cart->quantity?></p>
+                              <p class="mb-0" style="font-weight: 500;">₹<?=$type_data->spgst*$cart->quantity?></p>
                            </td>
                         </tr>
                         <?}?>

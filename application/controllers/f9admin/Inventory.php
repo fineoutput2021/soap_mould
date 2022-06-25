@@ -135,10 +135,7 @@ class Inventory extends CI_finecontrol
                         $this->db->where('id',$da->type_id);
                         $type= $this->db->get()->row();
 
-
-                        $data_insert = array(
-                                     'quantity'=>$quantity,
-                         );
+                        $data_insert = array('quantity'=>$quantity);
                         $this->db->where('id', $idw);
                         $last_id=$this->db->update('tbl_inventory', $data_insert);
                     }

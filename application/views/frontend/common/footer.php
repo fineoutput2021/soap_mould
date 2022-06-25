@@ -745,6 +745,7 @@ function wishlist(obj) {
         $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
             $( "#wishlist" ).load(window.location.href + " #wishlist > *" );
+            $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
 
 
       } else if (response.data == false) {
@@ -781,6 +782,7 @@ function wishlist(obj) {
         });
         $( "#mobileHeader" ).load(window.location.href + " #mobileHeader > *" );
             $( "#collapsibleNavbar" ).load(window.location.href + " #collapsibleNavbar > *" );
+            $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
 
 
 

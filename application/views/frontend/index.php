@@ -52,9 +52,10 @@ if(!empty($bestseller)){
 
         <? //--------BestSeller-------------------------
         foreach($bestseller->result() as $best){
-                      $this->db->select('*');
+          $this->db->select('*');
           $this->db->from('tbl_type');
           $this->db->where('product_id',$best->id);
+          $this->db->where('is_active', 1);
           $type_data= $this->db->get()->row();
           if(!empty($type_data)){
           // print_r($type_data);die();
@@ -103,7 +104,7 @@ if(!empty($bestseller)){
           <?}?>
             </div>
             <div class="card-body product-content">
-               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?=$type_data->name?></a>
+               <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?=$best->name?><br /><?=$type_data->name;?></a>
                </h3>
                <div class="price">₹<?=$type_data->spgst?><span class="px-2">₹<?=$type_data->mrp;?></span></div>
             </div>

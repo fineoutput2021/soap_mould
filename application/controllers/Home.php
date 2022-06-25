@@ -26,10 +26,12 @@ class Home extends CI_Controller
          $id=base64_decode($idd);
 
         $ty = base64_decode($typ);
+        $data['typ']=$ty;
         // echo $ty;die();
         if($ty==1){
         $this->db->select('*');
         $this->db->from('tbl_products');
+        $this->db->where('is_active', 1);
         $this->db->where('category_id',$id);
         $data['sub_data']= $this->db->get();
         $this->db->select('*');
@@ -40,6 +42,7 @@ class Home extends CI_Controller
       }else{
         $this->db->select('*');
         $this->db->from('tbl_products');
+        $this->db->where('is_active', 1);
         $this->db->where('subcategory_id',$id);
         $data['sub_data']= $this->db->get();
         $this->db->select('*');
@@ -48,9 +51,21 @@ class Home extends CI_Controller
         $cat_dat = $this->db->get()->row();
         $data['heading'] = $cat_dat->name;
       }
-        $this->load->view('frontend/common/header',$data);
-        $this->load->view('frontend/all_products');
-        $this->load->view('frontend/common/footer');
+        $pro_check = $data['sub_data']->row();
+        $this->db->select('*');
+        $this->db->from('tbl_type');
+        $this->db->where('is_active', 1);
+        $this->db->where('product_id', $pro_check->id);
+        $type_check= $this->db->get()->row();
+        if(!empty($type_check)){
+          $this->load->view('frontend/common/header',$data);
+          $this->load->view('frontend/all_products');
+          $this->load->view('frontend/common/footer');
+        }else{
+          $this->session->set_flashdata('emessage', "No Products Found");
+          redirect($_SERVER['HTTP_REFERER']);
+        }
+
     }
 
     public function contact()
@@ -208,6 +223,7 @@ class Home extends CI_Controller
         $this->db->select('*');
         $this->db->from('tbl_type');
         $this->db->where('product_id',$data['type_data']->product_id);
+        $this->db->where('is_active', 1);
         $data['type_full']= $this->db->get();
         $this->load->view('frontend/common/header', $data);
         $this->load->view('frontend/product_detail');

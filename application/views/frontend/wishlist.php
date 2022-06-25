@@ -14,7 +14,7 @@
                 <h4>Wishlist</h4>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                   <?foreach($wish_data->result() as $data){
-                                $this->db->select('*');
+                    $this->db->select('*');
                     $this->db->from('tbl_type');
                     $this->db->where('id',$data->type_id);
                     $type_data= $this->db->get()->row();

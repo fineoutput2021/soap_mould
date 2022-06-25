@@ -57,7 +57,7 @@
                             <tr>
                                                       <td> <strong>GST(%)</strong>  <span style="color:red;">*</span></strong> </td>
                                                       <td>
-      													<input type="text" name="gst" onkeypress="return isNumberKey(event)" id="gst" class="form-control" placeholder="" required value="" />
+      													<input type="text" maxlength="2" name="gst" onkeypress="return isNumberKey(event)" id="gst" class="form-control" placeholder="" required value="" />
       	                                            </td>
           										</tr>
 

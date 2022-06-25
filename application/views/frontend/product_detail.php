@@ -153,7 +153,7 @@ display: block;
 <div class="col-12 text-center d-flex justify-content-center align-items-center">
 <a href="<?=base_url()?>/Home" class="green">Home</a><span class="px-3">/</span>
 <?
-            $this->db->select('*');
+$this->db->select('*');
 $this->db->from('tbl_products');
 $this->db->where('id',$type_data->product_id);
 $pro_data= $this->db->get()->row();
@@ -264,27 +264,38 @@ $pro_data= $this->db->get()->row();
                 <hr>
                 <?if(!empty($this->session->userdata('user_data'))){?>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="prod_det_heart">
                       <?if(!empty($this->session->userdata('user_data'))){
-                                            $this->db->select('*');
+                                $this->db->select('*');
                                 $this->db->from('tbl_wishlist');
-                                $this->db->where('id',$type_data->id);
+                                $this->db->where('type_id',$type_data->id);
                                 $this->db->where('user_id',$this->session->userdata('user_id'));
                                 $wishlist_data= $this->db->get()->row();
                                 if(empty($wishlist_data)){
                                 ?>
-                        <div class="hover-green"><a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="add"
+                        <div class="hover-green"><a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_wish" status="add"
                             user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" class="green">
                           <i class="bi bi-heart px-2"></i>Add to Wishlist</a></div>
                           <?}else{?>
-                            <div class="hover-green"><a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" status="remove"
+                            <div class="hover-green"><a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_wish" status="remove"
                                 user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" class="green">
-                              <i class="bi bi-heart px-2"></i>Remove from Wishlist</a></div>
+                              <i class="bi bi-heart-fill px-2"></i>Remove from Wishlist</a></div>
                                     <?}}?>
 
                     </div>
                 </div>
                 <?}?>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12 mb-5 mt-4">
+                        <h6 style="padding: 10px 0px 10px;">Short Description:</h6>
+                          <?=$pro_data->s_description?>
+                    </div>
+                    <hr />
+                    <div class="col-lg-12 mb-5 mt-4">
+                        <h6 style="padding: 10px 0px 10px;">Long Description:</h6>
+                          <?=$pro_data->l_description?>
+                    </div>
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-12 bg-green text-center mb-5 mt-4">
                         <h6 style="padding: 10px 0px 10px;" class="white"><i class="bi bi-truck"
@@ -492,9 +503,12 @@ function type_change(obj){
                       $("#qty").attr("type_id", response.update_type.id);
                       $("#add_cart").attr("product_id", pro_id);
                       $("#add_cart").attr("type_id", type_id);
+
+                      $("#add_wish").attr("product_id", pro_id);
+                      $("#add_wish").attr("type_id", type_id);
                       // $("#price").html();
-                    document.getElementById("price").innerHTML = '₹'+response.update_type.sp;
-                     $("#price").attr("value", response.update_type.sp);
+                    document.getElementById("price").innerHTML = '₹'+response.update_type.spgst;
+                     $("#price").attr("value", response.update_type.spgst);
 
                      $("#image1").attr('src', BASE_URL+response.update_type.image1);
                      $("#image2").attr('src', BASE_URL+response.update_type.image2);
@@ -508,6 +522,8 @@ function type_change(obj){
 
                      $("#add_cart").attr('quantity', 1);
                      $("#qty").val(1);
+
+                     // $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
 
 
 

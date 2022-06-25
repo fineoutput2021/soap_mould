@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                       <td> <strong>GST(%)</strong> <span style="color:red;">*</span></strong> </td>
-                      <td> <input onkeypress="return isNumberKey(event)" type="text" id="gst" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
+                      <td> <input onkeypress="return isNumberKey(event)" maxlength="2" type="text" id="gst" name="gst" class="form-control" placeholder="" required value="<?=$type_data->gst;?>" /> </td>
                     </tr>
                     <tr>
                       <td> <strong>GST Price</strong> <span style="color:red;">*</span></strong> </td>

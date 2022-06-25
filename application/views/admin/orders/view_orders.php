@@ -51,6 +51,7 @@ if (!empty($this->session->flashdata('emessage'))) { ?>
                       <th>Promocode Discount</th>
                       <th>Shipping Charge</th>
                       <th>Final Amount</th>
+                      <th>Payment Method</th>
                       <th>Date</th>
                       <th>Orders Status</th>
                       <th>Action</th>
@@ -124,6 +125,13 @@ if (!empty($this->session->flashdata('emessage'))) { ?>
 } else {
     echo "No Data";
 }?></td>
+<td>
+  <?if($data->payment_type==1){
+    echo "COD";
+  }elseif($data->payment_type==2){
+    echo "Online";  
+  }?>
+</td>
                       <td>
                         <?php
     $newdate = new DateTime($data->date);

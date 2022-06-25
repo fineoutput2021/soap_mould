@@ -761,6 +761,7 @@ public function check_payment()
         $this->db->select('*');
         $this->db->from('tbl_order1');
         $this->db->where('user_id',$user_id);
+        $this->db->order_by('id', 'desc');
         $this->db->where('order_status!= ',0);
         $data['order1_data']= $this->db->get();
       $this->load->view('frontend/common/header', $data);

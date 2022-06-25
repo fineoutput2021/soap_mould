@@ -7,10 +7,15 @@
        $a=1;
      }
      if($a==1){?>
-      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+      <div class="tab-pane fade show active" id="wishlist" role="tabpanel" aria-labelledby="list-home-list">
          <h4>Search Results</h4>
          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
            <?foreach($search_data->result() as $data){
+             $this->db->select('*');
+             $this->db->from('tbl_products');
+             $this->db->where('is_active', 1);
+             $this->db->where('id', $data->product_id);
+             $product_data = $this->db->get()->row();
              ?>
             <div class="col product-grid">
       <div class="card bordre-none product-image">
@@ -50,8 +55,8 @@
     <?}?>
       </div>
       <div class="card-body product-content">
-         <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($data->id)?>" class="txt-deco-no"><?echo $data->name?></a></h3>
-         <div class="price">$<?=$data->sp;?><span class="px-2">$<?=$data->sp*1.5;?></span></div>
+         <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($data->id)?>" class="txt-deco-no"><?echo $product_data->name."<br />".$data->name?></a></h3>
+         <div class="price">₹<?=$data->spgst;?><span class="px-2">₹<?=$data->mrp;?></span></div>
       </div>
    </div>
    <?}?>

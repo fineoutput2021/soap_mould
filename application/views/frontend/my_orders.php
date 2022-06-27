@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col-12 text-center d-flex justify-content-center align-items-center">
    <a href="<?=base_url()?>/Home">Home</a><span class="px-3">/</span>
-   <p class="margin-0">Profile</p><span class="px-3">/</span>
+   <p class="margin-0"><a href="<?=base_url()?>/Home/user_profile" >Profile</a></p><span class="px-3">/</span>
    <p class="margin-0">My Orders</p>
 </div>
 </div>

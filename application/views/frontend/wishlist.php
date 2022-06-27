@@ -14,6 +14,10 @@
                 <h4>Wishlist</h4>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                   <?foreach($wish_data->result() as $data){
+										$this->db->select('*');
+										$this->db->from('tbl_products');
+										$this->db->where('id', $data->product_id);
+										$prod = $this->db->get()->row();
                     $this->db->select('*');
                     $this->db->from('tbl_type');
                     $this->db->where('id',$data->type_id);
@@ -53,8 +57,8 @@
                user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="move">Move To Cart</button>
              </div>
              <div class="card-body product-content">
-                <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?echo $type_data->name?></a></h3>
-                <div class="price">₹<?=$type_data->sp;?><span class="px-2">₹<?=$type_data->mrp;?></span></div>
+                <h3 class="title card-text"><a href="<?=base_url()?>/Home/product_detail/<?=base64_encode($type_data->id)?>" class="txt-deco-no"><?echo $prod->name."<br />".$type_data->name?></a></h3>
+                <div class="price">₹<?=$type_data->spgst;?><span class="px-2">₹<?=$type_data->mrp;?></span></div>
              </div>
           </div>
           <?}?>

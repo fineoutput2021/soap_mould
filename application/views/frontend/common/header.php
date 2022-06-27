@@ -221,7 +221,8 @@ px
                        foreach ($category_data->result() as $category) {
                            ?>
                      <li class="dropdown nav-item">
-                        <a href="<?=base_url()?>Home/all_products/<?=base64_encode($category->id)?>/<?=base64_encode(1)?>" class="nav-link green ">
+                        <!-- <a href="<?=base_url()?>Home/all_products/<?=base64_encode($category->id)?>/<?=base64_encode(1)?>" class="nav-link green "> -->
+                        <a href="javascript:void(0)" class="nav-link green ">
                            <span><?=$category->name; ?></span> <!-- <i class="bi bi-chevron-down"></i> -->
                         </a>
                         <ul>

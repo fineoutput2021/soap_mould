@@ -228,7 +228,7 @@
      <form action="<?=base_url()?>Home/search" method="get" enctype="multipart/form-data">
       <div class="input-group">
          <div class="form-outline d-flex" style="width: 100%;">
-            <input type="text" id="search" name="search" class="form-control form-control-lg " placeholder="search here..." />
+            <input type="text" id="searchh" name="search" class="form-control form-control-lg " placeholder="search here..." />
             <button type="submit" class="btn btn-primary">
             <i class="bi bi-search"></i>
             </button>

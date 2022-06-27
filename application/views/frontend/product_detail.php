@@ -273,12 +273,12 @@ $pro_data= $this->db->get()->row();
                                 $wishlist_data= $this->db->get()->row();
                                 if(empty($wishlist_data)){
                                 ?>
-                        <div class="hover-green"><a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_wish" status="add"
-                            user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" class="green">
+                        <div class="hover-green" id="WishDataDiv"><a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_wish" status="add"
+                            user_id="<?=base64_encode($this->session->userdata('user_id'))?>" class="green">
                           <i class="bi bi-heart px-2"></i>Add to Wishlist</a></div>
                           <?}else{?>
-                            <div class="hover-green"><a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_wish" status="remove"
-                                user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="add" class="green">
+                            <div class="hover-green" id="WishDataDiv"><a href="javascript:void(0);" title="Remove from Wishlist" onclick="wishlist(this)" product_id="<?=base64_encode($type_data->product_id)?>" type_id="<?=base64_encode($type_data->id)?>" id="add_wish" status="remove"
+                                user_id="<?=base64_encode($this->session->userdata('user_id'))?>" class="green">
                               <i class="bi bi-heart-fill px-2"></i>Remove from Wishlist</a></div>
                                     <?}}?>
 
@@ -504,8 +504,8 @@ function type_change(obj){
                       $("#add_cart").attr("product_id", pro_id);
                       $("#add_cart").attr("type_id", type_id);
 
-                      $("#add_wish").attr("product_id", pro_id);
-                      $("#add_wish").attr("type_id", type_id);
+                      // $("#add_wish").attr("product_id", pro_id);
+                      // $("#add_wish").attr("type_id", type_id);
                       // $("#price").html();
                     document.getElementById("price").innerHTML = '₹'+response.update_type.spgst;
                      $("#price").attr("value", response.update_type.spgst);
@@ -524,6 +524,16 @@ function type_change(obj){
                      $("#qty").val(1);
 
                      // $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
+                     switch(response.existsInWishlist){
+                       case 1:
+                       $("#WishDataDiv").html('<a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="'+pro_id+'" type_id="'+type_id+'" id="add_wish" user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="remove" class="green"><i class="bi bi-heart-fill px-2"></i>Remove From Wishlist</a>');
+                       break;
+                       case 0:
+                      $("#WishDataDiv").html('<a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="'+pro_id+'" type_id="'+type_id+'" id="add_wish" status="add" user_id="<?=base64_encode($this->session->userdata('user_id'))?>" class="green"><i class="bi bi-heart px-2"></i>Add to Wishlist</a>');
+                      break;
+                       case 33:
+                       break;
+                     }
 
 
 

@@ -305,14 +305,32 @@ class Home extends CI_Controller
       		{
              $type_id=base64_decode($this->input->post('type_id'));
 
-                         $this->db->select('*');
+             $this->db->select('*');
              $this->db->from('tbl_type');
              $this->db->where('id',$type_id);
              $type_data= $this->db->get()->row();
 
+             if(!empty($this->session->userdata('user_data'))){
+             // -----wishlist check----------
+             $this->db->select('*');
+             $this->db->from('tbl_wishlist');
+             $this->db->where('user_id', $this->session->userdata('user_id'));
+             $this->db->where('type_id', $type_id);
+             $wish_data = $this->db->get()->row();
+             if(!empty($wish_data)){
+               $existsInWishlist = 1;
+             }else{
+               $existsInWishlist = 0;
+             }
+           }else{
+             $existsInWishlist = 33;
+           }
+
+
              $respone['data'] = 'success';
              $respone['data_message'] = 'success';
              $respone['update_type'] = $type_data;
+             $respone['existsInWishlist'] = $existsInWishlist;
              echo json_encode($respone);
           } else {
             $respone['data'] = false;

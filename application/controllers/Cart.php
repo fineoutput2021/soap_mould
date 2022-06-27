@@ -230,7 +230,7 @@ function __construct()
               $this->db->from('tbl_type');
               $this->db->where('id',$value['type_id']);
               $type_da= $this->db->get()->row();
-              $newprice = $type_da->sp*$quantity;
+              $newprice = $type_da->spgst*$quantity;
 
                           $respone['data'] = true;
                           $respone['data_message'] ="Item successfully updated in your cart";

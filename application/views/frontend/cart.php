@@ -29,6 +29,10 @@ $total=0;
 $i=1;
 foreach ($cart_data->result() as $cart) {
 $this->db->select('*');
+$this->db->from('tbl_products');
+$this->db->where('id', $cart->product_id);
+$prod = $this->db->get()->row();
+$this->db->select('*');
 $this->db->from('tbl_type');
 $this->db->where('id', $cart->type_id);
 $pro_data= $this->db->get()->row();?>
@@ -43,7 +47,7 @@ $pro_data= $this->db->get()->row();?>
                         <!-- <h5 class="fs-0">Details</h5>
                            <hr class=""> -->
                         <a href="javascript:void(0)" class="txt-deco-no green">
-                           <p class="fs--1 fw-300"><?=$pro_data->name;?></p>
+                           <p class="fs--1 fw-300"><?=$prod->name."<br />".$pro_data->name;?></p>
                         </a>
                         <div class="d-flex col-md-12 mobview-quantity" style="align-items: center;">
                           <label class="green">Quantity:</label>
@@ -231,6 +235,7 @@ $pro_data= $this->db->get()->row();?>
         // alert(response)
         if (response.data == true) {
           document.getElementById('price' + i).innerHTML = "₹"+response.newprice;
+          document.getElementById('subTot').innerHTML = '₹'+response.data_subtotal;
           $("#qty"+i).attr("price", response.newprice);
           $.notify({
             icon: 'bi-check-circle-fill',
@@ -269,9 +274,8 @@ $pro_data= $this->db->get()->row();?>
 
           // window.setTimeout(function(){location.reload()},2000)
           $( "#mySidebar" ).load(window.location.href + " #mySidebar > *" );
-    $("#qty"+i).attr("price", newprice);
-    document.getElementById('price'+i).value = "₹"+response.newprice;
-    document.getElementById('subTot').innerHTML = '₹'+response.data_subtotal;
+    $("#qty"+i).attr("price", response.newprice);
+
 
         } else if (response.data == false) {
           $.notify({

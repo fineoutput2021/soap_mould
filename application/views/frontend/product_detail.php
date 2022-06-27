@@ -525,13 +525,13 @@ function type_change(obj){
 
                      // $( "#prod_det_heart" ).load(window.location.href + " #prod_det_heart > *" );
                      switch(response.existsInWishlist){
-                       case 1:
+                       case 1:        //---- exists in wishlist
                        $("#WishDataDiv").html('<a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="'+pro_id+'" type_id="'+type_id+'" id="add_wish" user_id="<?=base64_encode($this->session->userdata('user_id'))?>" status="remove" class="green"><i class="bi bi-heart-fill px-2"></i>Remove From Wishlist</a>');
                        break;
-                       case 0:
+                       case 0:        //---does not exist in wishlist
                       $("#WishDataDiv").html('<a href="javascript:void(0);" title="Add to Wishlist" onclick="wishlist(this)" product_id="'+pro_id+'" type_id="'+type_id+'" id="add_wish" status="add" user_id="<?=base64_encode($this->session->userdata('user_id'))?>" class="green"><i class="bi bi-heart px-2"></i>Add to Wishlist</a>');
                       break;
-                       case 33:
+                       case 33:       //-----user not logged in
                        break;
                      }
 

@@ -143,8 +143,24 @@ transition: all 1s;
 .show {
 display: block;
 }
-
 /* Style the buttons */
+
+/* type dropdown */
+.type_dropdown{
+  display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4d5154;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #eef0f3;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 </style>
 
 <body>
@@ -241,7 +257,7 @@ $pro_data= $this->db->get()->row();
                     <label class="green mt-1">Type:</label>
                   </div>
                   <div class="col-9">
-                    <select class="form-control green" onchange="type_change(this)" type_id="<?=base64_encode($type_data->id)?>" name="category_id" required>
+                    <select class="type_dropdown green" onchange="type_change(this)" type_id="<?=base64_encode($type_data->id)?>" name="category_id" required>
                         <?php $i=1; foreach ($type_full->result() as $data) { ?>
                         <option id="type_name" value="<?=base64_encode($data->id)?>" <?if ($data->id==$type_data->id) {
                                  echo " selected";

@@ -52,11 +52,15 @@ class Home extends CI_Controller
         $data['heading'] = $cat_dat->name;
       }
         $pro_check = $data['sub_data']->row();
+        if(!empty($pro_check)){
         $this->db->select('*');
         $this->db->from('tbl_type');
         $this->db->where('is_active', 1);
         $this->db->where('product_id', $pro_check->id);
         $type_check= $this->db->get()->row();
+      }else{
+        $type_check = "";
+      }
         if(!empty($type_check)){
           $this->load->view('frontend/common/header',$data);
           $this->load->view('frontend/all_products');
